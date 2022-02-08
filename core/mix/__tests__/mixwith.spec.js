@@ -202,35 +202,6 @@ describe('mixwith.js', () => {
 
   });
 
-  describe('HasInstance', () => {
-
-    let hasNativeHasInstance = false;
-
-    beforeAll(() => {
-      // Enable the @@hasInstance patch in mixwith.HasInstance
-      if (!Symbol.hasInstance) {
-        Symbol.hasInstance = Symbol('hasInstance');
-      }
-
-      class Check {
-        static [Symbol.hasInstance](o) { return true; }
-      }
-      hasNativeHasInstance = 1 instanceof Check;
-    });
-
-    // test('subclasses implement mixins', () => {
-    //   const M = HasInstance((s) => class extends s {});
-    //   class C extends M(Object) {}
-    //   const i = new C();
-
-    //   if (hasNativeHasInstance) {
-    //     assert.instanceOf(i, C);
-    //   } else {
-    //     assert.isTrue(C[Symbol.hasInstance](i));
-    //   }
-    // });
-
-  });
 
   describe('mix().with()', () => {
 

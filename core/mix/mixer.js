@@ -102,9 +102,9 @@ const mixer = constructor => {
    * Call
    * @returns the Object.freeze(target)
    */
-  o.freeze = function() {
-    return Object.freeze(o.merge(opts))
-  }
+  // o.freeze = function() {
+  //   return Object.freeze(o.merge(opts))
+  // }
 
   return o
 }

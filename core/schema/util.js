@@ -99,7 +99,6 @@ function set(object, path, value) {
   const result = path
     .slice(0, -1)
     // TODO: replace this reduce with something more readable
-    // eslint-disable-next-line unicorn/no-array-reduce
     .reduce(
       (accumulator, key, index) =>
         new Object(accumulator[key]) === accumulator[key]

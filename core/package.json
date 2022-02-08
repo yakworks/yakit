@@ -1,0 +1,17 @@
+{
+  "name": "@yakit/core",
+  "description": "Base js tools and utils",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "Joshua B",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "dequal": "^2.0.2",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "chance": "^1.1.8"
+  }
+}

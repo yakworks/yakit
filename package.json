@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.16.5",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.15",
     "@testing-library/dom": "^8.11.3",

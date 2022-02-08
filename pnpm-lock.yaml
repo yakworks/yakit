@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/core': ^7.16.5
+  '@babel/eslint-parser': ^7.17.0
   '@babel/preset-env': ^7.16.5
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.15
   '@testing-library/dom': ^8.11.3
@@ -33,6 +34,7 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.17.0
+  '@babel/eslint-parser': 7.17.0_@babel+core@7.17.0+eslint@7.32.0
   '@babel/preset-env': 7.16.11_@babel+core@7.17.0
   '@sveltejs/vite-plugin-svelte': 1.0.0-next.37_svelte@3.46.4+vite@2.7.13
   '@testing-library/dom': 8.11.3
@@ -110,6 +112,20 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@babel/eslint-parser/7.17.0_@babel+core@7.17.0+eslint@7.32.0:
+    resolution: {integrity: sha512-PUEJ7ZBXbRkbq3qqM/jZ2nIuakUBqCYc7Qf52Lj7dlZ6zERnqisdHioL0l4wwQZnmskMeasqUNzLBFKs3nylXA==}
+    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
+    peerDependencies:
+      '@babel/core': '>=7.11.0'
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@babel/core': 7.17.0
+      eslint: 7.32.0
+      eslint-scope: 5.1.1
+      eslint-visitor-keys: 2.1.0
+      semver: 6.3.0
     dev: false
 
   /@babel/generator/7.17.0:

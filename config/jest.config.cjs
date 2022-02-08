@@ -1,7 +1,7 @@
 // see https://el3um4s.medium.com/how-to-test-sveltekit-app-with-jest-848afa8edbc7
 // and https://koenvg.medium.com/setting-up-jest-with-sveltekit-4f0a0e379668
 module.exports = {
-  //testMatch: [ "**/__tests__/**/*.spec.[jt]s?(x)"],
+  testMatch: [ "**/__tests__/**/*.spec.[jt]s?(x)"],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.m?(j)s$': 'babel-jest',

@@ -119,6 +119,7 @@ class Log {
     try {
       hasApply = !!logFn.apply
     } catch (e) {
+      /* empty */
     }
 
     if (hasApply) {

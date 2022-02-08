@@ -3,6 +3,7 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   plugins: ['svelte3', 'jest'],
   overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+  parser: "@babel/eslint-parser",
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020
@@ -13,7 +14,12 @@ module.exports = {
     node: true,
     jest: true
   },
+  ignorePatterns: [
+    "coverage/",
+    "**/*spec.js"
+  ],
   rules: {
+    'no-unused-vars': 0,
     quotes: 0,
     semi: 0,
     'comma-dangle': 0,

@@ -36,7 +36,7 @@ jest:
 
 ## runs eslint
 lint:
-	$(prettier) --ignore-path .gitignore --check --plugin-search-dir=. .
+	# $(prettier) --ignore-path .gitignore --check --plugin-search-dir=. .
 	$(lint) --ignore-path .gitignore .
 
 ## runs eslint with --fix

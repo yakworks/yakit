@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 'use strict';
 //see https://github.com/justinfagnani/mixwith.js
 // used by apply() and isApplicationOf()

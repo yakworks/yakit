@@ -292,47 +292,46 @@ describe('createForm', () => {
       expect(instance.isValid.subscribe).toBeDefined();
     });
 
-    it('returns true if form is valid', async (done) => {
+    it('returns true if form is valid', async () => {
       instance
         .handleSubmit()
         .then(() => subscribeOnce(instance.isValid))
         .then((isValid) => {
           expect(isValid).toBe(true);
         })
-        .then(done);
     });
 
-    it('returns false if form is invalid', async (done) => {
+    it('returns false if form is invalid', async () => {
       await instance.form.set({
         name: '',
         email: '',
         country: '',
       });
 
-      instance
+      await instance
         .handleSubmit()
         .then(() => subscribeOnce(instance.isValid))
         .then((isValid) => {
           expect(isValid).toBe(false);
         })
-        .then(done);
+
     });
 
-    it('is false for invalid arrays', async (done) => {
+    it('is false for invalid arrays', async () => {
       const validationSchema = yup
         .array()
         .of(yup.object().shape({x: yup.string().required()}).required());
       const initialValues = [{x: ''}];
       const formInstance = getInstance({validationSchema, initialValues});
 
-      formInstance
+      await formInstance
         .handleSubmit()
         .then(() => subscribeOnce(formInstance.isValid))
         .then((isValid) => expect(isValid).toBe(false))
-        .then(done);
+
     });
 
-    it('is true for valid arrays', async (done) => {
+    it('is true for valid arrays', async () => {
       const validationSchema = yup
         .array()
         .of(yup.object().shape({x: yup.string().required()}).required());
@@ -343,10 +342,9 @@ describe('createForm', () => {
         .handleSubmit()
         .then(() => subscribeOnce(formInstance.isValid))
         .then((isValid) => expect(isValid).toBe(true))
-        .then(done);
     });
 
-    it('is false for invalid nested arrays', async (done) => {
+    it('is false for invalid nested arrays', async () => {
       const validationSchema = yup.object().shape({
         xs: yup
           .array()
@@ -359,10 +357,9 @@ describe('createForm', () => {
         .handleSubmit()
         .then(() => subscribeOnce(formInstance.isValid))
         .then((isValid) => expect(isValid).toBe(false))
-        .then(done);
     });
 
-    it('is true for valid nested arrays', async (done) => {
+    it('is true for valid nested arrays', async () => {
       const validationSchema = yup.object().shape({
         xs: yup
           .array()
@@ -371,11 +368,10 @@ describe('createForm', () => {
       const initialValues = {xs: [{x: 'bar'}]};
       const formInstance = getInstance({validationSchema, initialValues});
 
-      formInstance
+      await formInstance
         .handleSubmit()
         .then(() => subscribeOnce(formInstance.isValid))
         .then((isValid) => expect(isValid).toBe(true))
-        .then(done);
     });
   });
 
@@ -418,7 +414,7 @@ describe('createForm', () => {
   });
 
   describe('handleChange', () => {
-    it('updates the form when connected to change handler of input', async (done) => {
+    it('updates the form when connected to change handler of input', async () => {
       const email = chance.email();
       const event = {
         target: {
@@ -435,11 +431,11 @@ describe('createForm', () => {
         });
       });
 
-      instance
+      await instance
         .handleChange(event)
         .then(() => subscribeOnce(instance.form))
         .then((form) => expect(form.email).toBe(email))
-        .then(done);
+
     });
 
     it('uses checked value for checkbox inputs', (done) => {
@@ -578,7 +574,7 @@ describe('createForm', () => {
   });
 
   describe('handleSubmit', () => {
-    it('validates form on submit when validationSchema is provided', async (done) => {
+    it('validates form on submit when validationSchema is provided', async () => {
       instance = getInstance({
         initialValues: {
           name: '',
@@ -609,7 +605,7 @@ describe('createForm', () => {
         .then(() => subscribeOnce(instance.errors))
         .then((errors) => nonEmpty(Object.values(errors)))
         .then((errors) => expect(errors.length).toBe(2))
-        .then(done);
+
     });
 
     it('calls onSubmit when form is valid', async () => {
