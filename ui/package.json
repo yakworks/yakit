@@ -9,9 +9,9 @@
   "scripts": {
     "test": "jest"
   },
-  "author": "Angel D. Munoz",
+  "author": "Joshua B",
   "license": "MIT",
-  "devDependencies": {
-    "typescript": "~3.6.4"
+  "dependencies": {
+    "@yakit/core": "workspace:../core"
   }
 }
