@@ -5,16 +5,16 @@
       "name": "Root"
     },
     {
-      "path": "migrations",
-      "name": "Typeorm Migrations"
+      "path": "ui",
+      "name": "UI"
     },
     {
-      "path": "packages/lib",
-      "name": "Core Library"
+      "path": "core",
+      "name": "Core"
     },
     {
-      "path": "packages/api1",
-      "name": "Api 1"
+      "path": "svelte",
+      "name": "Svelte"
     },
     {
       "path": "packages/api2",

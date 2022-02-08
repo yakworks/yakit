@@ -5,7 +5,7 @@ import { defineConfig, UserConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
 import path from 'path'
-import autoprefixer from 'autoprefixer'
+// import autoprefixer from 'autoprefixer'
 import legacy from '@vitejs/plugin-legacy'
 import pkg from './package.json'
 import tsconfig from '../jsconfig.json'
@@ -33,10 +33,13 @@ const cfg = <UserConfig>defineConfig({
   plugins: [
     svelte({
       emitCss: production,
-      preprocess: sveltePreprocess(),
+      preprocess: sveltePreprocess({
+        postcss: true
+      }),
       compilerOptions: {
         dev: !production
       },
+
       // @ts-ignore This is temporary until the type definitions are fixed!
       hot: !production
     })
@@ -47,11 +50,6 @@ const cfg = <UserConfig>defineConfig({
   },
   build: {
     sourcemap: sourceMapsInProduction
-  },
-  css: {
-    postcss: {
-      plugins: [autoprefixer()]
-    }
   }
 })
 

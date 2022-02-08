@@ -40,7 +40,7 @@ lint:
 	$(lint) --ignore-path .gitignore .
 
 ## runs eslint with --fix
-lint.fix:
+pretty:
 	$(prettier) --ignore-path .gitignore --write --plugin-search-dir=. .
 
 ## removes build and test dirs
