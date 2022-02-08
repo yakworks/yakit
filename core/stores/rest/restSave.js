@@ -1,4 +1,4 @@
-import mix from '../../mix/mix-it-with';
+import mix from '../../mix/mix-it-with'
 
 export const restSave = ({ api }) => ds => {
 
