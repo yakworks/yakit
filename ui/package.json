@@ -1,0 +1,17 @@
+{
+  "name": "@yakit/ui",
+  "description": "Framework agnostic ui stuff",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "svelte": "index.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Angel D. Munoz",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~3.6.4"
+  }
+}

@@ -49,7 +49,7 @@ clean:
 
 ## starts the demo app
 start:
-	$(vite)
+	cd demo && $(vite)
 
 ## locally preview production build
 start.preview:

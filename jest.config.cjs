@@ -13,6 +13,6 @@ module.exports = {
   },
   moduleFileExtensions: ['svelte', 'js'],
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-  collectCoverageFrom: ['src/**/*.{ts,tsx,svelte,js,jsx}']
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect']
+  // collectCoverageFrom: ['src/**/*.{ts,tsx,svelte,js,jsx}']
 }

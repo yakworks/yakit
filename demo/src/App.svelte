@@ -1,5 +1,5 @@
 <script>
-  import Counter from './Counter.svelte'
+  import { Counter } from '@yakit/ui'
   import logo from './assets/yak.svg'
   let name = 'world'
 </script>
