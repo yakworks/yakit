@@ -23,6 +23,8 @@
   /** bind to the grid controller to access the instance*/
   export let gridCtrl = undefined
   /** toolbar title */
+  export let loadDataOnMount = false
+  /** toolbar title */
   export let title = undefined
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
@@ -63,7 +65,7 @@
     editSchema = ctx.editPopover || ctx.editForm
     //needs to be either
     searchSchema = ctx.searchForm
-
+    if(loadDataOnMount) dataApi.search({max: 20, page: 1})
     inialized = true
   }
 
