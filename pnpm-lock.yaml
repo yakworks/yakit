@@ -9,6 +9,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.15.0
   '@testing-library/svelte': ^3.0.3
   '@testing-library/user-event': ^13.5.0
+  '@tsconfig/svelte': ^3.0.0
   '@vitejs/plugin-legacy': ^1.5.1
   autoprefixer: ^10.4.2
   babel-jest: ^27.3.1
@@ -41,6 +42,7 @@ dependencies:
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/svelte': 3.0.3_svelte@3.46.4
   '@testing-library/user-event': 13.5.0_@testing-library+dom@8.11.3
+  '@tsconfig/svelte': 3.0.0
   '@vitejs/plugin-legacy': 1.6.4_vite@2.7.13
   autoprefixer: 10.4.2_postcss@8.4.6
   babel-jest: 27.5.0_@babel+core@7.17.0
@@ -1658,6 +1660,10 @@ packages:
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /@tsconfig/svelte/3.0.0:
+    resolution: {integrity: sha512-pYrtLtOwku/7r1i9AMONsJMVYAtk3hzOfiGNekhtq5tYBGA7unMve8RvUclKLMT3PrihvJqUmzsRGh0RP84hKg==}
     dev: false
 
   /@types/aria-query/4.2.2:

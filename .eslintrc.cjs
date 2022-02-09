@@ -5,8 +5,11 @@ module.exports = {
   overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
   parser: "@babel/eslint-parser",
   parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2020
+    requireConfigFile: false,
+    ecmaVersion: 2020,
+    babelOptions: {
+      rootMode: "upward",
+    },
   },
   env: {
     browser: true,

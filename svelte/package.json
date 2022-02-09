@@ -1,0 +1,14 @@
+{
+  "name": "@yakit/svelte",
+  "description": "Svelte components and framework7",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "Joshua B",
+  "license": "MIT",
+  "dependencies": {
+    "@yakit/ui": "workspace:../ui",
+    "framework7-svelte": "^6.3.15",
+    "svelte-spa-router": "^3.2.0"
+  }
+}
