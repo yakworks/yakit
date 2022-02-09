@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "Root"
+    },
+    {
+      "path": "ui",
+      "name": "UI"
+    },
+    {
+      "path": "core",
+      "name": "Core"
+    },
+    {
+      "path": "svelte",
+      "name": "Svelte"
+    },
+    {
+      "path": "demo",
+      "name": "Demo"
+    }
+  ],
+  "settings": {}
+}
