@@ -1,4 +1,6 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-unused-vars */
+ /* eslint-env jquery */
 import { makeLabel } from '@yakit/core/nameUtils'
 import { xlsData, csvData } from './excelExport'
 import flattenObject from '@yakit/core/flattenObject'

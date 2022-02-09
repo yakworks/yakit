@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+ /* eslint-env jquery */
 import _ from 'lodash'
 import Log from '@yakit/core/logger'
 
@@ -122,7 +123,7 @@ class Gridz {
     //now put it alltogether so we can split and make it a map form
     let sortJoined = sortname + ` ${order}`
     const sortMap = {} //will get populated at the end
-    const sortArray = sortJoined.split(', ')
+    let sortArray = sortJoined.split(', ')
     const hasId = sortArray.find(el => el.startsWith('id'))
 
 
@@ -303,7 +304,7 @@ $.fn.gridz = function(option) {
     instance = $(this).data('gridz')
     if (instance && instance[option]) {
       instance[option].apply(this, otherArgs)
-    } else {} // try passing through to jqgrid
+    }
     return $(this).jqGrid(arguments)
   }
 

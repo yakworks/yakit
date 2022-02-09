@@ -1,3 +1,4 @@
+ /* eslint-env jquery */
 import _ from 'lodash'
 
 // const jq$ = window.$

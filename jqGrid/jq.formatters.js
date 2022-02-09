@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+ /* eslint-env jquery */
 import { isoDateToDisplay } from '@yakit/core/date/dateSupport'
 import fmt from '@yakit/core/formatters'
 
