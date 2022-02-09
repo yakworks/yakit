@@ -9,6 +9,8 @@
   "dependencies": {
     "@yakit/ui": "workspace:../ui",
     "framework7-svelte": "^6.3.15",
+    "svelte": "^3.42.4",
+    "svelte-select": "^4.4.7",
     "svelte-spa-router": "^3.2.0"
   }
 }

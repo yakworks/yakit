@@ -1,7 +1,10 @@
 packages:
   # all packages in subdirs of packages/ and components/
   # - 'packages/**'
+  - 'core'
+  - 'svelte'
   - 'ui'
+  - 'jqGrid'
   - 'demo'
   # exclude packages that are inside test directories
   # - '!**/test/**'
