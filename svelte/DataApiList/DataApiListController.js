@@ -1,4 +1,4 @@
-import makeListDataCtrl from '@ag/gridz/makeListDataCtrl'
+import makeListDataCtrl from '@yakit/jqGrid/makeListDataCtrl'
 import mix from '@yakit/core/mix/mix-it-with';
 
 /**
