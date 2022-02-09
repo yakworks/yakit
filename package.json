@@ -1,4 +1,6 @@
 {
+  "name": "@yakit/ui",
+  "description": "Monorepo to yakworks yakit js libs",
   "private": true,
   "type": "module",
   "scripts": {
