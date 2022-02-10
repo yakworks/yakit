@@ -14,7 +14,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.0.0",
     "@mdi/font": "^6.5.95",
-    "@yakit/core": "1.0.0",
+    "@yakit/core": "workspace:../core",
     "apexcharts": "^3.33.1",
     "bulma": "github:yakworks/bulma",
     "framework7": "^6.3.15",
