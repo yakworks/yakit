@@ -21,7 +21,12 @@ const defaults = {
     afterResponse: [
 			(_request, _options, response) => { subs.after.forEach(sub => sub(_request, _options, response)) }
     ]
-  }
+  },
+  //TODO look into this further, for now we turn off any caching
+  headers: {
+		'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache'
+	}
 }
 
 export const KyFactory = {
