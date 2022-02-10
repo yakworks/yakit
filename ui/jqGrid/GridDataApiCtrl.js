@@ -30,6 +30,7 @@ export default class GridDataApiCtrl {
   }
 
   setupAndInit(wrapperNode, context) {
+    console.log("setupAndInit", this.gridId)
     this.ctx = context
     const gridWrapper = $(wrapperNode)
     const gridEl = gridWrapper.find('table.gridz')

@@ -55,9 +55,11 @@
   });
 
   async function setupListCtrl() {
+
     listController = await DataApiListController({ dataApi, ctx })
     ctx = listController.ctx
     gridId = ctx.gridOptions.gridId = ctx.gridOptions.gridId  || dataApi.key.replace('/', '_')
+    console.log("setupListCtrl", gridId)
     stateStore = listController.ctx.stateStore
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)
     setupToolbarOpts(ctx)
@@ -65,9 +67,15 @@
     editSchema = ctx.editPopover || ctx.editForm
     //needs to be either
     searchSchema = ctx.searchForm
-    if(loadOnMount) dataApi.search({max: 20, page: 1})
     inialized = true
   }
+
+  function initData() {
+    let { restrictSearch }  = ctx.gridOptions
+    dataApi.restrictSearch = restrictSearch
+    return dataApi.search({max: 20, page: 1})
+  }
+
 
   //add popover to the createBtn
   function setupToolbarOpts(ctx){
@@ -80,6 +88,7 @@
 
   function init(node) {
     gridCtrl.setupAndInit(node, ctx)
+    if(loadOnMount) initData()
   }
 
   onDestroy(() => {
