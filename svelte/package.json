@@ -8,6 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "@yakit/ui": "workspace:../ui",
+    "@yakit/core": "workspace:../core",
+    "@yakit/jqGrid": "workspace:../jqGrid",
     "framework7-svelte": "^6.3.15",
     "svelte": "^3.42.4",
     "svelte-select": "^4.4.7",

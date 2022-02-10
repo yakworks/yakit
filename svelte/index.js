@@ -14,8 +14,8 @@ export { default as Gridz } from './DataApiList/Gridz.svelte';
 
 // export * from './Card';
 export * from './Charts';
-export { default as SelectRest } from './Select/SelectRest.svelte';
-export { default as Select } from './Select/Select.svelte';
+// export { default as SelectRest } from '../bak/Select/SelectRest.svelte';
+// export { default as Select } from '../bak/Select/Select.svelte';
 // export * from './Form';
 // export * from './List';
 

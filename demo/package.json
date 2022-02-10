@@ -1,5 +1,5 @@
 {
-  "name": "@yakit/ui",
+  "name": "@yakit/demo",
   "description": "Framework agnostic ui stuff",
   "version": "1.0.0",
   "private": true,

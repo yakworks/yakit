@@ -5,6 +5,8 @@ packages:
   - 'svelte'
   - 'ui'
   - 'jqGrid'
+  - 'ag'
+  - 'ag-demo'
   - 'demo'
   # exclude packages that are inside test directories
   # - '!**/test/**'
