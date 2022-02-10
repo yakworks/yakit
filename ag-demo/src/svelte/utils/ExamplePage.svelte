@@ -1,4 +1,7 @@
 <script>
+  /* eslint-disable no-undef */
+// @ts-nocheck
+
   import { Page, Navbar, Block } from '@yakit/svelte/index'
   import ExampleSnippet from '../utils/ExampleSnippet.svelte'
 

@@ -28,7 +28,7 @@ angular.module('app')
     //   url: '/login',
     //   template: '<h1>This is Login</h1>'
     // })
-    $stateProvider.state(login)
+    // $stateProvider.state(login)
     // $urlRouterProvider.otherwise('/packet/dashboard')
     // stateHelperProvider.state(packetCopy)
     // appState.packetStates = packetCopy

@@ -1,3 +1,4 @@
+/* eslint-disable no-global-assign */
 //esm allows imports to work with node
 require = require("esm")(module);
 

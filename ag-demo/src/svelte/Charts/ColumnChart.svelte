@@ -24,7 +24,7 @@
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val) {
+      formatter: function(val) {
         return val + "%";
       },
       offsetY: -20,
@@ -67,7 +67,7 @@
       },
       labels: {
         show: false,
-        formatter: function (val) {
+        formatter: function(val) {
           return val + "%";
         }
       }
