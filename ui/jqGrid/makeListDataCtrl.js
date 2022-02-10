@@ -3,7 +3,7 @@
 import { get, writable } from 'svelte/store';
 import { isEmpty, cloneDeep, isFunction, merge } from '@yakit/core/dash'
 import appConfigApi from '@yakit/core/stores/AppConfigApi'
-import toast from './growl'
+import toast from '../growl'
 
 const not_implemented = "not implemented"
 
