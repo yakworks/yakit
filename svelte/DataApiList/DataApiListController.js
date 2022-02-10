@@ -1,5 +1,4 @@
-import makeListDataCtrl from '@yakit/jqGrid/makeListDataCtrl'
-import mix from '@yakit/core/mix/mix-it-with';
+import makeListDataCtrl from '@yakit/ui/jqGrid/makeListDataCtrl'
 
 /**
  * Svelte impl. Creates a controller for a data service api.

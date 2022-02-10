@@ -1,6 +1,6 @@
 import { kyFetch } from './ky'
 import schemaRefs from '../schema/schemaRefs'
-import growl from '@yakit/ui/growl'
+import growl from '../notfy'
 import { isEmpty } from '../is'
 
 const makeLocalCache = opts => {

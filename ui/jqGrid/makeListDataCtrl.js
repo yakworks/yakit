@@ -3,8 +3,7 @@
 import { get, writable } from 'svelte/store';
 import { isEmpty, cloneDeep, isFunction, merge } from '@yakit/core/dash'
 import appConfigApi from '@yakit/core/stores/AppConfigApi'
-import toast from '@yakit/ui/growl'
-import Swal from '@yakit/ui/swal'
+import toast from './growl'
 
 const not_implemented = "not implemented"
 
@@ -221,16 +220,6 @@ const makeListDataCtrl = (opts) => {
       toast.error(message || er)
     },
 
-    swalError(error) {
-      Swal.fire({
-        icon: 'error',
-        title: error.title,
-        text: error.message,
-        showCloseButton: true
-      })
-    },
-
-
     handleResults(response) {
       if (response.ok) {
         toast.success(`${response.success.join('<br>')}`, response.defaultMessage)
@@ -252,7 +241,7 @@ const makeListDataCtrl = (opts) => {
             toast.success(result.title || 'Action is sucsess')
             ctrl.gridCtrl.reload() // todo: should we reload only selected rows?
           } else {
-            ctrl.swalError({title: result.title , message: result?.failed?.join('<br>') || ''})
+            toast.error(result?.failed?.join('<br>') || '', result.title)
           }
         } catch (e) {
           ctrl.handleError(e)

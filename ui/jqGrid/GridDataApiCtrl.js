@@ -4,7 +4,7 @@
 import { makeLabel } from '@yakit/core/nameUtils'
 import { xlsData, csvData } from './excelExport'
 import flattenObject from '@yakit/core/flattenObject'
-import toast from '@yakit/ui/growl'
+import toast from '../growl'
 import _ from 'lodash'
 import { subscribe } from 'svelte/internal'
 

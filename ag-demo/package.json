@@ -10,7 +10,6 @@
     "@mdi/font": "^5.9.55",
     "@yakit/ag": "workspace:../ag",
     "@yakit/core": "workspace:../core",
-    "@yakit/jqGrid": "workspace:../jqGrid",
     "@yakit/svelte": "workspace:../svelte",
     "@yakit/ui": "workspace:../ui",
     "clipboard": "^2.0.8",

@@ -5,7 +5,6 @@
   "dependencies": {
     "@yakit/core": "workspace:../core",
     "@yakit/ui": "workspace:../ui",
-    "@yakit/jqGrid": "workspace:../jqGrid",
     "@yakit/svelte": "workspace:../svelte",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@mdi/font": "^5.9.55",

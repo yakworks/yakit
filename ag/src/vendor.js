@@ -6,9 +6,9 @@ window.$ = window.jQuery
 // require('@fortawesome/fontawesome-free/js/v4-shims.js')
 
 // require('bootstrap/js/src/dropdown')
-require('@yakit/jqGrid/index')
+require('@yakit/ui/jqGrid')
 
-require('bootstrap-sass/assets/javascripts/bootstrap/dropdown')
+// require('bootstrap-sass/assets/javascripts/bootstrap/dropdown')
 // require('bootstrap-sass/assets/javascripts/bootstrap/tooltip') // required by popover
 // require('bootstrap-sass/assets/javascripts/bootstrap/popover') // required by clickover
 
@@ -45,10 +45,10 @@ require('bootstrap-sass/assets/javascripts/bootstrap/dropdown')
 // "js/jquery.fmatter.js"
 
 
-require('Select2/select2')
+// require('Select2/select2')
 // require('moment')
-require('later/later')
-require('perfect-scrollbar')
+// require('later/later')
+// require('perfect-scrollbar')
 // require('toastr/toastr.js')
 // require('sweetalert/lib/sweet-alert.js')
 // used for grid pivot
