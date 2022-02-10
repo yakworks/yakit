@@ -1,14 +1,12 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
-import 'angular-breadcrumb' // 'ncy-angular-breadcrumb'
 import stateHelperInit from './stateHelperInit'
 
 const MOD_NAME = 'ui.router.stateHelper'
 export default MOD_NAME
 
 angular.module(MOD_NAME, [
-  uiRouter,
-  'ncy-angular-breadcrumb'
+  uiRouter
 ])
   .provider('stateHelper', function($stateProvider) {
     'ngInject';
