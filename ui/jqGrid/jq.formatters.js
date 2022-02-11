@@ -43,7 +43,7 @@ $.extend($.fn.fmatter, {
 
   showLink(cellVal, options, rowdata) {
     const ident = rowdata.id
-    return `<a class="showLink" data-id="${ident}" href="#" >${cellVal}</a>`
+    return `<a class="showLink" data-id="${ident}" href="${ident}" >${cellVal}</a>`
   }
 })
 
