@@ -23,6 +23,7 @@ const defaults = {
     ]
   },
   //TODO look into this further, for now we turn off any caching
+  // might be better way? https://stackoverflow.com/a/42518434
   headers: {
 		'Cache-Control': 'no-cache',
     'Pragma': 'no-cache'

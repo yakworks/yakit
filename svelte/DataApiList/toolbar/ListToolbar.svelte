@@ -8,6 +8,7 @@
   import { isFunction } from '@yakit/core/is';
   import { classNames } from '../../shared/utils'
   import ListOptionsPopover from './ListOptionsPopover.svelte'
+  import growl from '@yakit/ui/growl';
 
   //toolbar options
   export let title = undefined
@@ -63,7 +64,11 @@
         // calls the listController fireToolbarAction, which will fallback to the ctx.toolbarHandler
         await listController.fireToolbarAction(btnItem, event)
       }
+    } catch(e){
+      //deal with any unhandled exceptions
+      growl.error(e)
     } finally {
+      //results.ok ? growl.success(results.title) : growl.error(results.detail, results.title)
       isLoading = false
       // this.gridCtrl.toggleLoading(false)
     }

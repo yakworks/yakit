@@ -20,7 +20,6 @@ angular.module('app')
     stateHelperProvider.state(freshRouterStates)
 
     stateHelperInit(freshMenu)
-    console.log("freshMenu", freshMenu)
     appState.sideMenuConfig = freshMenu
 
     // $stateProvider.state({

@@ -9,6 +9,9 @@ const not_implemented = "not implemented"
 
 const makeListDataCtrl = (opts) => {
 
+  let { queryStore } = opts
+  let { dataApi, apiPath } = queryStore
+
   let defaultToolbarOpts = {
     selectedButtons: {
       bulkUpdate: { icon: 'edit_note', tooltip: 'Bulk Update' },
@@ -32,11 +35,11 @@ const makeListDataCtrl = (opts) => {
   let ctrl = {
 
     async doConfig(ctx = {}) {
-      ctrl.apiKey = ctrl.apiKey ? ctrl.apiKey : ctrl.dataApi.key
+      ctrl.apiPath = ctrl.apiPath ? ctrl.apiPath : apiPath
 
       let apiCfg = {}
-      if(ctrl.apiKey){
-        apiCfg = await appConfigApi.getConfig(ctrl.apiKey)
+      if(ctrl.apiPath){
+        apiCfg = await appConfigApi.getConfig(ctrl.apiPath)
       }
 
       if(!isEmpty(apiCfg)){
@@ -44,7 +47,7 @@ const makeListDataCtrl = (opts) => {
         merge(ctx, clonedApiCfg)
       }
 
-      ctx.stateStore = ctrl.dataApi.stores.stateStore
+      ctx.stateStore = dataApi.stores.stateStore
       ctx.stateStore.set(state)
       ctx.state = state
       //short cut
@@ -54,7 +57,7 @@ const makeListDataCtrl = (opts) => {
       if (ctrl.eventHandlers) {
         gopts.eventHandlers = ctrl.eventHandlers
       }
-      gopts.dataApi = ctrl.dataApi
+      gopts.queryStore = queryStore
 
       if (!gopts.toolbarOptions) gopts.toolbarOptions = {}
       const tbopts = merge({}, defaultToolbarOpts, gopts.toolbarOptions)
@@ -144,19 +147,6 @@ const makeListDataCtrl = (opts) => {
     async quickSearch(text) { ctrl.gridCtrl.quickSearch(text) },
     toggleDensity() { this.state.isDense = !this.state.isDense },
 
-    async edit(id) {
-      console.log("edit", id)
-      ctrl.gridCtrl.toggleLoading(true)
-      try {
-        const vm = await ctrl.dataApi.get(id)
-        ctrl.showEdit('Edit', vm)
-      } catch (er) {
-        ctrl.handleError(er)
-      } finally {
-        ctrl.gridCtrl.toggleLoading(false)
-      }
-    },
-
     updateFooter(data) {
       setTimeout(_ => {
         ctrl.gridCtrl.getGridEl().footerData('set', data)
@@ -182,20 +172,6 @@ const makeListDataCtrl = (opts) => {
 
     getBulkUpdateOptions(model = {}) {
       throw Error(not_implemented)
-    },
-
-    async delete(id) {
-      try {
-        await ctrl.dataApi.remove(id)
-        ctrl.gridCtrl.removeRow(id)
-      } catch (er) {
-        ctrl.handleError(er)
-      }
-    },
-
-    async deleteSelected() {
-      const id = ctrl.gridCtrl.getSelectedRowIds()[0]
-      ctrl.delete(id)
     },
 
     async search(filters) {
@@ -256,7 +232,7 @@ const makeListDataCtrl = (opts) => {
     // we need to generate gridId, because if we have 2 grids on a page they will have the same id and 2 pagers will
     // be assisgned to the second grid
     gridId(){
-      return ctrl.apiKey?.replace(/[^\w\s]/gi, '_') + 'Grid'
+      return ctrl.apiPath?.replace(/[^\w\s]/gi, '_') + 'Grid'
     }
 
   }

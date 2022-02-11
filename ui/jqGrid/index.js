@@ -13,5 +13,5 @@ import 'jquery-ui/ui/widgets/droppable'
 import './jq.gridz'
 import './jq.formatters'
 
-export { default as GridDataApiCtrl } from './GridDataApiCtrl';
+export { default as JqGridCtrl } from './JqGridCtrl'
 export { default as makeListDataCtrl } from './makeListDataCtrl';

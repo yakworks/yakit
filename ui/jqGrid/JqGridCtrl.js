@@ -8,9 +8,9 @@ import toast from '../growl'
 import _ from 'lodash'
 import { subscribe } from 'svelte/internal'
 
-export default class GridDataApiCtrl {
+export default class JqGridCtrl {
   formatters
-  dataApi
+  queryStore
   unsubs = []
   highlightClass = 'ui-state-highlight'
   systemColumns = ['cb', '-row_action_col']
@@ -70,12 +70,12 @@ export default class GridDataApiCtrl {
     //we need uniq gridId for cases if 2 grids on one page, in other case pagers will be messed
     if (!this.gridId) {
       //if no gridId is specified in opts, then generate it based on apiKey
-      this.gridId =  opts.gridId || opts.dataApi?.key?.replace('/', '_')
+      this.gridId =  opts.gridId || opts.queryStore.apiPath?.replace('/', '_')
     }
     $jqGrid.attr('id', this.gridId)
 
     let optsToMerge = _.pick(opts, [
-      'dataApi', 'initSearch', 'restrictSearch', 'contextMenuClick'
+      'queryStore', 'initSearch', 'restrictSearch', 'contextMenuClick'
     ])
     _.mergeWith(this, optsToMerge, (obj, optVal) => {
       //dont merge val if its null
@@ -120,12 +120,16 @@ export default class GridDataApiCtrl {
     this.setupFormatters(this, $jqGrid, opts)
     this.formatters && this.setupCustomFormatters(this, this.formatters, opts)
 
+    this.gridOptions.sort = 'id'
     // adds the listener to the store
-    const unsubscribe = this.dataApi.pageViewStore.subscribe(data => {
-      this.addJSONData(data)
-    });
-    this.unsubs.push(unsubscribe)
+    console.log("pageViewStore subscribe", this.gridId)
+    console.log("this.gridOptions", this.gridOptions)
 
+    // const unsubscribe = this.dataApi.pageViewStore.subscribe(data => {
+    //   console.log("dataApi.pageViewStore.subscribe", this.gridId, data)
+    //   this.addJSONData(data)
+    // });
+    // this.unsubs.push(unsubscribe)
   }
 
   //initialize the grid the jquery way
@@ -248,6 +252,8 @@ export default class GridDataApiCtrl {
     colModel.forEach(column => {
       column.lso = (column.name === sortname) || (column.name === 'id') ? sortorder : ''
     })
+    this.setParam({'sortorder':''}, true)
+    this.setParam({'sortname':''}, true) //clear jqgrid to make sure
     this.setParam({'sortMap':{}}, true)
     let sortMap = this.getParam('sortMap')
     console.log("resetSort sortMap",sortMap)
@@ -466,6 +472,7 @@ export default class GridDataApiCtrl {
         let pp = this.getParam("postData")
         pp.q = {}
       }
+      console.info('search called', params)
       //reload wil end up calling the gridLoader function
       await this.reload()
     } catch (er) {
@@ -497,6 +504,11 @@ export default class GridDataApiCtrl {
     this.toggleLoading(true)
     try {
       //we use the sortMap that constructed in jq.gridz so remove the sort and order
+      // this.jqGridEl.jqGrid("sortGrid", "id", false)
+      let sortName = this.getParam('sortname')
+      let sortOrder = this.getParam('sortorder')
+      console.log("sortName/sortOrder", sortName, sortOrder)
+
 
       let sortMap = this.getParam('sortMap')
       if(sortMap){
@@ -526,9 +538,9 @@ export default class GridDataApiCtrl {
       }
       //jqGRid calls this on init, so this is a hack so we dont run it on init.
       if(this.gridLoaderInitialized){
-        console.log("gridLoaderInitialized so running dataApi.search")
+        console.log("gridLoaderInitialized so running queryStore.list")
         //this calls the data api which sets the data to the store that this listens to to populate data
-        await this.dataApi.search(p)
+        await this.queryStore.list(p)
       } else {
         this.gridLoaderInitialized = true
       }

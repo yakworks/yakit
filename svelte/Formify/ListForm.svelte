@@ -168,7 +168,6 @@
     // if(isValid){
     //   handleSubmit(event)
     // }
-    console.log("handleSubmitIfValid")
     handleSubmit(event)
   }
 

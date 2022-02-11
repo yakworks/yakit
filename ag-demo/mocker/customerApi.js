@@ -23,7 +23,6 @@ const overrides = {
         res.status(422).json(simEr)
       } else {
         dataApi.post(body).then((data) => {
-          // console.log("POST invoice data", data)
           return res.json(data)
         })
       }
@@ -35,7 +34,6 @@ const overrides = {
         res.status(422).json(simEr)
       } else {
         dataApi.put(body).then((data) => {
-          // console.log("POST invoice data", data)
           return res.json(data)
         })
       }

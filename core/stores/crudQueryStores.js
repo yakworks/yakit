@@ -6,13 +6,17 @@ import { findIndexById } from '../finders'
 /**
  * The base datastore composed of the the stores for current item, page
  */
-export const crudQueryStores = (stores = {}) => {
+export const crudQueryStores = (ds = {}) => {
 
   let stateStore = writable({})
 
   let itemStore = writable({})
 
   let pageViewStore = writable({})
+  //it seems stores clear data on last subscription
+  // pageViewStore.subscribe(data => {
+  //   console.log("crudQueryStores pageViewStore sub", data)
+  // });
 
   let queryStore = writable({})
 
@@ -20,7 +24,9 @@ export const crudQueryStores = (stores = {}) => {
 
   let dataStore = writable([])
 
-  return mix(stores).with({
+  if(ds.initData) masterDataStore.set(ds.initData)
+
+  return mix(ds).with({
 
     /**
     * state store for isDense, hasSelected, showSearchForm, selectedItem, selectedId

@@ -4,18 +4,24 @@ import { findSomeDeep, qbe, findIndexById } from '../../finders'
 import { isString } from '../../is'
 import mix from '../../mix/mix-it-with'
 import {crudQueryModel} from '../crudQueryModel'
+import {crudQueryStores} from '../crudQueryStores'
 
 /**
  * Local memory based data service
  */
 const MemDataService = ({
-  mockDelay = 0,
-  picklistFields = ['id', 'name'],
-  initData = [],
-  ident = 'id'
-} = {}) => {
+    mockDelay = 0,
+    picklistFields = ['id', 'name'],
+    initData = [],
+    ident = 'id'
+  } = {}) => {
+
+
+  const stores = crudQueryStores()
+  if(initData) stores.setMasterData(initData)
 
   const ds = {
+    stores,
     initData,
     ident
   }
@@ -26,7 +32,6 @@ const MemDataService = ({
   }
 
   ds.search = async (params = {}) => {
-    console.log("MemDataService search", params)
     await ds.delay()
 
     let {q, qSearch, sort, order} = params
@@ -71,7 +76,6 @@ const MemDataService = ({
      */
   ds.qSearch = (items, searchKey) => {
     let foundItems = findSomeDeep(items, searchKey)
-    // console.log("qSearch foundItems items", foundItems)
     return foundItems
   }
 
@@ -80,7 +84,6 @@ const MemDataService = ({
      * @returns the filtered items
      */
   ds.filter = (items, {q, qSearch}) => {
-    // console.log("filter params", params)
     let filtered = items
 
     if (q) {
@@ -105,7 +108,6 @@ const MemDataService = ({
     // if it also has text qSearch then
     if(qSearch){
       filtered = ds.qSearch(filtered, qSearch)
-      // console.log("qSearch filtered items", filtered)
     }
 
     return filtered
@@ -182,7 +184,6 @@ const MemDataService = ({
       ids.forEach(id => {
         let item = ds.findById(data, id)
         item = _.merge(item, updateData)
-        // console.log('merged item', items[idx])
         updateItems.push(item)
       })
       return data

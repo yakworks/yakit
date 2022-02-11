@@ -13,15 +13,12 @@ function makeUrls(epoint, api) {
     urls: {
       [`GET /api/${epoint}/picklist`]: (req, res) => {
         const { query } = req
-        // console.log("search query ", query)
         api.picklist(query).then((data) => {
-          // console.log("get invoice data", data)
           return res.json(data)
         })
       },
 
       [`GET /api/${epoint}/:id`]: (req, res) => {
-        // console.log("get invoice id params", req.params)
         api.get(req.params.id)
           .then((data) => {
             return res.json(data)
@@ -29,54 +26,42 @@ function makeUrls(epoint, api) {
       },
 
       [`GET /api/${epoint}`]: (req, res) => {
-        // console.log("get invoice req.query  ", req.query)
         const { query } = req
-        // console.log("search query ", query)
         api.search(query).then((data) => {
-          // console.log("get invoice data", data)
           return res.json(data)
         })
       },
 
       [`POST /api/${epoint}/countTotals`]: (req, res) => {
-        // console.log("get invoice req.query  ", req.query)
         // const { query } = req
-        // console.log("search query ", query)
         api.countTotals('amount').then(data => { return res.json(data) })
       },
 
       [`POST /api/${epoint}`]: (req, res) => {
-        // console.log('PUT /api/invoice req.body', req.body)
         const { body } = req
         api.post(body)
           .then((data) => {
-          // console.log("POST invoice data", data)
             return res.json(data)
           })
       },
 
       [`PUT /api/${epoint}/:id`]: (req, res) => {
-        // console.log('PUT /api/invoice req.body', req.body)
         const { body } = req
         api.put(body)
           .then((data) => {
-          // console.log("PUT invoice data", data)
             return res.json(data)
           })
       },
 
       [`POST /api/${epoint}/bulkUpdate`]: (req, res) => {
-        // console.log('PUT /api/invoice req.body', req.body)
         const { body } = req
         api.bulkUpdate(body)
           .then((data) => {
-          // console.log("PUT invoice data", data)
             return res.json(data)
           })
       },
 
       [`POST /api/${epoint}/ptp`]: (req, res) => {
-        // console.log('PUT /api/invoice req.body', req.body)
         // const { body } = req
 
         const results = {
@@ -89,7 +74,6 @@ function makeUrls(epoint, api) {
       },
 
       [`DELETE /api/${epoint}/:id`]: (req, res) => {
-        // console.log("get invoice id params", req.params)
         api.remove(req.params.id)
           .then(() => {
             return res.status(204).end()

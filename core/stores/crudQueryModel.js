@@ -13,23 +13,16 @@ export const withSubStores = (ds) => {
 
   const {initData = [], ident = 'id'} = ds
 
-  const stores = crudQueryStores()
-  if(initData) stores.setMasterData(initData)
+  // const stores = crudQueryStores()
+  // if(initData) stores.setMasterData(initData)
 
   return mix(ds).with({
-    stores, ident,
+    //FIXME temp hack to get going, remove when refactored
+    stores: {stateStore: writable({})},
+    ident,
 
     unsubs: [], //array to populat with return value of sub for destroy to call
 
-    //if paging this is the pager info with data
-    get pageViewStore(){
-      return ds.stores.pageViewStore
-    },
-
-    //the viewable or filtered data
-    get dataStore(){
-      return ds.stores.dataStore
-    },
   })
 }
 

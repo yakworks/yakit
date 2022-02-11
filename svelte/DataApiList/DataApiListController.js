@@ -5,9 +5,9 @@ import makeListDataCtrl from '@yakit/ui/jqGrid/makeListDataCtrl'
  * Pulls config from appConfig for toolbar and columns if its a grid.
  * This can be used for any list based view, not just a grid.
  */
-const DataApiListController = async ({ dataApi, ctx = {} }) => {
+const DataApiListController = async ({ queryStore, ctx = {} }) => {
   // make the default
-  let ctrl = makeListDataCtrl({ dataApi })
+  let ctrl = makeListDataCtrl({ queryStore })
   // look into appConfig for config for columns and toolbar and setup ctx
   await ctrl.doConfig(ctx)
 

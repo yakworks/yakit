@@ -6,6 +6,10 @@ export const restSave = ({ api }) => ds => {
 
   return mix(ds).with({
 
+    post(params) {
+      return api.post(params)
+    },
+
     async create(item) {
       const newItem = await api.post({ json: item })
       return newItem

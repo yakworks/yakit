@@ -356,8 +356,8 @@ $.fn.gridz.defaults = {
   // {0} - the start position of the records depending on page number and number of requested records
   // {1} - the end position
   // {2} - total records returned from the server.
-  recordtext: 'Records {0} - {1} of {2}',
-
+  recordtext: 'Showing {0} - {1} of {2} items',
+  recordpos: 'left',
   beforeSelectRow: null,
   gridComplete: null,
   actionPopup: false

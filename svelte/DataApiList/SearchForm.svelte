@@ -78,7 +78,6 @@
 
   // setup isMulti defaults for selects
   export let onTransformedSchema = (schema) => {
-    console.log("schema", schema)
     searchDefaults(schema)
   }
 

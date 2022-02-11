@@ -8,7 +8,8 @@
   import EditPopover from './EditPopover.svelte'
   import SearchForm from './SearchForm.svelte'
   import DataApiListController from './DataApiListController'
-  import GridDataApiCtrl from '@yakit/ui/jqGrid/GridDataApiCtrl'
+  import QueryStore from '@yakit/core/stores/QueryStore'
+  import JqGridCtrl from '@yakit/ui/jqGrid/JqGridCtrl'
   import { classNames } from '../shared/utils';
   import stringify from '@yakit/core/stringify';
   import growl from "@yakit/ui/growl"
@@ -18,6 +19,10 @@
   export let ctx = undefined
   /** the dataApi that feeds tihs */
   export let dataApi = undefined
+  /**
+   * the queryStore as alternative to dataApi
+   */
+  export let queryStore = undefined
   /** the gridId, can be bound, should set this through the gridOptions and not here*/
   export let gridId = undefined
   /** bind to the grid controller to access the instance*/
@@ -29,7 +34,13 @@
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
 
-  gridCtrl = new GridDataApiCtrl()
+  if(dataApi){
+    queryStore = QueryStore({ dataApi })
+  } else {
+    dataApi = queryStore.dataApi
+  }
+
+  gridCtrl = new JqGridCtrl()
 
   // export let restrictSearch = undefined
 
@@ -49,6 +60,7 @@
   let editSchema
   let searchSchema
   let searchFormEnabled
+  let gridOptions
 
   onMount(async () => {
     await setupListCtrl()
@@ -56,10 +68,11 @@
 
   async function setupListCtrl() {
 
-    listController = await DataApiListController({ dataApi, ctx })
+    listController = await DataApiListController({ queryStore, ctx })
     ctx = listController.ctx
-    gridId = ctx.gridOptions.gridId = ctx.gridOptions.gridId  || dataApi.key.replace('/', '_')
-    console.log("setupListCtrl", gridId)
+    gridOptions = ctx.gridOptions
+    gridId = ctx.gridOptions.gridId = ctx.gridOptions.gridId  || queryStore.apiPath.replace('/', '_')
+    // console.log("setupListCtrl", gridId)
     stateStore = listController.ctx.stateStore
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)
     setupToolbarOpts(ctx)
@@ -70,13 +83,6 @@
     inialized = true
   }
 
-  function initData() {
-    let { restrictSearch }  = ctx.gridOptions
-    dataApi.restrictSearch = restrictSearch
-    return dataApi.search({max: 20, page: 1})
-  }
-
-
   //add popover to the createBtn
   function setupToolbarOpts(ctx){
     let tbopts = ctx.toolbarOptions
@@ -86,13 +92,26 @@
     }
   }
 
-  function init(node) {
+  let unsubPageView
+
+  async function initGrid(node) {
     gridCtrl.setupAndInit(node, ctx)
-    if(loadOnMount) initData()
+    // await queryStore.init()
+    if(loadOnMount) await list()
+    unsubPageView = queryStore.currentPage.subscribe(data => {
+      console.log("Gridz.queryStore.currentPage", gridId, data.data)
+      gridCtrl.addJSONData(data)
+    });
+  }
+
+  function list() {
+    if(gridOptions.restrictSearch) queryStore.restrictSearch.set(gridOptions.restrictSearch)
+    return queryStore.list()
   }
 
   onDestroy(() => {
     gridCtrl.destroy()
+    unsubPageView && unsubPageView()
   });
 
   const dispatch = createEventDispatcher();
@@ -118,13 +137,13 @@
   {#if searchSchema && searchFormEnabled }
     <SearchForm listId={gridId} {ctx} schema={searchSchema} on:search={searchAction}/>
   {/if}
-  <div use:init class="gridz-wrapper card m-0">
-  {#if ctx.toolbarOptions }
-    <ListToolbar listId={gridId} {title} {listController} opts={ctx.toolbarOptions} {QuickFilter}/>
-  {/if}
-  <table class={classes} class:is-dense={$stateStore.isDense}></table>
-  <div class="gridz-pager"></div>
-</div>
+  <div use:initGrid class="gridz-wrapper card m-0">
+    {#if ctx.toolbarOptions }
+      <ListToolbar listId={gridId} {title} {listController} opts={ctx.toolbarOptions} {QuickFilter}/>
+    {/if}
+    <table class={classes} class:is-dense={$stateStore.isDense}></table>
+    <div class="gridz-pager"></div>
+  </div>
 
 {#if editSchema }
 <EditPopover listId={gridId} {dataApi} schema={editSchema} on:afterEditSubmit={afterEdit} on:beforeEditSubmit/>

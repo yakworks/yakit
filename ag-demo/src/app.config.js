@@ -23,9 +23,7 @@ app.run(function($rootScope, $state, $stateParams) {
   // }
 
   // window.onload = function(){
-  //   console.log("************window.location.href", window.location.href)
   //   if(window.location.href == sessionStorage.getItem("origin")){
-  //       console.log("************clearing storage", window.location.href)
   //       sessionStorage.clear();
   //   }
   // }

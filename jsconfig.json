@@ -22,7 +22,6 @@
     "ui/**/*",
     "svelte/**/*",
     "ag/src/**/*",
-    "ag-demo/src/**/*",
     "demo/src/**/*"
   ]
 }

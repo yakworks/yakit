@@ -35,7 +35,7 @@ import {_defaults, isFunction} from '../dash'
 
 /**
  * mix builder to functionaly compose objects.
- * It expects the functions to be factory functions that accept and object
+ * It expects the functions to be factory functions that accept an object
  *
  * @example
  *  mix(target).it(Drone).with(
@@ -66,6 +66,7 @@ const mixer = ( target = {}, ...sources ) => {
    */
   o.it = function(constructor) {
     o.ctor = constructor
+    // o.target = object
     // mixConstructor(o.ctor)
     return o
   }
@@ -120,8 +121,8 @@ export const pipeObject = (...fns) => initialObj => {
     if(isFunction(fnOrObj)){
       return fnOrObj(accumFn)
     } else {
-      const objAsFunc = (obj) => _defaults(obj, fnOrObj)
       //assume its an object and merge it with _defaults
+      const objAsFunc = (obj) => _defaults(obj, fnOrObj)
       return objAsFunc(accumFn)
     }
   }, initialObj);

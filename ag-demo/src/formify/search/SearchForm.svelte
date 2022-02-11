@@ -71,7 +71,6 @@
   let transformedSchema = undefined
 
   $: if(formContext) {
-    // console.log("formContext", formContext)
     state = formContext.state
   }
 
