@@ -26,7 +26,6 @@ export const restQuery = ({ api }) => ds => {
      */
     async search(params) {
       let searchParams = ds.setupSearchParams(params)
-      console.info("searchParams",ds.key, searchParams)
       const page = await api.get({ searchParams })
 
       // ds.stores.setPageView(page)

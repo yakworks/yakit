@@ -4,6 +4,7 @@ packages:
   - 'core'
   - 'svelte'
   - 'ui'
+  - 'grid'
   # - 'ag'
   # - 'ag-demo'
   - 'demo'

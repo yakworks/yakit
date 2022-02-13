@@ -1,0 +1,19 @@
+{
+  "name": "@yakit/grid",
+  "description": "svelte grid",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "svelte": "index.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Joshua B",
+  "license": "MIT",
+  "dependencies": {
+    "debounce": "^1.2.1",
+    "deep-diff": "^1.0.2",
+    "detect-browser": "^5.0.0"
+  }
+}

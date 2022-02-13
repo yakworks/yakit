@@ -3,26 +3,43 @@
  -->
 <script>
   import { fade, fly } from "svelte/transition";
-  import {Button} from '@yakit/svelte/index'
-  import TbButton from '../../Toolbar/TbButton.svelte'
+  import { Button } from '../index'
+  import TbButton from '../Toolbar/TbButton.svelte'
   import { isFunction } from '@yakit/core/is';
-  import { classNames } from '../../shared/utils'
+  import { defaultsDeep, _defaults } from "@yakit/core/dash";
   import ListOptionsPopover from './ListOptionsPopover.svelte'
   import growl from '@yakit/ui/growl';
 
+
   //toolbar options
+  export let queryStore
   export let title = undefined
   export let opts = {}
-  export let listController
+  export let listController = undefined
   export let listId = undefined
 
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
 
-  $: stateStore = listController.ctx.stateStore
+  $: settings = queryStore.settings
+  $: selectedIds = queryStore.selectedIds
+  $: hasSelected = $selectedIds.length > 0
 
   let isLoading = false
   let optionsPopoverId = `${listId}-options-popover`
+
+  let defaultOpts = {
+    selectedButtons: {
+      bulkUpdate: { icon: 'edit_note', tooltip: 'Bulk Update' },
+      xlsExport: { icon: 'view_module', label: 'Export to Excel' }
+    },
+    leftButtons: {
+      create: { icon: 'add_box', tooltip: 'Create New' }
+    },
+    searchFormButton: { icon: 'mdi-text-box-search-outline', tooltip: 'Show Search Filters Form' }
+  }
+
+  $: mergedOpts = defaultsDeep(opts, defaultOpts)
 
   // let opts = options
 
@@ -41,7 +58,7 @@
   }
 
   function toggleShowSearch() {
-    $stateStore.showSearchForm = !$stateStore.showSearchForm
+    $settings.showSearchForm = !$settings.showSearchForm
   }
 
   const onSearchKeyPress = e => {
@@ -77,19 +94,9 @@
 // <slot name="title" />
 </script>
 
-<!-- FIXME works fine here but not when imported into rcm-ui -->
-<style>
-  .toolbar {
-    border-radius: 8px 8px 0 0;
-    border: 1px solid var(--color-shade-10);
-    border-bottom: none;
-  }
-
-</style>
-
 <header class="is-light is-dense has-border toolbar">
   <div class="toolbar-container">
-    {#if $stateStore.hasSelected }
+    {#if hasSelected }
       <div class="toolbar-item toolbar-item-left px-0 py-0" in:fly>
         <div class="selection-pointer">
           <!-- subdirectory_arrow_right -->
@@ -144,6 +151,13 @@
   </div>
 </header>
 
-<ListOptionsPopover popoverId={optionsPopoverId} {listController}/>
+<ListOptionsPopover popoverId={optionsPopoverId} {queryStore} {listController}/>
 
-
+<!-- FIXME works fine here but not when imported into rcm-ui -->
+<style>
+  .toolbar {
+    border-radius: 8px 8px 0 0;
+    border: 1px solid var(--color-shade-10);
+    border-bottom: none;
+  }
+</style>

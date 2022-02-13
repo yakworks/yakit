@@ -2,7 +2,7 @@
   Dynamic search from schema for basic single column ListForm
  -->
 <script>
-  import { Card, CardContent, CardFooter, Button7} from '@yakit/svelte/index'
+  import { Card, CardContent, CardFooter, Button7} from '../index'
   import ListForm from './ListForm.svelte'
   import FormifyField from './FormifyField.svelte'
   import { transformFields } from '@yakit/core/schema/transformSchema'

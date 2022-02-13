@@ -1,5 +1,6 @@
 import { get, writable, derived } from 'svelte/store';
 import mix from '../mix/mix-it-with';
+import appConfigApi from './AppConfigApi'
 import { findIndexById } from '../finders'
 import { isEmpty, _defaults, isUndefined } from '../dash';
 /** @typedef {import('svelte/store').Writable<{}>} Writable */
@@ -33,7 +34,10 @@ export const QueryStore = ({dataApi, opts = {}}) => {
   const qSearch = writable('')
   const page = writable(opts.page)
   const max = writable(opts.max)
+  //for the grid/list settings such as isDense
   const settings = writable({})
+
+  const selectedIds = writable([])
 
   const searchParams = derived([restrictSearch, q, qSearch, sort, page, max],
                                 ([$restrictSearch, $q, $qSearch, $sort, $page, $max]) => {
@@ -46,15 +50,9 @@ export const QueryStore = ({dataApi, opts = {}}) => {
   });
 
   let currentId
-
-  // function searchMerge(params) {
-  //   let searchParams = ds.setupSearchParams(params)
-  //   console.info("searchParams",ds.key, searchParams)
-  //   const page = await api.get({ searchParams })
-
-  //   ds.stores.setPageView(page)
-  //   return page
-  // }
+  let appConfig
+  let apiPath = dataApi.path
+  let apiKey = dataApi.key
 
   const obj = {
     unsubs: [],
@@ -68,9 +66,14 @@ export const QueryStore = ({dataApi, opts = {}}) => {
     max,
     dataApi,
     sort,
-    apiPath: dataApi.path,
-    apiKey: dataApi.key
+    selectedIds,
+    apiPath,
+    apiKey
   }
+
+  // async function init() {
+  //   appConfig = await appConfigApi.getConfig(apiKey)
+  // }
 
   function updateFromParams(p) {
     ['q', 'sort', 'qSearch', 'page', 'max'].forEach(k => {
@@ -79,9 +82,25 @@ export const QueryStore = ({dataApi, opts = {}}) => {
   }
 
   return mix(obj).with({
+    delay(ms){
+      ms = ms || 1000
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    // /** lazy load the app config */
+    // async getAppConfig(){
+    //   if(!appConfig) appConfig = await appConfigApi.getConfig(apiKey)
+    //   return appConfig
+    // },
+
+    /** shortcut to get the current data from the page store */
+    getCurrentData(){
+      const pagerData = get(currentPage)
+      return pagerData ? pagerData.data : pagerData
+    },
 
     setCurrent(_item){
       currentId = _item.id
+      selectedIds.set([currentId])
       return currentItem.set(_item)
     },
 
@@ -104,7 +123,6 @@ export const QueryStore = ({dataApi, opts = {}}) => {
       if(!_id) return
       //make sure its an int
       currentId = parseInt(_id)
-      console.log("setCurrentId", _id, currentId)
       if(_id === currentId) return //if its the same return
 
       const currentPageVal = get(currentPage)
@@ -118,7 +136,7 @@ export const QueryStore = ({dataApi, opts = {}}) => {
      * and then calls the get. if the params has a q property and its a string then
      * @param {*} params
      */
-    async list(p) {
+    async query(p) {
       if(p) updateFromParams(p)
       const $searchParams = get(searchParams)
       const page = await dataApi.search($searchParams)
@@ -130,7 +148,8 @@ export const QueryStore = ({dataApi, opts = {}}) => {
      * an alias to list that can be overriden.
      */
     async reload() {
-      return obj.list()
+      selectedIds.set([])
+      return obj.query()
     },
 
     /**

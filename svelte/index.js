@@ -4,13 +4,14 @@ export * from './Buttons';
 
 export { default as Col } from './Col.svelte';
 export { default as Columns } from './Columns.svelte';
+export { default as Counter } from './Counter.svelte';
 export { default as Row } from './Columns.svelte';
 
 export { default as CardHeader } from './Card/CardHeader.svelte';
 export { default as CardTitle } from './Card/CardTitle.svelte';
 export { default as CardSubtitle } from './Card/CardSubtitle.svelte';
 
-export { default as Gridz } from './DataApiList/Gridz.svelte';
+export { default as Gridz } from './DataList/jqGrid/JqGrid.svelte';
 
 // export * from './Card';
 export * from './Charts';

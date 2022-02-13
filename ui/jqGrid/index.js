@@ -14,4 +14,3 @@ import './jq.gridz'
 import './jq.formatters'
 
 export { default as JqGridCtrl } from './JqGridCtrl'
-export { default as makeListDataCtrl } from './makeListDataCtrl';

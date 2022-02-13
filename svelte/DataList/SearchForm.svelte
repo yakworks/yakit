@@ -4,20 +4,17 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
   import {writable} from 'svelte/store';
-  import { Popover, CardHeader, CardFooter, Button, BlockTitle, Block,
-    AccordionItem, AccordionToggle, AccordionContent } from '@yakit/svelte/index'
-  import { classNames, createEmitter } from '../shared/utils'
-  import { Formify } from '@yakit/svelte/Formify';
   import { searchDefaults } from '@yakit/core/schema/transformSchema'
-  import { handleError } from '@yakit/svelte/Formify/problemHandler';
   import { _defaults } from '@yakit/core/dash'
-  import { app } from '@yakit/svelte/framework7';
-  import growl from "@yakit/ui/growl"
 
+  import { CardFooter, Button} from '../index'
+  import { Formify, problemHandler } from '../Formify'
+  import { app } from '../framework7';
+
+  /** the queryStore with stores to bind to*/
+  export let queryStore
   /** the schema to use to build the form */
   export let schema
-  /** the context for the grid/list */
-  export let ctx
   /** dataApi to call save on */
   // export let dataApi
   /** the base list id that will be used to construct the popoverId and the form name */
@@ -35,15 +32,15 @@
 
   const dispatch = createEventDispatcher()
 
-  $: stateStore = ctx.stateStore
+  $: settings = queryStore.settings
 
   let formClass = 'mb-4'
   // $: formClass = classNames('mb-4', {
-  //   hidden: !($stateStore.showSearchForm)
+  //   hidden: !($settings.showSearchForm)
   // })
   let accOpened
 
-  $: showSearchForm  = $stateStore.showSearchForm
+  $: showSearchForm  = $settings.showSearchForm
 
   $: if(showSearchForm){
     app.f7.accordion.open("#searchAccordian")
@@ -59,9 +56,9 @@
     async onSubmit(values, form, errors){
       try {
         dispatch('search', values)
-        $stateStore.showSearchForm = false
+        $settings.showSearchForm = false
       } catch (er) {
-        handleError(er)
+        problemHandler.handleError(er)
       }
     }
   })
@@ -104,9 +101,6 @@
 </div>
 
 <style>
-  :global(.xxxx) {
-    width: 400px;
-  }
   .accordion-item {
     margin-left: -0.75rem;
     margin-right: -0.75rem;

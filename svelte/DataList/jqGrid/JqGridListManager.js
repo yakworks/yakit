@@ -1,16 +1,15 @@
-// import Log from '@yakit/core/Log'
-// import _ from 'lodash'
-import { get, writable } from 'svelte/store';
+// import { get, writable } from 'svelte/store';
 import { isEmpty, cloneDeep, isFunction, merge } from '@yakit/core/dash'
 import appConfigApi from '@yakit/core/stores/AppConfigApi'
-import toast from '../growl'
+import growl from "@yakit/ui/growl"
+import listConfig from "../listConfig"
+import {JqGridCtrl} from '@yakit/ui/jqGrid'
 
 const not_implemented = "not implemented"
 
-const makeListDataCtrl = (opts) => {
+const JqGridListManager = ({ queryStore }) => {
 
-  let { queryStore } = opts
-  let { dataApi, apiPath } = queryStore
+  let { apiPath } = queryStore
 
   let defaultToolbarOpts = {
     selectedButtons: {
@@ -23,17 +22,11 @@ const makeListDataCtrl = (opts) => {
     searchFormButton: { icon: 'mdi-text-box-search-outline', tooltip: 'Show Search Filters Form' }
   }
 
-  let state = {
-    isDense:false,
-    isConfigured: false,
-    showSearchForm: false,
-    hasSelected: false
-  }
-
-  let stateStore
+  const gridCtrl = new JqGridCtrl()
+  gridCtrl.queryStore = queryStore
 
   let ctrl = {
-
+    gridCtrl,
     async doConfig(ctx = {}) {
       ctrl.apiPath = ctrl.apiPath ? ctrl.apiPath : apiPath
 
@@ -47,28 +40,28 @@ const makeListDataCtrl = (opts) => {
         merge(ctx, clonedApiCfg)
       }
 
-      ctx.stateStore = dataApi.stores.stateStore
-      ctx.stateStore.set(state)
-      ctx.state = state
-      //short cut
-      ctrl.state = state
+      // ctx.stateStore = dataApi.stores.stateStore
+      // ctx.stateStore.set(state)
+      // ctx.state = state
+      // //short cut
+      // ctrl.state = state
 
       const gopts = ctx.gridOptions || {}
       if (ctrl.eventHandlers) {
         gopts.eventHandlers = ctrl.eventHandlers
       }
-      gopts.queryStore = queryStore
 
       if (!gopts.toolbarOptions) gopts.toolbarOptions = {}
+
       const tbopts = merge({}, defaultToolbarOpts, gopts.toolbarOptions)
       //if ctx toolbar option were passed in with context
       if(ctx.toolbarOptions) merge(tbopts, ctx.toolbarOptions)
       // setup search form show based on if searchForm is configured
-      if (ctx.searchForm === undefined || gopts.searchFormEnabled == false) {
-        gopts.showSearchForm = false
-        ctx.state.showSearchForm = false
-        tbopts.searchFormButton.class = 'hidden'
-      }
+      // if (ctx.searchForm === undefined || gopts.searchFormEnabled == false) {
+      //   gopts.showSearchForm = false
+      //   ctx.state.showSearchForm = false
+      //   tbopts.searchFormButton.class = 'hidden'
+      // }
 
       if (ctx.editForm === undefined || gopts.createEnabled == false) {
         tbopts.leftButtons.create.class = 'hidden'
@@ -93,11 +86,9 @@ const makeListDataCtrl = (opts) => {
       // _.defaults(ctrl.ctx, ctx)
       ctrl.ctx = ctx
 
-      ctrl.state.isConfigured = true
+      // ctrl.state.isConfigured = true
       return ctx
     },
-
-    get gridCtrl(){ return ctrl.ctx.gridCtrl },
 
     getGridOptions() { return ctrl.ctx.gridOptions },
 
@@ -193,14 +184,14 @@ const makeListDataCtrl = (opts) => {
     handleError(er) {
       console.error(er)
       const message = er?.response?.status === 500 ? 'Unexpected error' : null
-      toast.error(message || er)
+      growl.error(message || er)
     },
 
     handleResults(response) {
       if (response.ok) {
-        toast.success(`${response.success.join('<br>')}`, response.defaultMessage)
+        growl.success(`${response.success.join('<br>')}`, response.defaultMessage)
       } else {
-        toast.error(`${response.failed.join('<br>')} `, response.defaultMessage)
+        growl.error(`${response.failed.join('<br>')} `, response.defaultMessage)
       }
     },
 
@@ -214,10 +205,10 @@ const makeListDataCtrl = (opts) => {
         try {
           const result = await action()
           if(result.ok){
-            toast.success(result.title || 'Action is sucsess')
+            growl.success(result.title || 'Action is sucsess')
             ctrl.gridCtrl.reload() // todo: should we reload only selected rows?
           } else {
-            toast.error(result?.failed?.join('<br>') || '', result.title)
+            growl.error(result?.failed?.join('<br>') || '', result.title)
           }
         } catch (e) {
           ctrl.handleError(e)
@@ -237,7 +228,7 @@ const makeListDataCtrl = (opts) => {
 
   }
 
-  return Object.assign(ctrl, opts)
+  return ctrl //Object.assign(ctrl, opts)
 }
 
-export default makeListDataCtrl
+export default JqGridListManager

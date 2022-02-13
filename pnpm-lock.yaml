@@ -13,7 +13,6 @@ specifiers:
   '@testing-library/user-event': ^13.5.0
   '@tsconfig/svelte': ^3.0.0
   '@vitejs/plugin-legacy': ^1.5.1
-  '@yakit/core': workspace:../core
   apexcharts: ^3.33.1
   autoprefixer: ^10.4.2
   babel-jest: ^27.3.1
@@ -29,6 +28,7 @@ specifiers:
   fast-safe-stringify: ^2.1.1
   framework7: ^6.3.15
   framework7-icons: ^5.0.5
+  framework7-svelte: ^6.3.15
   free-jqgrid: 4.13.3
   jest: ^27.4.5
   jest-cli: ^27.4.5
@@ -55,7 +55,6 @@ specifiers:
 dependencies:
   '@fortawesome/fontawesome-free': 6.0.0
   '@mdi/font': 6.5.95
-  '@yakit/core': link:../core
   apexcharts: 3.33.1
   bulma: github.com/yakworks/bulma/f96ae80e2c9f5674c06aea711ea7aba6266fbce4
   date-fns: 2.28.0
@@ -64,6 +63,7 @@ dependencies:
   fast-safe-stringify: 2.1.1
   framework7: 6.3.15
   framework7-icons: 5.0.5
+  framework7-svelte: 6.3.16
   free-jqgrid: 4.13.3
   jquery: 3.4.1
   jquery-ui: 1.12.1
@@ -3184,6 +3184,10 @@ packages:
   /framework7-icons/5.0.5:
     resolution: {integrity: sha512-bvHMLyujV9TFuudehd3ORZ/EvNp19Ir3ckVzYAOf3MkLymHba/9oHLsgopCh0x5UsrYZUpkrE+fd7ggj5y4wRw==}
     engines: {node: '>= 0.10.0'}
+    dev: false
+
+  /framework7-svelte/6.3.16:
+    resolution: {integrity: sha512-Fpzlcd2x6q0VyhytuHmImaZ2PhVw6aq/FpiDlSnPbKA2/7yq0OCaSckK6WqDD/Rt8biFCYcTbyUJIBHW3toAMw==}
     dev: false
 
   /framework7/6.3.15:

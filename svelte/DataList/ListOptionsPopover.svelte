@@ -2,21 +2,22 @@
   Wraps the jqGrid and adds the toolbar and search form
  -->
 <script>
-  import {Popover, List, ListItem} from '@yakit/svelte/index'
+  import {Popover, List, ListItem} from '../index'
   import growl from '@yakit/ui/growl'
   import { isFunction } from '@yakit/core/dash';
 
-  export let listController
+  export let queryStore
+  export let listController = undefined
   export let popoverId = undefined
 
-  $: stateStore = listController.ctx.stateStore
+  $: settings = queryStore.settings
 
   let defaultMenuItems = [
-    { id:'refresh', display: 'Refresh', material: 'refresh'},
-    { id:'reset_sort', display: 'Reset Sort', material: 'playlist_remove'},
+    { key:'refresh', display: 'Refresh', material: 'refresh'},
+    { key:'reset_sort', display: 'Reset Sort', material: 'playlist_remove'},
     // { divider: true },
-    { id:'column_config', display: 'Column Config', material: 'view_column'},
-    { id:'toggle_density', display: 'Density Toggle', material: 'expand'},
+    { key:'column_config', display: 'Column Config', material: 'view_column'},
+    { key:'toggle_density', display: 'Density Toggle', material: 'expand'},
     // { divider: true },
     // { id:'toggle_show', display: 'Hide/Show Toggle', material: 'close_fullscreen' },
     // { id:'expand', display: 'Expand', material: 'open_in_full' },
@@ -27,19 +28,19 @@
   $: displayMenutItems = defaultMenuItems.filter(item => item.class !== 'hidden')
 
   let popMenuClick = (item) => (event) =>{
-    switch (item.id) {
+    switch (item.key) {
       case 'refresh':
-        return listController.reloadKeepSelected()
+        return queryStore.reload()
       case 'reset_sort':
-        return listController.resetSort()
+        return queryStore.resetSort()
       case 'column_config':
         return growl.info("Not Enabled")
       case 'toggle_density':
-        $stateStore.isDense = !$stateStore.isDense
+        $settings.isDense = !$settings.isDense
         break
       default:
-        if (isFunction(listController[item.id])) {
-          return listController[item.id](item, event)
+        if (isFunction(listController[item.key])) {
+          return listController[item.key](item, event)
         }
     }
   }
@@ -56,7 +57,7 @@
 <Popover bind:this={popComponent} id={popoverId} onPopoverClose={popoverClose}>
   <List>
     {#each displayMenutItems as item}
-      <ListItem id={item.id} link="#" title={item.display} popoverClose
+      <ListItem id={item.key} link="#" title={item.display} popoverClose
       noChevron={true} on:click={popMenuClick(item)}>
         <span slot="media" class="material-icons-two-tone">
           {item.material}

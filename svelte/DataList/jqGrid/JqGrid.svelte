@@ -2,18 +2,16 @@
   Wraps the jqGrid and adds the toolbar and search form
  -->
 <script>
-  import { get, writable } from 'svelte/store';
   import { onMount, onDestroy, tick, createEventDispatcher } from 'svelte'
-  import ListToolbar from './toolbar/ListToolbar.svelte'
-  import EditPopover from './EditPopover.svelte'
-  import SearchForm from './SearchForm.svelte'
-  import DataApiListController from './DataApiListController'
   import QueryStore from '@yakit/core/stores/QueryStore'
-  import JqGridCtrl from '@yakit/ui/jqGrid/JqGridCtrl'
-  import { classNames } from '../shared/utils';
-  import stringify from '@yakit/core/stringify';
+  import {JqGridCtrl} from '@yakit/ui/jqGrid'
+  import JqGridListManager from './JqGridListManager'
+  import ListToolbar from '../ListToolbar.svelte'
+  import EditPopover from '../EditPopover.svelte'
+  import SearchForm from '../SearchForm.svelte'
+  import { classNames } from '../../shared/utils';
   import growl from "@yakit/ui/growl"
-  import { get as _get, uniqueId } from "@yakit/core/dash"
+  import { difference, get as _get, uniqueId } from "@yakit/core/dash"
 
   /** the grid context with gridOptions and toolbarOptions */
   export let ctx = undefined
@@ -33,6 +31,10 @@
   export let title = undefined
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
+  /** set to true with the gridComplete event is done and data is loaded */
+  export let isGridComplete = false
+  /** the selected ids store */
+  export let selectedIds = undefined
 
   if(dataApi){
     queryStore = QueryStore({ dataApi })
@@ -40,7 +42,9 @@
     dataApi = queryStore.dataApi
   }
 
-  gridCtrl = new JqGridCtrl()
+  //stores from QueryStore we will listen to
+  let sort = queryStore.sort
+  selectedIds = queryStore.selectedIds
 
   // export let restrictSearch = undefined
 
@@ -56,24 +60,40 @@
     className,
     'gridz'
   )
-  let stateStore
+  let settings //state store for settings
   let editSchema
   let searchSchema
   let searchFormEnabled
   let gridOptions
 
+  //sync selection store to grid.
+  $: if(isGridComplete){
+    let selIds = gridCtrl.getSelectedRowIds()
+    let toAdd = difference($selectedIds, selIds), toRemove = difference(selIds, $selectedIds)
+    console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
+    if(toAdd.length > 0 || toRemove.length > 0){
+      console.log(`******resettting to sync **** ${selIds}`)
+      gridCtrl.clearSelection()
+      $selectedIds.forEach(id => {
+        gridCtrl.setSelection(id, false)
+      })
+    }
+  }
+
   onMount(async () => {
-    await setupListCtrl()
+    await setupListManager()
   });
 
-  async function setupListCtrl() {
+  async function setupListManager() {
 
-    listController = await DataApiListController({ queryStore, ctx })
+    listController = await JqGridListManager({ queryStore, ctx })
+    await listController.doConfig(ctx)
+    gridCtrl = listController.gridCtrl
     ctx = listController.ctx
     gridOptions = ctx.gridOptions
     gridId = ctx.gridOptions.gridId = ctx.gridOptions.gridId  || queryStore.apiPath.replace('/', '_')
     // console.log("setupListCtrl", gridId)
-    stateStore = listController.ctx.stateStore
+    settings = queryStore.settings
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)
     setupToolbarOpts(ctx)
     //needs to be either
@@ -95,18 +115,38 @@
   let unsubPageView
 
   async function initGrid(node) {
+    //add gridComplete
+    ctx.gridOptions.gridComplete = () => {
+      console.log("******gridComplete**** ")
+      isGridComplete = true
+      //make sure selection is cleared on reload
+      // gridCtrl.clearSelection()
+      dispatch("gridComplete")
+    }
+    ctx.gridOptions.onSelectRow = (rowId, checked, event) => {
+      let selIds = gridCtrl.getSelectedRowIds()
+      console.log(`******selIds**** ${selIds}`, event)
+      // console.log("******onSelectRow****", rowId, checked)
+      selectedIds.update(_ids => selIds)
+      dispatch("rowSelected", [rowId, checked])
+    }
+    //initializes the grid
     gridCtrl.setupAndInit(node, ctx)
-    // await queryStore.init()
-    if(loadOnMount) await list()
-    unsubPageView = queryStore.currentPage.subscribe(data => {
-      console.log("Gridz.queryStore.currentPage", gridId, data.data)
+    // load data if its loadOnMount
+    if(loadOnMount) await query()
+    //subscribe the page store
+    queryStore.currentPage.subscribe(data => {
+      if(!data) return
+      // gridCtrl.clearSelection()
       gridCtrl.addJSONData(data)
     });
+
   }
 
-  function list() {
+  /** calls query on queryStore after setting restrictSearch */
+  async function query() {
     if(gridOptions.restrictSearch) queryStore.restrictSearch.set(gridOptions.restrictSearch)
-    return queryStore.list()
+    queryStore.query()
   }
 
   onDestroy(() => {
@@ -135,13 +175,13 @@
 
 {#if inialized }
   {#if searchSchema && searchFormEnabled }
-    <SearchForm listId={gridId} {ctx} schema={searchSchema} on:search={searchAction}/>
+    <SearchForm listId={gridId} {queryStore} schema={searchSchema} on:search={searchAction}/>
   {/if}
   <div use:initGrid class="gridz-wrapper card m-0">
     {#if ctx.toolbarOptions }
-      <ListToolbar listId={gridId} {title} {listController} opts={ctx.toolbarOptions} {QuickFilter}/>
+      <ListToolbar listId={gridId} {queryStore} {title} {listController} opts={ctx.toolbarOptions} {QuickFilter}/>
     {/if}
-    <table class={classes} class:is-dense={$stateStore.isDense}></table>
+    <table class={classes} class:is-dense={$settings.isDense}></table>
     <div class="gridz-pager"></div>
   </div>
 

@@ -30,7 +30,6 @@ export default class JqGridCtrl {
   }
 
   setupAndInit(wrapperNode, context) {
-    console.log("setupAndInit", this.gridId)
     this.ctx = context
     const gridWrapper = $(wrapperNode)
     const gridEl = gridWrapper.find('table.gridz')
@@ -48,14 +47,11 @@ export default class JqGridCtrl {
     this.ctx.gridCtrl = this
     // shortcut shared state
     // this.state = _.merge(this.state, this.ctx.state)
-    this.stateStore = this.ctx.stateStore
     opts.loadui = 'block'
     this.gridOptions = opts
 
     opts.ondblClickRow = (rowid,iRow,iCol,e) => {
       let name = this.getColModel()[iCol]["name"]
-      console.log("ondblClickRow ID", rowid)
-      console.log("ondblClickRow Col", name)
       // console.log("ondblClickRow", rowid,iRow,iCol,e)
     }
 
@@ -73,14 +69,7 @@ export default class JqGridCtrl {
       this.gridId =  opts.gridId || opts.queryStore.apiPath?.replace('/', '_')
     }
     $jqGrid.attr('id', this.gridId)
-
-    let optsToMerge = _.pick(opts, [
-      'queryStore', 'initSearch', 'restrictSearch', 'contextMenuClick'
-    ])
-    _.mergeWith(this, optsToMerge, (obj, optVal) => {
-      //dont merge val if its null
-      return optVal === null ? obj : undefined
-    })
+    if(opts.contextMenuClick) this.contextMenuClick = opts.contextMenuClick
 
     // pager ID setup
     if (opts.pager !== false) {
@@ -96,11 +85,6 @@ export default class JqGridCtrl {
       }
 
       this.hasSelected = (this.getSelectedRowIds().length > 0)
-
-      this.ctx.stateStore.update( state => {
-        state.hasSelected = this.hasSelected
-        return state
-      })
 
       $jqGrid.trigger('gridz:selectedRows', [this.getSelectedRowIds()])
     }
@@ -122,8 +106,6 @@ export default class JqGridCtrl {
 
     this.gridOptions.sort = 'id'
     // adds the listener to the store
-    console.log("pageViewStore subscribe", this.gridId)
-    console.log("this.gridOptions", this.gridOptions)
 
     // const unsubscribe = this.dataApi.pageViewStore.subscribe(data => {
     //   console.log("dataApi.pageViewStore.subscribe", this.gridId, data)
@@ -180,6 +162,10 @@ export default class JqGridCtrl {
   selectRow(selRowId) {
     this.clearSelection()
     return this.jqGridEl.jqGrid('setSelection', selRowId)
+  }
+
+  setSelection(selRowId, fireEvent = true) {
+    return this.jqGridEl.setSelection(selRowId, fireEvent)
   }
 
   // Returns an array with data of the requested id = rowid.
@@ -540,7 +526,7 @@ export default class JqGridCtrl {
       if(this.gridLoaderInitialized){
         console.log("gridLoaderInitialized so running queryStore.list")
         //this calls the data api which sets the data to the store that this listens to to populate data
-        await this.queryStore.list(p)
+        await this.queryStore.query(p)
       } else {
         this.gridLoaderInitialized = true
       }
@@ -757,6 +743,7 @@ export default class JqGridCtrl {
 
   setupGridCompleteEvent(gridCtrl, jqGridEl, options) {
     jqGridEl.on('jqGridAfterGridComplete', function() {
+
       // Add `min` class to remove pading to minimize row height
       if (options.minRowHeight || options.denseRows) {
         gridCtrl.isDense = true
@@ -768,6 +755,13 @@ export default class JqGridCtrl {
           jqGridEl.setSelection(dataIds[0], true)
         }
       }
+      // if (options.selectFirstIfSingle === true) {
+      //   const dataIds = jqGridEl.getDataIDs()
+      //   console.log("jqGridAfterGridComplete selectFirstIfSingle", dataIds)
+      //   if (dataIds.length === 1) {
+      //     jqGridEl.setSelection(dataIds[0], true)
+      //   }
+      // }
     })
   }
 

@@ -3,9 +3,8 @@
  -->
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
-  import { Popover, CardHeader} from '@yakit/svelte/index'
-  import { Formify } from '../Formify'
-  import { handleError } from '../Formify/problemHandler'
+  import { Popover, CardHeader} from '../index'
+  import { Formify, problemHandler } from '../Formify'
   import { _defaults } from '@yakit/core/dash'
 
   /** the schema to use to build the form */
@@ -43,7 +42,7 @@
         dispatch('afterEditSubmit', savedItem);
       } catch (er) {
         console.error(er)
-        handleError(er)
+        problemHandler.handleError(er)
       }
     }
   })
@@ -58,7 +57,7 @@
       formContext.updateInitialValues(initValues)
     } catch (er) {
       console.error("onPopoverOpen error on get", er)
-      handleError(er)
+      problemHandler.handleError(er)
     }
     // finally {
     //   ctx.gridCtrl.toggleLoading(false)

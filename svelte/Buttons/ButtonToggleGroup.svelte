@@ -3,7 +3,7 @@
  -->
  <script>
   import { createEventDispatcher } from 'svelte'
-  import {Button7, Segmented} from '@yakit/svelte/index'
+  import {Button7, Segmented} from '../index'
 
   export let activeKey = undefined
   export let schema = undefined

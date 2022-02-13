@@ -157,9 +157,9 @@ class Gridz {
 
   }
 
-  /*
-  stuff to do after the grid is completed loading and rendering
-  */
+  /**
+   * stuff to do after the grid is completed loading and rendering
+   */
   gridComplete() {
     if (this.options.actionPopup) { this.actionPopupSetup() }
     if (this.options.popups) {
