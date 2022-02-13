@@ -43,7 +43,9 @@ $.extend($.fn.fmatter, {
 
   showLink(cellVal, options, rowdata) {
     const ident = rowdata.id
-    return `<a class="showLink" data-id="${ident}" href="${ident}" >${cellVal}</a>`
+    const locRef = window.location.href
+    let href = locRef + (locRef.endsWith('/') ? '' : '/') + ident
+    return `<a class="showLink nav" data-id="${ident}" href="${href}" >${cellVal}</a>`
   }
 })
 

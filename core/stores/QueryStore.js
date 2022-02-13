@@ -82,15 +82,26 @@ export const QueryStore = ({dataApi, opts = {}}) => {
   }
 
   return mix(obj).with({
+    async init() {
+      if(obj.initialized) return
+      await obj.getAppConfig()
+      obj.initialized = true
+      return obj
+    },
+
     delay(ms){
       ms = ms || 1000
       return new Promise(resolve => setTimeout(resolve, ms))
     },
-    // /** lazy load the app config */
-    // async getAppConfig(){
-    //   if(!appConfig) appConfig = await appConfigApi.getConfig(apiKey)
-    //   return appConfig
-    // },
+    /** generates an id from the apiKey */
+    ident(){
+      return apiPath.replace('/', '_')
+    },
+    /** lazy load the app config */
+    async getAppConfig(){
+      if(!appConfig) obj.appConfig = appConfig = await appConfigApi.getConfig(apiKey)
+      return appConfig
+    },
 
     /** shortcut to get the current data from the page store */
     getCurrentData(){

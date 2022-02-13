@@ -66,7 +66,7 @@ export default class JqGridCtrl {
     //we need uniq gridId for cases if 2 grids on one page, in other case pagers will be messed
     if (!this.gridId) {
       //if no gridId is specified in opts, then generate it based on apiKey
-      this.gridId =  opts.gridId || opts.queryStore.apiPath?.replace('/', '_')
+      this.gridId =  opts.gridId || this.queryStore.ident()
     }
     $jqGrid.attr('id', this.gridId)
     if(opts.contextMenuClick) this.contextMenuClick = opts.contextMenuClick

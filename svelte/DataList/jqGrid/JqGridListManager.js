@@ -28,74 +28,14 @@ const JqGridListManager = ({ queryStore }) => {
   let ctrl = {
     gridCtrl,
     async doConfig(ctx = {}) {
-      ctrl.apiPath = ctrl.apiPath ? ctrl.apiPath : apiPath
+      let apiCfg = await listConfig({queryStore, apiPath})
+      merge(ctx, apiCfg)
+      console.log("apiCfg", apiCfg)
 
-      let apiCfg = {}
-      if(ctrl.apiPath){
-        apiCfg = await appConfigApi.getConfig(ctrl.apiPath)
-      }
-
-      if(!isEmpty(apiCfg)){
-        let clonedApiCfg = cloneDeep(apiCfg)
-        merge(ctx, clonedApiCfg)
-      }
-
-      // ctx.stateStore = dataApi.stores.stateStore
-      // ctx.stateStore.set(state)
-      // ctx.state = state
-      // //short cut
-      // ctrl.state = state
-
-      const gopts = ctx.gridOptions || {}
-      if (ctrl.eventHandlers) {
-        gopts.eventHandlers = ctrl.eventHandlers
-      }
-
-      if (!gopts.toolbarOptions) gopts.toolbarOptions = {}
-
-      const tbopts = merge({}, defaultToolbarOpts, gopts.toolbarOptions)
-      //if ctx toolbar option were passed in with context
-      if(ctx.toolbarOptions) merge(tbopts, ctx.toolbarOptions)
-      // setup search form show based on if searchForm is configured
-      // if (ctx.searchForm === undefined || gopts.searchFormEnabled == false) {
-      //   gopts.showSearchForm = false
-      //   ctx.state.showSearchForm = false
-      //   tbopts.searchFormButton.class = 'hidden'
-      // }
-
-      if (ctx.editForm === undefined || gopts.createEnabled == false) {
-        tbopts.leftButtons.create.class = 'hidden'
-      }
-
-      if (ctx.bulkUpdateForm === undefined) {
-        tbopts.selectedButtons.bulkUpdate.class = 'hidden'
-      }
-
-      ctx.toolbarOptions = tbopts
-
-      //setup some defaults for gridOpts
-      gopts.contextMenuClick = (model, menuItem) => {
-        return ctrl.fireRowAction(model, menuItem)
-      }
-
-      gopts.fireToolbarAction = ctrl.fireToolbarAction
-
-      if(!gopts.restrictSearch) gopts.restrictSearch = ctrl.restrictSearch || {}
-      gopts.initSearch = ctrl.initSearch || {}
-
-      // _.defaults(ctrl.ctx, ctx)
       ctrl.ctx = ctx
 
-      // ctrl.state.isConfigured = true
       return ctx
     },
-
-    getGridOptions() { return ctrl.ctx.gridOptions },
-
-    //Need to implement
-    getEditModalCtrl() { throw Error(not_implemented) },
-    getBulkUpdateModalCtrl() { throw Error(not_implemented) },
-    // get searchCtrl() { return SearchCtrl }
 
     fireRowAction(model, menuItem) {
       switch (menuItem.key) {
@@ -220,11 +160,6 @@ const JqGridListManager = ({ queryStore }) => {
       }
       return run(ids)
     },
-    // we need to generate gridId, because if we have 2 grids on a page they will have the same id and 2 pagers will
-    // be assisgned to the second grid
-    gridId(){
-      return ctrl.apiPath?.replace(/[^\w\s]/gi, '_') + 'Grid'
-    }
 
   }
 

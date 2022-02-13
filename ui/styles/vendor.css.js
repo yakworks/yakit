@@ -2,6 +2,7 @@
 import './framework7/framework7.less'
 // Framework7 overrides sass
 // import './framework7/index.sass'
+import 'material-icons/iconfont/material-icons.css'
 import "@mdi/font/css/materialdesignicons.css"
 import "@fortawesome/fontawesome-free/css/all.css"
 // import 'ti-icons/css/themify-icons.css'

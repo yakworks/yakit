@@ -37,6 +37,7 @@ specifiers:
   jquery-ui: 1.12.1
   ky: ^0.28.7
   lodash: ^4.17.21
+  material-icons: ^1.10.6
   notyf: ^3.10.0
   postcss: ^8.4.5
   prettier: ^2.4.1
@@ -69,6 +70,7 @@ dependencies:
   jquery-ui: 1.12.1
   ky: 0.28.7
   lodash: 4.17.21
+  material-icons: 1.10.6
   notyf: 3.10.0
   sweetalert2: 11.4.0
   yup: 0.32.11
@@ -4204,6 +4206,10 @@ packages:
     dependencies:
       tmpl: 1.0.5
     dev: true
+
+  /material-icons/1.10.6:
+    resolution: {integrity: sha512-mVsXw91OON3J3uIVh9taIF1ZyDbcikRNCWv3KzsaJAGZTJbq0w1wdC8weCmyD3JDfAkxqK4WgVJITWPmVKJeDA==}
+    dev: false
 
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}

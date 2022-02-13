@@ -350,6 +350,7 @@ $.fn.gridz.defaults = {
   height: '100%',
   sortable: true,
   multiSort: false,
+  multiboxonly: true,
   multiselect: true, // one or more row selections
   viewrecords: true, // shows beginning and ending record number in the grid, out of the total number of records in the query.
   // Specify records info format

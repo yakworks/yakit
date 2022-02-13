@@ -65,7 +65,7 @@
   let searchSchema
   let searchFormEnabled
   let gridOptions
-
+  let toolbarOptions
   //sync selection store to grid.
   $: if(isGridComplete){
     let selIds = gridCtrl.getSelectedRowIds()
@@ -80,9 +80,7 @@
     }
   }
 
-  onMount(async () => {
-    await setupListManager()
-  });
+  let listManagerPromise = setupListManager()
 
   async function setupListManager() {
 
@@ -91,30 +89,22 @@
     gridCtrl = listController.gridCtrl
     ctx = listController.ctx
     gridOptions = ctx.gridOptions
-    gridId = ctx.gridOptions.gridId = ctx.gridOptions.gridId  || queryStore.apiPath.replace('/', '_')
+    toolbarOptions = ctx.gridOptions.toolbarOptions
+    gridId = ctx.gridOptions.gridId = queryStore.ident()
     // console.log("setupListCtrl", gridId)
     settings = queryStore.settings
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)
-    setupToolbarOpts(ctx)
     //needs to be either
     editSchema = ctx.editPopover || ctx.editForm
     //needs to be either
     searchSchema = ctx.searchForm
     inialized = true
-  }
-
-  //add popover to the createBtn
-  function setupToolbarOpts(ctx){
-    let tbopts = ctx.toolbarOptions
-    //it will always exists if tbopts is present so no null checks should be needed, just check class
-    if(tbopts && tbopts.leftButtons.create.class !== 'hidden' ){
-      tbopts.leftButtons.create['popoverId'] = `#${gridId}-popover-edit`
-    }
+    return listController
   }
 
   let unsubPageView
 
-  async function initGrid(node) {
+  function initGrid(node) {
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
       console.log("******gridComplete**** ")
@@ -133,7 +123,7 @@
     //initializes the grid
     gridCtrl.setupAndInit(node, ctx)
     // load data if its loadOnMount
-    if(loadOnMount) await query()
+    if(loadOnMount) query()
     //subscribe the page store
     queryStore.currentPage.subscribe(data => {
       if(!data) return
@@ -173,25 +163,23 @@
 
 </script>
 
-{#if inialized }
+{#await listManagerPromise}
+  <p>...loading</p>
+{:then _ }
   {#if searchSchema && searchFormEnabled }
     <SearchForm listId={gridId} {queryStore} schema={searchSchema} on:search={searchAction}/>
   {/if}
   <div use:initGrid class="gridz-wrapper card m-0">
-    {#if ctx.toolbarOptions }
-      <ListToolbar listId={gridId} {queryStore} {title} {listController} opts={ctx.toolbarOptions} {QuickFilter}/>
+    {#if toolbarOptions }
+      <ListToolbar listId={gridId} {queryStore} {title} {listController} opts={toolbarOptions} {QuickFilter}/>
     {/if}
     <table class={classes} class:is-dense={$settings.isDense}></table>
     <div class="gridz-pager"></div>
   </div>
 
-{#if editSchema }
-<EditPopover listId={gridId} {dataApi} schema={editSchema} on:afterEditSubmit={afterEdit} on:beforeEditSubmit/>
-{/if}
-
-<!-- <pre class="mb-4">state: {stringify($stateStore, null, 2)}</pre> -->
-{:else}
-<p>...loading</p>
-{/if}
+  {#if editSchema }
+  <EditPopover listId={gridId} {dataApi} schema={editSchema} on:afterEditSubmit={afterEdit} on:beforeEditSubmit/>
+  {/if}
+{/await}
 
 
