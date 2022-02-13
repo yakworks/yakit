@@ -4,7 +4,7 @@ import { findSomeDeep, qbe, findIndexById } from '../../finders'
 import { isString } from '../../is'
 import mix from '../../mix/mix-it-with'
 import {crudQueryModel} from '../crudQueryModel'
-import {crudQueryStores} from '../crudQueryStores'
+import {crudStores} from './crudStores'
 
 /**
  * Local memory based data service
@@ -17,7 +17,7 @@ const MemDataService = ({
   } = {}) => {
 
 
-  const stores = crudQueryStores()
+  const stores = crudStores()
   if(initData) stores.setMasterData(initData)
 
   const ds = {

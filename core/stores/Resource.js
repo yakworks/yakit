@@ -6,16 +6,17 @@ import { isEmpty, _defaults, isUndefined } from '../dash';
 /** @typedef {import('svelte/store').Writable<{}>} Writable */
 
 /**
- * Query store for dataApi. Default is paged view.
+ * Resource for dataApi in the spirit of ActiveRecord and angularJs old $resource service.
+ * Default is paged view.
  * Used to back any editable grid or list and has stores for
  *  - currentPage
  *  - currentItem
  *  - selectedIds
  *
  * @param {*} dataApi the dataApi to hit
- * @returns
+ * @returns the resource instance
  */
-export const QueryStore = ({dataApi, opts = {}}) => {
+export const Resource = ({dataApi, opts = {}}) => {
 
   _defaults(opts, {
     page: 1, max: 20
@@ -182,4 +183,4 @@ export const QueryStore = ({dataApi, opts = {}}) => {
   }) //end mix
 }
 
-export default QueryStore
+export default Resource

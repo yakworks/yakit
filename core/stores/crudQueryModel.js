@@ -1,6 +1,5 @@
 import { get, writable } from 'svelte/store';
 import { findIndexById } from '../finders'
-import { crudQueryStores } from './crudQueryStores';
 import mix from '../mix/mix-it-with';
 /** @typedef {import('svelte/store').Writable<{}>} Writable */
 

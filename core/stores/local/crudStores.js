@@ -1,12 +1,12 @@
 import { get, writable } from 'svelte/store';
-import mix from '../mix/mix-it-with';
-import { findIndexById } from '../finders'
+import mix from '../../mix/mix-it-with';
+import { findIndexById } from '../../finders'
 /** @typedef {import('svelte/store').Writable<{}>} Writable */
 
 /**
  * The base datastore composed of the the stores for current item, page
  */
-export const crudQueryStores = (ds = {}) => {
+export const crudStores = (ds = {}) => {
 
   let stateStore = writable({})
 

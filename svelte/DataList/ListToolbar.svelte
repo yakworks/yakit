@@ -12,7 +12,7 @@
 
 
   //toolbar options
-  export let queryStore
+  export let resource
   export let title = undefined
   export let opts = {}
   export let listController = undefined
@@ -21,8 +21,8 @@
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
 
-  $: settings = queryStore.settings
-  $: selectedIds = queryStore.selectedIds
+  $: settings = resource.settings
+  $: selectedIds = resource.selectedIds
   $: hasSelected = $selectedIds.length > 0
 
   let isLoading = false
@@ -151,7 +151,7 @@
   </div>
 </header>
 
-<ListOptionsPopover popoverId={optionsPopoverId} {queryStore} {listController}/>
+<ListOptionsPopover popoverId={optionsPopoverId} {resource} {listController}/>
 
 <!-- FIXME works fine here but not when imported into rcm-ui -->
 <style>

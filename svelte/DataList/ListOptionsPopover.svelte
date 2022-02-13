@@ -6,11 +6,11 @@
   import growl from '@yakit/ui/growl'
   import { isFunction } from '@yakit/core/dash';
 
-  export let queryStore
+  export let resource
   export let listController = undefined
   export let popoverId = undefined
 
-  $: settings = queryStore.settings
+  $: settings = resource.settings
 
   let defaultMenuItems = [
     { key:'refresh', display: 'Refresh', material: 'refresh'},
@@ -30,9 +30,9 @@
   let popMenuClick = (item) => (event) =>{
     switch (item.key) {
       case 'refresh':
-        return queryStore.reload()
+        return resource.reload()
       case 'reset_sort':
-        return queryStore.resetSort()
+        return resource.resetSort()
       case 'column_config':
         return growl.info("Not Enabled")
       case 'toggle_density':

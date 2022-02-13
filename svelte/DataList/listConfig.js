@@ -13,15 +13,15 @@ let defaultToolbarOpts = {
   searchFormButton: { icon: 'mdi-text-box-search-outline', tooltip: 'Show Search Filters Form' }
 }
 
-const listConfig = async ({queryStore, listId = '' }) => {
+const listConfig = async ({resource, listId = '' }) => {
 
-  let cfg = await queryStore.getAppConfig()
+  let cfg = await resource.getAppConfig()
 
   // let cfg = await appConfigApi.getConfig(apiPath)
   cfg = isEmpty(cfg) ? {} : cloneDeep(cfg)
 
   const gridOpts = cfg.gridOptions || {}
-  if(!listId) listId = queryStore.ident()
+  if(!listId) listId = resource.ident()
   console.log("listId", listId)
   const tbOpts = gridOpts.toolbarOptions || {}
 

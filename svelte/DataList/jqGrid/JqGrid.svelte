@@ -3,7 +3,7 @@
  -->
 <script>
   import { onMount, onDestroy, tick, createEventDispatcher } from 'svelte'
-  import QueryStore from '@yakit/core/stores/QueryStore'
+  import Resource from '@yakit/core/stores/Resource'
   import {JqGridCtrl} from '@yakit/ui/jqGrid'
   import JqGridListManager from './JqGridListManager'
   import ListToolbar from '../ListToolbar.svelte'
@@ -17,10 +17,8 @@
   export let ctx = undefined
   /** the dataApi that feeds tihs */
   export let dataApi = undefined
-  /**
-   * the queryStore as alternative to dataApi
-   */
-  export let queryStore = undefined
+  /** the resource as alternative to dataApi */
+  export let resource = undefined
   /** the gridId, can be bound, should set this through the gridOptions and not here*/
   export let gridId = undefined
   /** bind to the grid controller to access the instance*/
@@ -37,14 +35,13 @@
   export let selectedIds = undefined
 
   if(dataApi){
-    queryStore = QueryStore({ dataApi })
+    resource = Resource({ dataApi })
   } else {
-    dataApi = queryStore.dataApi
+    dataApi = resource.dataApi
   }
 
-  //stores from QueryStore we will listen to
-  let sort = queryStore.sort
-  selectedIds = queryStore.selectedIds
+  //stores from Resource we will listen to
+  selectedIds = resource.selectedIds
 
   // export let restrictSearch = undefined
 
@@ -84,15 +81,15 @@
 
   async function setupListManager() {
 
-    listController = await JqGridListManager({ queryStore, ctx })
+    listController = await JqGridListManager({ resource, ctx })
     await listController.doConfig(ctx)
     gridCtrl = listController.gridCtrl
     ctx = listController.ctx
     gridOptions = ctx.gridOptions
     toolbarOptions = ctx.gridOptions.toolbarOptions
-    gridId = ctx.gridOptions.gridId = queryStore.ident()
+    gridId = ctx.gridOptions.gridId = resource.ident()
     // console.log("setupListCtrl", gridId)
-    settings = queryStore.settings
+    settings = resource.settings
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)
     //needs to be either
     editSchema = ctx.editPopover || ctx.editForm
@@ -125,7 +122,7 @@
     // load data if its loadOnMount
     if(loadOnMount) query()
     //subscribe the page store
-    queryStore.currentPage.subscribe(data => {
+    resource.currentPage.subscribe(data => {
       if(!data) return
       // gridCtrl.clearSelection()
       gridCtrl.addJSONData(data)
@@ -133,10 +130,10 @@
 
   }
 
-  /** calls query on queryStore after setting restrictSearch */
+  /** calls query on resource after setting restrictSearch */
   async function query() {
-    if(gridOptions.restrictSearch) queryStore.restrictSearch.set(gridOptions.restrictSearch)
-    queryStore.query()
+    if(gridOptions.restrictSearch) resource.restrictSearch.set(gridOptions.restrictSearch)
+    resource.query()
   }
 
   onDestroy(() => {
@@ -167,11 +164,11 @@
   <p>...loading</p>
 {:then _ }
   {#if searchSchema && searchFormEnabled }
-    <SearchForm listId={gridId} {queryStore} schema={searchSchema} on:search={searchAction}/>
+    <SearchForm listId={gridId} {resource} schema={searchSchema} on:search={searchAction}/>
   {/if}
   <div use:initGrid class="gridz-wrapper card m-0">
     {#if toolbarOptions }
-      <ListToolbar listId={gridId} {queryStore} {title} {listController} opts={toolbarOptions} {QuickFilter}/>
+      <ListToolbar listId={gridId} {resource} {title} {listController} opts={toolbarOptions} {QuickFilter}/>
     {/if}
     <table class={classes} class:is-dense={$settings.isDense}></table>
     <div class="gridz-pager"></div>

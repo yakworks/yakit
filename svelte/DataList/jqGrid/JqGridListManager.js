@@ -7,9 +7,9 @@ import {JqGridCtrl} from '@yakit/ui/jqGrid'
 
 const not_implemented = "not implemented"
 
-const JqGridListManager = ({ queryStore }) => {
+const JqGridListManager = ({ resource }) => {
 
-  let { apiPath } = queryStore
+  let { apiPath } = resource
 
   let defaultToolbarOpts = {
     selectedButtons: {
@@ -23,12 +23,12 @@ const JqGridListManager = ({ queryStore }) => {
   }
 
   const gridCtrl = new JqGridCtrl()
-  gridCtrl.queryStore = queryStore
+  gridCtrl.resource = resource
 
   let ctrl = {
     gridCtrl,
     async doConfig(ctx = {}) {
-      let apiCfg = await listConfig({queryStore, apiPath})
+      let apiCfg = await listConfig({resource, apiPath})
       merge(ctx, apiCfg)
       console.log("apiCfg", apiCfg)
 

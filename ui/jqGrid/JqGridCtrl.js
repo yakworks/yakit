@@ -10,7 +10,7 @@ import { subscribe } from 'svelte/internal'
 
 export default class JqGridCtrl {
   formatters
-  queryStore
+  resource
   unsubs = []
   highlightClass = 'ui-state-highlight'
   systemColumns = ['cb', '-row_action_col']
@@ -66,7 +66,7 @@ export default class JqGridCtrl {
     //we need uniq gridId for cases if 2 grids on one page, in other case pagers will be messed
     if (!this.gridId) {
       //if no gridId is specified in opts, then generate it based on apiKey
-      this.gridId =  opts.gridId || this.queryStore.ident()
+      this.gridId =  opts.gridId || this.resource.ident()
     }
     $jqGrid.attr('id', this.gridId)
     if(opts.contextMenuClick) this.contextMenuClick = opts.contextMenuClick
@@ -524,9 +524,9 @@ export default class JqGridCtrl {
       }
       //jqGRid calls this on init, so this is a hack so we dont run it on init.
       if(this.gridLoaderInitialized){
-        console.log("gridLoaderInitialized so running queryStore.list")
+        console.log("gridLoaderInitialized so running resource.list")
         //this calls the data api which sets the data to the store that this listens to to populate data
-        await this.queryStore.query(p)
+        await this.resource.query(p)
       } else {
         this.gridLoaderInitialized = true
       }

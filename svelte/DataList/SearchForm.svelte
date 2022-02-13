@@ -11,8 +11,8 @@
   import { Formify, problemHandler } from '../Formify'
   import { app } from '../framework7';
 
-  /** the queryStore with stores to bind to*/
-  export let queryStore
+  /** the resource with stores to bind to*/
+  export let resource
   /** the schema to use to build the form */
   export let schema
   /** dataApi to call save on */
@@ -32,7 +32,7 @@
 
   const dispatch = createEventDispatcher()
 
-  $: settings = queryStore.settings
+  $: settings = resource.settings
 
   let formClass = 'mb-4'
   // $: formClass = classNames('mb-4', {
