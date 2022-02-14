@@ -15,6 +15,8 @@ export default class JqGridCtrl {
   highlightClass = 'ui-state-highlight'
   systemColumns = ['cb', '-row_action_col']
   ctx
+  //set to true after grid is setup and can be talked to.
+  isReady = false
 
   defaultCtxMenuOptions = {
     edit: {
@@ -115,6 +117,7 @@ export default class JqGridCtrl {
   //initialize the grid the jquery way
   initGridz(){
     this.jqGridEl.gridz(this.gridOptions)
+    this.isReady = true
   }
 
   // the jqGrid table element

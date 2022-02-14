@@ -205,7 +205,7 @@ export const Resource = ({dataApi, opts = {}}) => {
      * an alias to list that can be overriden.
      */
     async reload() {
-      selectedIds.set([])
+      // selectedIds.set([])
       return obj.query()
     },
 

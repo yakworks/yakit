@@ -66,16 +66,24 @@
 
   //sync selection store to grid.
   $: if(isGridComplete){
+    syncSelects($selectedIds)
+  }
+
+  function syncSelects(_){
     let selIds = gridCtrl.getSelectedRowIds()
     let toAdd = difference($selectedIds, selIds), toRemove = difference(selIds, $selectedIds)
-    // console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
+    console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
     if(toAdd.length > 0 || toRemove.length > 0){
-      // console.log(`******resettting to sync **** ${selIds}`)
+      console.log(`******resettting to sync **** ${selIds}`)
       gridCtrl.clearSelection()
       $selectedIds.forEach(id => {
         gridCtrl.setSelection(id, false)
       })
     }
+  }
+
+  $: if(gridCtrl && gridCtrl.isReady){
+    gridCtrl.toggleLoading($resource.isLoading)
   }
 
   let listManagerPromise = setupListManager()
@@ -104,10 +112,12 @@
   function initGrid(node) {
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
-      // console.log("******gridComplete**** ")
+      console.log("******gridComplete**** ")
       isGridComplete = true
       //make sure selection is cleared on reload
       // gridCtrl.clearSelection()
+      console.log("****** gridComplet $selectedIds**** ", $selectedIds)
+      syncSelects(_)
       dispatch("gridComplete")
     }
     ctx.gridOptions.onSelectRow = (rowId, checked, event) => {

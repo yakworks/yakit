@@ -66,7 +66,11 @@ const JqGridListManager = ({ resource }) => {
     },
 
     reloadKeepSelected() {
-      ctrl.gridCtrl.reloadKeepSelected()
+      // ctrl.gridCtrl.clearSelection()
+      //we just blank out the param and the reactive sync in the component will add them back
+      ctrl.gridCtrl.setParam({'selarrrow':[]}, true)
+      resource.reload()
+      // ctrl.gridCtrl.reloadKeepSelected()
     },
 
     resetSort() { ctrl.gridCtrl.resetSort() },
