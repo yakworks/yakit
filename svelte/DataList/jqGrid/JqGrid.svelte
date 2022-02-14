@@ -72,9 +72,9 @@
   function syncSelects(_){
     let selIds = gridCtrl.getSelectedRowIds()
     let toAdd = difference($selectedIds, selIds), toRemove = difference(selIds, $selectedIds)
-    console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
+    // console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
     if(toAdd.length > 0 || toRemove.length > 0){
-      console.log(`******resettting to sync **** ${selIds}`)
+      // console.log(`******resettting to sync **** ${selIds}`)
       gridCtrl.clearSelection()
       $selectedIds.forEach(id => {
         gridCtrl.setSelection(id, false)
@@ -112,18 +112,13 @@
   function initGrid(node) {
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
-      console.log("******gridComplete**** ")
       isGridComplete = true
-      //make sure selection is cleared on reload
-      // gridCtrl.clearSelection()
-      console.log("****** gridComplet $selectedIds**** ", $selectedIds)
+      // console.log("****** gridComplet $selectedIds**** ", $selectedIds)
       syncSelects(_)
       dispatch("gridComplete")
     }
     ctx.gridOptions.onSelectRow = (rowId, checked, event) => {
       let selIds = gridCtrl.getSelectedRowIds()
-      // console.log(`******selIds**** ${selIds}`, event)
-      // console.log("******onSelectRow****", rowId, checked)
       selectedIds.update(_ids => selIds)
       dispatch("rowSelected", [rowId, checked])
     }
@@ -133,7 +128,7 @@
     if(loadOnMount) query()
     //subscribe the page store
     resource.currentPage.subscribe(data => {
-      if(!data) return
+      if(data === undefined) return
       // gridCtrl.clearSelection()
       gridCtrl.addJSONData(data)
     });
