@@ -41,7 +41,7 @@
   if(!isEmpty(opts.initData)) opts.initialValues = opts.initData
 
   //the validationSchema will probably not be there so make it from the schema
-  console.log("schema", schema)
+  // console.log("schema", schema)
   if(opts.validate !== false && !opts.validationSchema && schema){
     opts.validationSchema = buildYupValidation(schema)
   }

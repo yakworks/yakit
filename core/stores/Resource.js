@@ -17,10 +17,21 @@ import { isEmpty, _defaults, isUndefined } from '../dash';
  * @returns the resource instance
  */
 export const Resource = ({dataApi, opts = {}}) => {
+  const testDelay = 1000 //for testing DO NOT CHECK IN WITH A VALUE
 
   _defaults(opts, {
     page: 1, max: 20
   })
+
+  const stateValues = {
+    /** if this is init and has retrieved its config*/
+    isReady: false,
+    configs: undefined,
+    isDense: false,
+    showSearchForm: false,
+    canEdit: true,
+    isLoading: true
+  }
 
   let currentPage = writable({})
   let currentItem = writable({})
@@ -35,8 +46,6 @@ export const Resource = ({dataApi, opts = {}}) => {
   const qSearch = writable('')
   const page = writable(opts.page)
   const max = writable(opts.max)
-  //for the grid/list settings such as isDense
-  const settings = writable({})
 
   const selectedIds = writable([])
 
@@ -50,14 +59,17 @@ export const Resource = ({dataApi, opts = {}}) => {
     return svals;
   });
 
+  //the store sub that is returned
+  const state = writable(stateValues)
+
   let currentId
-  let appConfig
+  // let appConfig
   let apiPath = dataApi.path
   let apiKey = dataApi.key
 
   const obj = {
     unsubs: [],
-    settings,
+    state,
     currentPage,
     currentItem,
     restrictSearch,
@@ -82,16 +94,35 @@ export const Resource = ({dataApi, opts = {}}) => {
     })
   }
 
-  return mix(obj).with({
+  function setLoading(val){
+    state.update(_state => {
+      _state.isLoading = val
+      return _state
+    })
+  }
+
+  function setReady(val){
+    state.update(_state => {
+      _state.isReady = val
+      return _state
+    })
+  }
+
+  return mix(obj).extend({
+    subscribe: state.subscribe,
+    set: state.set,
+
     async init() {
-      if(obj.initialized) return
-      await obj.getAppConfig()
-      obj.initialized = true
+      if(stateValues.isReady) return
+      await obj.loadConfigs()
+      setReady(true)
       return obj
     },
 
+    /** helper for testing */
     delay(ms){
-      ms = ms || 1000
+      ms = ms || testDelay
+
       return new Promise(resolve => setTimeout(resolve, ms))
     },
     /** generates an id from the apiKey */
@@ -99,10 +130,16 @@ export const Resource = ({dataApi, opts = {}}) => {
       return apiPath.replace('/', '_')
     },
     /** lazy load the app config */
-    async getAppConfig(){
-      if(!appConfig) obj.appConfig = appConfig = await appConfigApi.getConfig(apiKey)
-      return appConfig
+    async getConfigs(){
+      if(!stateValues.configs) { await obj.loadConfigs() }
+      return stateValues.configs
     },
+    /** load the app config */
+    async loadConfigs(){
+      stateValues.configs = await appConfigApi.getConfig(apiKey)
+      state.update(_state => stateValues )
+    },
+
 
     /** shortcut to get the current data from the page store */
     getCurrentData(){
@@ -125,9 +162,12 @@ export const Resource = ({dataApi, opts = {}}) => {
     },
 
     async loadCurrent(_id){
+      setLoading(true)
       if(_id !== undefined) currentId = parseInt(_id)
       const updatedItem = await dataApi.get(currentId)
+      await obj.delay()
       obj.setCurrent(updatedItem)
+      setLoading(false)
     },
 
     /** sets the currentItem from the data in the currentPage */
@@ -149,10 +189,15 @@ export const Resource = ({dataApi, opts = {}}) => {
      * @param {*} params
      */
     async query(p) {
+      setLoading(true)
       if(p) updateFromParams(p)
       const $searchParams = get(searchParams)
+      // console.log("query", apiKey, $searchParams)
       const page = await dataApi.search($searchParams)
+      await obj.delay()
       currentPage.set(page)
+      setLoading(false)
+      // console.log("stateValues", apiKey, p, stateValues)
       return page
     },
 
@@ -167,16 +212,21 @@ export const Resource = ({dataApi, opts = {}}) => {
     /**
      * saves to dataApi and updates the current store
      */
-    /**
-     *
-     * @param {*} values to pass to server to save, should have the id in it.
-     * @returns
-     */
     async update(values) {
       if(!values.id) throw new Error("update called without id")
       const updatedItem = await dataApi.update(values)
+      await obj.delay()
       obj.setCurrent(updatedItem)
       return updatedItem
+    },
+    //normally use the $resource.isReady but if mixing custom resource can use this as a shortcut check
+    isReady(){
+      return stateValues.isReady
+    },
+    //use when mixing custom resources
+    setReady(){
+      setReady(true)
+      state.update(_state => ({..._state, isReady:true}))
     }
 
 

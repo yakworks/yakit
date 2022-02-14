@@ -12,14 +12,16 @@
 
 
   //toolbar options
-  export let resource
+  export let resource = undefined
   export let title = undefined
   export let opts = {}
-  export let listController = undefined
+  export let listManager = {}
   export let listId = undefined
 
   /** the quickfilter buttons to add to toolbar */
   export let QuickFilter = undefined
+
+  if(!resource) resource = listManager.resource
 
   $: settings = resource.settings
   $: selectedIds = resource.selectedIds
@@ -54,17 +56,13 @@
 
   function clearSearchInput() {
     qSearchEntry = ''
-    listController.quickSearch('')
-  }
-
-  function toggleShowSearch() {
-    $settings.showSearchForm = !$settings.showSearchForm
+    listManager.quickSearch('')
   }
 
   const onSearchKeyPress = e => {
     if (e.charCode === 13){
       // e.preventDefault()
-      listController.quickSearch(qSearchEntry)
+      listManager.quickSearch(qSearchEntry)
     }
     // esc key
     if (e.charCode === 27) qSearchEntry = ''
@@ -79,7 +77,7 @@
         await btnItem.action(btnItem, event)
       } else {
         // calls the listController fireToolbarAction, which will fallback to the ctx.toolbarHandler
-        await listController.fireToolbarAction(btnItem, event)
+        await listManager.fireToolbarAction(btnItem, event)
       }
     } catch(e){
       //deal with any unhandled exceptions
@@ -89,6 +87,10 @@
       isLoading = false
       // this.gridCtrl.toggleLoading(false)
     }
+  }
+
+  function toggleShowSearch(){
+    $resource.showSearchForm = !$resource.showSearchForm
   }
 
 // <slot name="title" />
@@ -151,7 +153,7 @@
   </div>
 </header>
 
-<ListOptionsPopover popoverId={optionsPopoverId} {resource} {listController}/>
+<ListOptionsPopover popoverId={optionsPopoverId} {listManager}/>
 
 <!-- FIXME works fine here but not when imported into rcm-ui -->
 <style>

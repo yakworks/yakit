@@ -9,31 +9,17 @@ const not_implemented = "not implemented"
 
 const JqGridListManager = ({ resource }) => {
 
-  let { apiPath } = resource
-
-  let defaultToolbarOpts = {
-    selectedButtons: {
-      bulkUpdate: { icon: 'edit_note', tooltip: 'Bulk Update' },
-      xlsExport: { icon: 'view_module', label: 'Export to Excel' }
-    },
-    leftButtons: {
-      create: { icon: 'add_box', tooltip: 'Create New' }
-    },
-    searchFormButton: { icon: 'mdi-text-box-search-outline', tooltip: 'Show Search Filters Form' }
-  }
-
   const gridCtrl = new JqGridCtrl()
   gridCtrl.resource = resource
 
   let ctrl = {
+    resource,
     gridCtrl,
+
     async doConfig(ctx = {}) {
-      let apiCfg = await listConfig({resource, apiPath})
+      let apiCfg = await listConfig({resource})
       merge(ctx, apiCfg)
-      console.log("apiCfg", apiCfg)
-
       ctrl.ctx = ctx
-
       return ctx
     },
 
@@ -72,11 +58,20 @@ const JqGridListManager = ({ resource }) => {
       }
     },
 
-    //FIXME dont depend on grid, these should be refactored out
-    reloadKeepSelected() { ctrl.gridCtrl.reloadKeepSelected() },
+    toggleDensity(){
+      resource.state.update(_state => {
+        _state.isDense = !_state.isDense
+        return _state
+      })
+    },
+
+    reloadKeepSelected() {
+      ctrl.gridCtrl.reloadKeepSelected()
+    },
+
     resetSort() { ctrl.gridCtrl.resetSort() },
+
     async quickSearch(text) { ctrl.gridCtrl.quickSearch(text) },
-    toggleDensity() { this.state.isDense = !this.state.isDense },
 
     updateFooter(data) {
       setTimeout(_ => {

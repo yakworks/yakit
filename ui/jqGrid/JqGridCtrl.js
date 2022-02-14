@@ -14,8 +14,6 @@ export default class JqGridCtrl {
   unsubs = []
   highlightClass = 'ui-state-highlight'
   systemColumns = ['cb', '-row_action_col']
-  isDense = false //DEPRECATED dont ue
-  // injected
   ctx
 
   defaultCtxMenuOptions = {
@@ -493,9 +491,7 @@ export default class JqGridCtrl {
       // this.jqGridEl.jqGrid("sortGrid", "id", false)
       let sortName = this.getParam('sortname')
       let sortOrder = this.getParam('sortorder')
-      console.log("sortName/sortOrder", sortName, sortOrder)
-
-
+      // console.log("sortName/sortOrder", sortName, sortOrder)
       let sortMap = this.getParam('sortMap')
       if(sortMap){
         delete p.order; delete p.sort;
@@ -744,11 +740,6 @@ export default class JqGridCtrl {
   setupGridCompleteEvent(gridCtrl, jqGridEl, options) {
     jqGridEl.on('jqGridAfterGridComplete', function() {
 
-      // Add `min` class to remove pading to minimize row height
-      if (options.minRowHeight || options.denseRows) {
-        gridCtrl.isDense = true
-        // return _.each(jqGridEl[0].rows, it => angular.element(it).addClass('min'))
-      }
       if (options.selectFirstRow === true) {
         const dataIds = jqGridEl.getDataIDs()
         if (dataIds.length > 0) {

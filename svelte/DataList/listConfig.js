@@ -15,14 +15,14 @@ let defaultToolbarOpts = {
 
 const listConfig = async ({resource, listId = '' }) => {
 
-  let cfg = await resource.getAppConfig()
+  let cfg = await resource.getConfigs()
 
   // let cfg = await appConfigApi.getConfig(apiPath)
   cfg = isEmpty(cfg) ? {} : cloneDeep(cfg)
 
   const gridOpts = cfg.gridOptions || {}
   if(!listId) listId = resource.ident()
-  console.log("listId", listId)
+
   const tbOpts = gridOpts.toolbarOptions || {}
 
   defaultsDeep(tbOpts, defaultToolbarOpts)

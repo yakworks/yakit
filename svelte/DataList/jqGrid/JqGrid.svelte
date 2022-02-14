@@ -46,7 +46,7 @@
   // export let restrictSearch = undefined
 
   let inialized = false
-  let listController
+  let listManager
 
   let className = undefined;
   export { className as class };
@@ -63,13 +63,14 @@
   let searchFormEnabled
   let gridOptions
   let toolbarOptions
+
   //sync selection store to grid.
   $: if(isGridComplete){
     let selIds = gridCtrl.getSelectedRowIds()
     let toAdd = difference($selectedIds, selIds), toRemove = difference(selIds, $selectedIds)
-    console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
+    // console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
     if(toAdd.length > 0 || toRemove.length > 0){
-      console.log(`******resettting to sync **** ${selIds}`)
+      // console.log(`******resettting to sync **** ${selIds}`)
       gridCtrl.clearSelection()
       $selectedIds.forEach(id => {
         gridCtrl.setSelection(id, false)
@@ -80,11 +81,10 @@
   let listManagerPromise = setupListManager()
 
   async function setupListManager() {
-
-    listController = await JqGridListManager({ resource, ctx })
-    await listController.doConfig(ctx)
-    gridCtrl = listController.gridCtrl
-    ctx = listController.ctx
+    listManager = await JqGridListManager({ resource, ctx })
+    await listManager.doConfig(ctx)
+    gridCtrl = listManager.gridCtrl
+    ctx = listManager.ctx
     gridOptions = ctx.gridOptions
     toolbarOptions = ctx.gridOptions.toolbarOptions
     gridId = ctx.gridOptions.gridId = resource.ident()
@@ -96,7 +96,7 @@
     //needs to be either
     searchSchema = ctx.searchForm
     inialized = true
-    return listController
+    return listManager
   }
 
   let unsubPageView
@@ -104,7 +104,7 @@
   function initGrid(node) {
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
-      console.log("******gridComplete**** ")
+      // console.log("******gridComplete**** ")
       isGridComplete = true
       //make sure selection is cleared on reload
       // gridCtrl.clearSelection()
@@ -112,7 +112,7 @@
     }
     ctx.gridOptions.onSelectRow = (rowId, checked, event) => {
       let selIds = gridCtrl.getSelectedRowIds()
-      console.log(`******selIds**** ${selIds}`, event)
+      // console.log(`******selIds**** ${selIds}`, event)
       // console.log("******onSelectRow****", rowId, checked)
       selectedIds.update(_ids => selIds)
       dispatch("rowSelected", [rowId, checked])
@@ -137,7 +137,7 @@
   }
 
   onDestroy(() => {
-    gridCtrl.destroy()
+    gridCtrl && gridCtrl.destroy()
     unsubPageView && unsubPageView()
   });
 
@@ -155,22 +155,22 @@
   /** fired action after search clicked*/
   async function searchAction(event){
     const searchVals = event.detail
-    await listController.search(searchVals)
+    await listManager.search(searchVals)
   }
 
 </script>
 
 {#await listManagerPromise}
-  <p>...loading</p>
+  <p>Loading...</p>
 {:then _ }
   {#if searchSchema && searchFormEnabled }
     <SearchForm listId={gridId} {resource} schema={searchSchema} on:search={searchAction}/>
   {/if}
   <div use:initGrid class="gridz-wrapper card m-0">
     {#if toolbarOptions }
-      <ListToolbar listId={gridId} {resource} {title} {listController} opts={toolbarOptions} {QuickFilter}/>
+      <ListToolbar listId={gridId} {title} {listManager} opts={toolbarOptions} {QuickFilter}/>
     {/if}
-    <table class={classes} class:is-dense={$settings.isDense}></table>
+    <table class={classes} class:is-dense={$resource.isDense}></table>
     <div class="gridz-pager"></div>
   </div>
 

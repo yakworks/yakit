@@ -6,11 +6,11 @@
   import growl from '@yakit/ui/growl'
   import { isFunction } from '@yakit/core/dash';
 
-  export let resource
-  export let listController = undefined
+  export let resource = undefined
+  export let listManager = {}
   export let popoverId = undefined
 
-  $: settings = resource.settings
+  if(!resource) resource = listManager.resource
 
   let defaultMenuItems = [
     { key:'refresh', display: 'Refresh', material: 'refresh'},
@@ -30,21 +30,24 @@
   let popMenuClick = (item) => (event) =>{
     switch (item.key) {
       case 'refresh':
-        return resource.reload()
+        return listManager.reloadKeepSelected()
       case 'reset_sort':
-        return resource.resetSort()
+        return listManager.resetSort()
       case 'column_config':
         return growl.info("Not Enabled")
       case 'toggle_density':
-        $settings.isDense = !$settings.isDense
+        return toggleDensity()
         break
       default:
-        if (isFunction(listController[item.key])) {
-          return listController[item.key](item, event)
+        if (isFunction(listManager[item.key])) {
+          return listManager[item.key](item, event)
         }
     }
   }
 
+  function toggleDensity(){
+    $resource.isDense = !$resource.isDense
+  }
   let popComponent;
 
   function popoverClose(data) {

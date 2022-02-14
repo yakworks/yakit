@@ -13,6 +13,7 @@
 
   /** the resource with stores to bind to*/
   export let resource
+  export let listManager
   /** the schema to use to build the form */
   export let schema
   /** dataApi to call save on */
@@ -32,15 +33,11 @@
 
   const dispatch = createEventDispatcher()
 
-  $: settings = resource.settings
-
   let formClass = 'mb-4'
-  // $: formClass = classNames('mb-4', {
-  //   hidden: !($settings.showSearchForm)
-  // })
+
   let accOpened
 
-  $: showSearchForm  = $settings.showSearchForm
+  $: showSearchForm  = $resource.showSearchForm
 
   $: if(showSearchForm){
     app.f7.accordion.open("#searchAccordian")
@@ -56,7 +53,7 @@
     async onSubmit(values, form, errors){
       try {
         dispatch('search', values)
-        $settings.showSearchForm = false
+        $resource.showSearchForm = false
       } catch (er) {
         problemHandler.handleError(er)
       }
