@@ -2,7 +2,7 @@ import { get, writable, derived } from 'svelte/store';
 import mix from '../mix/mix-it-with';
 import appConfigApi from './AppConfigApi'
 import { findIndexById } from '../finders'
-import { isEmpty, _defaults, isUndefined } from '../dash';
+import { isEmpty, _defaults, isUndefined, isEqual } from '../dash';
 /** @typedef {import('svelte/store').Writable<{}>} Writable */
 
 /**
@@ -17,7 +17,11 @@ import { isEmpty, _defaults, isUndefined } from '../dash';
  * @returns the resource instance
  */
 export const Resource = ({dataApi, opts = {}}) => {
-  const testDelay = 1000 //for testing DO NOT CHECK IN WITH A VALUE
+  const testDelay = 0 //for testing DO NOT CHECK IN WITH A VALUE
+  // const testDelay = 1000
+
+  let apiPath = dataApi.path
+  let apiKey = dataApi.key
 
   _defaults(opts, {
     page: 1, max: 20
@@ -47,7 +51,8 @@ export const Resource = ({dataApi, opts = {}}) => {
   const page = writable(opts.page)
   const max = writable(opts.max)
 
-  const selectedIds = writable([])
+  const selectedIdValues = []
+  const selectedIds = writable(selectedIdValues)
 
   const searchParams = derived([restrictSearch, q, qSearch, sort, page, max],
                                 ([$restrictSearch, $q, $qSearch, $sort, $page, $max]) => {
@@ -61,11 +66,6 @@ export const Resource = ({dataApi, opts = {}}) => {
 
   //the store sub that is returned
   const state = writable(stateValues)
-
-  let currentId
-  // let appConfig
-  let apiPath = dataApi.path
-  let apiKey = dataApi.key
 
   const obj = {
     unsubs: [],
@@ -107,10 +107,20 @@ export const Resource = ({dataApi, opts = {}}) => {
       return _state
     })
   }
+  //only updates if they are different, first converts to number array to be consistent
+  function setSelected(newVals){
+    let numberArray = newVals.map(el=>parseInt(el))
+    let curVals = get(selectedIds)
+    if(!isEqual(curVals, numberArray)){
+      // console.log("not equal to setting", curVals, numberArray)
+      selectedIds.set(numberArray)
+    }
+  }
 
   return mix(obj).extend({
     subscribe: state.subscribe,
     set: state.set,
+    setSelected,
 
     async init() {
       if(stateValues.isReady) return
@@ -148,8 +158,9 @@ export const Resource = ({dataApi, opts = {}}) => {
     },
 
     setCurrent(_item){
-      currentId = _item.id
-      selectedIds.set([currentId])
+      const currentId = _item.id
+      // console.log("setCurrent", apiKey, currentId)
+      setSelected([currentId])
       return currentItem.set(_item)
     },
 
@@ -158,28 +169,35 @@ export const Resource = ({dataApi, opts = {}}) => {
     },
 
     getCurrentId(){
-      return currentId
+      const curitem = obj.getCurrentItem()
+      return curitem ? curitem.id : null
     },
 
+    /** loads the current item from the server */
     async loadCurrent(_id){
       setLoading(true)
-      if(_id !== undefined) currentId = parseInt(_id)
+      let currentId = _id !== undefined ? parseInt(_id) : obj.getCurrentId()
+      //should not happen but error if no id was set
+      if(!currentId) throw new Error("loadCurrent called without a valid id")
+
       const updatedItem = await dataApi.get(currentId)
       await obj.delay()
       obj.setCurrent(updatedItem)
       setLoading(false)
     },
 
-    /** sets the currentItem from the data in the currentPage */
+    /** sets the currentItem from the cached data in the currentPage */
     setCurrentId(_id) {
-      if(!_id) return
+      // console.log("setCurrentId called with _id", _id )
+      if(!_id) throw new Error("setCurrentId called without an id")
       //make sure its an int
-      currentId = parseInt(_id)
-      if(_id === currentId) return //if its the same return
+      const id = parseInt(_id)
+      if(id === obj.getCurrentId()) return //if its the same then just return
 
       const currentPageVal = get(currentPage)
       const pageData = currentPageVal['data']
-      const dataItem = dataApi.findById(pageData, currentId)
+      const dataItem = dataApi.findById(pageData, id)
+      // console.log("setCurrentId", apiKey, dataItem )
       obj.setCurrent(dataItem)
     },
 
@@ -207,6 +225,20 @@ export const Resource = ({dataApi, opts = {}}) => {
     async reload() {
       // selectedIds.set([])
       return obj.query()
+    },
+
+    /**
+     * clears the page store
+     */
+    clearCurrentPage() {
+      currentPage.set({})
+    },
+
+    /**
+     * clears the currentItem store
+     */
+    clearCurrentItem() {
+      currentItem.set({})
     },
 
     /**

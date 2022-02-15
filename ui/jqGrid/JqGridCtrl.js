@@ -35,7 +35,8 @@ export default class JqGridCtrl {
     const gridEl = gridWrapper.find('table.gridz')
     this.setupGrid(gridWrapper, gridEl)
     this.initGridz()
-
+    //default to loading true
+    this.toggleLoading(true)
     return this.ctx
   }
 
@@ -138,7 +139,8 @@ export default class JqGridCtrl {
   // This is a one-dimensional array and the values in the array correspond
   // to the selected id's in the grid.
   getSelectedRowIds() {
-    return this.getParam('selarrrow')
+    const selVals =  this.getParam('selarrrow')
+    return selVals.map(el=>parseInt(el))
   }
 
   getSelectedRowId() {

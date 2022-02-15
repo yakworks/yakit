@@ -12,8 +12,7 @@
   import { app } from '../framework7';
 
   /** the resource with stores to bind to*/
-  export let resource
-  export let listManager
+  export let resource = undefined
   /** the schema to use to build the form */
   export let schema
   /** dataApi to call save on */

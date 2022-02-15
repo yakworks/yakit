@@ -361,5 +361,6 @@ $.fn.gridz.defaults = {
   recordpos: 'left',
   beforeSelectRow: null,
   gridComplete: null,
-  actionPopup: false
+  actionPopup: false,
+  loadtext: '<div class="loader" style="height:18px; width:18px"></div>'
 }

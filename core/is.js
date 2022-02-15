@@ -1,5 +1,5 @@
 
-export { isEmpty, isUndefined } from './dash';
+export { isEmpty, isUndefined, isEqual } from './dash';
 
 export function isString(value) {
   return  (typeof value === 'string' || value instanceof String)

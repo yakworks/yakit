@@ -11,7 +11,7 @@
   import SearchForm from '../SearchForm.svelte'
   import { classNames } from '../../shared/utils';
   import growl from "@yakit/ui/growl"
-  import { difference, get as _get, uniqueId } from "@yakit/core/dash"
+  import { difference, get as _get, uniqueId, isEqual } from "@yakit/core/dash"
 
   /** the grid context with gridOptions and toolbarOptions */
   export let ctx = undefined
@@ -41,7 +41,7 @@
   }
 
   //stores from Resource we will listen to
-  selectedIds = resource.selectedIds
+  $: selectedIds = resource.selectedIds
 
   // export let restrictSearch = undefined
 
@@ -71,9 +71,7 @@
 
   function syncSelects(_){
     let selIds = gridCtrl.getSelectedRowIds()
-    let toAdd = difference($selectedIds, selIds), toRemove = difference(selIds, $selectedIds)
-    // console.log(`******diffs between to sync **** ${selIds} && ${$selectedIds}`)
-    if(toAdd.length > 0 || toRemove.length > 0){
+    if(!isEqual(selIds, $selectedIds)){
       // console.log(`******resettting to sync **** ${selIds}`)
       gridCtrl.clearSelection()
       $selectedIds.forEach(id => {
@@ -83,13 +81,14 @@
   }
 
   $: if(gridCtrl && gridCtrl.isReady){
+    // console.log("jqGrid $resource.isLoading", $resource.isLoading)
     gridCtrl.toggleLoading($resource.isLoading)
   }
 
   let listManagerPromise = setupListManager()
 
   async function setupListManager() {
-    listManager = await JqGridListManager({ resource, ctx })
+    listManager = await JqGridListManager({ resource })
     await listManager.doConfig(ctx)
     gridCtrl = listManager.gridCtrl
     ctx = listManager.ctx
@@ -107,31 +106,33 @@
     return listManager
   }
 
-  let unsubPageView
+  let currentPage = resource.currentPage
+
+  $: if(gridCtrl && gridCtrl.isReady && $currentPage){
+    console.log("$currentPage", resource.apiKey, $currentPage)
+    gridCtrl.addJSONData($currentPage)
+  }
 
   function initGrid(node) {
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
       isGridComplete = true
-      // console.log("****** gridComplet $selectedIds**** ", $selectedIds)
       syncSelects(_)
       dispatch("gridComplete")
     }
     ctx.gridOptions.onSelectRow = (rowId, checked, event) => {
       let selIds = gridCtrl.getSelectedRowIds()
-      selectedIds.update(_ids => selIds)
+      resource.setSelected(selIds)
       dispatch("rowSelected", [rowId, checked])
     }
     //initializes the grid
     gridCtrl.setupAndInit(node, ctx)
     // load data if its loadOnMount
-    if(loadOnMount) query()
-    //subscribe the page store
-    resource.currentPage.subscribe(data => {
-      if(data === undefined) return
-      // gridCtrl.clearSelection()
-      gridCtrl.addJSONData(data)
-    });
+    if(loadOnMount) {
+      query()
+    } else {
+      $resource.isLoading = false
+    }
 
   }
 
@@ -142,8 +143,7 @@
   }
 
   onDestroy(() => {
-    gridCtrl && gridCtrl.destroy()
-    unsubPageView && unsubPageView()
+    if(gridCtrl) gridCtrl.destroy()
   });
 
   const dispatch = createEventDispatcher();
@@ -168,6 +168,7 @@
 {#await listManagerPromise}
   <p>Loading...</p>
 {:then _ }
+  <!-- <p>selectedIds {$selectedIds} isLoading {$resource.isLoading}</p> -->
   {#if searchSchema && searchFormEnabled }
     <SearchForm listId={gridId} {resource} schema={searchSchema} on:search={searchAction}/>
   {/if}
