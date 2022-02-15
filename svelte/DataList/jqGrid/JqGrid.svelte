@@ -160,7 +160,10 @@
   /** fired action after search clicked*/
   async function searchAction(event){
     const searchVals = event.detail
-    await listManager.search(searchVals)
+    console.log("searchVals", searchVals)
+    resource.q.set(searchVals)
+    // await listManager.search(searchVals)
+    await resource.query()
   }
 
 </script>

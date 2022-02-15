@@ -192,7 +192,10 @@ export default class JqGridCtrl {
   addJSONData(data) {
     //FIXME HACK not sure why we need to do this
     const jqgrid = this.jqGridEl.get(0)
-    if(jqgrid.addJSONData && !_.isEmpty(data)){
+    // if(jqgrid.addJSONData && !_.isEmpty(data)){
+    //   jqgrid.addJSONData(data)
+    // }
+    if(jqgrid.addJSONData){
       jqgrid.addJSONData(data)
     }
     // fire jquery event

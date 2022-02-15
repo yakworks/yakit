@@ -121,6 +121,7 @@ export const Resource = ({dataApi, opts = {}}) => {
     subscribe: state.subscribe,
     set: state.set,
     setSelected,
+    setLoading,
 
     async init() {
       if(stateValues.isReady) return
@@ -228,20 +229,6 @@ export const Resource = ({dataApi, opts = {}}) => {
     },
 
     /**
-     * clears the page store
-     */
-    clearCurrentPage() {
-      currentPage.set({})
-    },
-
-    /**
-     * clears the currentItem store
-     */
-    clearCurrentItem() {
-      currentItem.set({})
-    },
-
-    /**
      * saves to dataApi and updates the current store
      */
     async update(values) {
@@ -259,6 +246,31 @@ export const Resource = ({dataApi, opts = {}}) => {
     setReady(){
       setReady(true)
       state.update(_state => ({..._state, isReady:true}))
+    },
+    /**
+     * clears the page store
+     */
+    clearCurrentPage() {
+      currentPage.set({})
+    },
+
+    /**
+     * clears the currentItem store
+     */
+    clearCurrentItem() {
+      currentItem.set({})
+    },
+    /**
+     * clears the currentItem store
+     */
+    clearSelected() {
+      selectedIds.set([])
+    },
+
+    clearAll(){
+      obj.clearSelected()
+      obj.clearCurrentItem()
+      obj.clearCurrentPage()
     }
 
 

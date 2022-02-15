@@ -135,6 +135,7 @@ const JqGridListManager = ({ resource }) => {
       }
     },
 
+    // KEPT FOR REF, NOT USED
     handleAction(action) {
       const ids = ctrl.gridCtrl.getSelectedRowIds()
       const run = async (ids) => {

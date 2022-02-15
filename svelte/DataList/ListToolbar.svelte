@@ -9,7 +9,7 @@
   import { defaultsDeep, _defaults } from "@yakit/core/dash";
   import ListOptionsPopover from './ListOptionsPopover.svelte'
   import growl from '@yakit/ui/growl';
-
+  import { problemHandler } from '../Formify'
 
   //toolbar options
   export let resource = undefined
@@ -23,9 +23,10 @@
 
   if(!resource) resource = listManager.resource
 
-  $: settings = resource.settings
   $: selectedIds = resource.selectedIds
   $: hasSelected = $selectedIds.length > 0
+  $: qSearch = resource.qSearch
+  $: q = resource.q
 
   let isLoading = false
   let optionsPopoverId = `${listId}-options-popover`
@@ -52,20 +53,18 @@
       .filter(o => o.class !== 'hidden')
   }
 
-  let qSearchEntry = ''
-
   function clearSearchInput() {
-    qSearchEntry = ''
-    listManager.quickSearch('')
+    $qSearch = ''
+    resource.query()
   }
 
   const onSearchKeyPress = e => {
     if (e.charCode === 13){
       // e.preventDefault()
-      listManager.quickSearch(qSearchEntry)
+      resource.query()
     }
     // esc key
-    if (e.charCode === 27) qSearchEntry = ''
+    if (e.charCode === 27) $qSearch = ''
   };
 
   async function fireButtonClick(btnItem, event) {
@@ -81,7 +80,8 @@
       }
     } catch(e){
       //deal with any unhandled exceptions
-      growl.error(e)
+      problemHandler.handleError(e)
+      // growl.error(e, "fireButtonClick Error")
     } finally {
       //results.ok ? growl.success(results.title) : growl.error(results.detail, results.title)
       isLoading = false
@@ -95,6 +95,7 @@
 
 // <slot name="title" />
 </script>
+<!-- <p>qSearch {$qSearch} q {$q}</p> -->
 
 <header class="is-light is-dense has-border toolbar">
   <div class="toolbar-container">
@@ -127,18 +128,18 @@
     <div class="spacer"/>
 
     <!-- <QuickFilter /> -->
-    <svelte:component this={QuickFilter} />
+    <svelte:component this={QuickFilter} {resource}/>
 
     <div class="toolbar-item p-0 quick-search-item">
       <div class="control has-icons-right has-icons-left">
         <input type="text" class="input is-rounded is-search quick-search"
           placeholder="Search"
           on:keypress={onSearchKeyPress}
-          bind:value={qSearchEntry}>
+          bind:value={$qSearch}>
         <span class="icon is-small is-left">
           <i class="fas fa-search"></i>
         </span>
-        {#if qSearchEntry }
+        {#if $qSearch }
         <span class="icon is-small is-right">
           <a href={'#'} class="delete is-small" on:click={clearSearchInput}> </a>
         </span>

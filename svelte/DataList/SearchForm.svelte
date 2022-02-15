@@ -7,9 +7,10 @@
   import { searchDefaults } from '@yakit/core/schema/transformSchema'
   import { _defaults } from '@yakit/core/dash'
 
-  import { CardFooter, Button} from '../index'
+  import { CardFooter, Button, Columns, Col} from '../index'
   import { Formify, problemHandler } from '../Formify'
   import { app } from '../framework7';
+  import stringify from '@yakit/core/stringify';
 
   /** the resource with stores to bind to*/
   export let resource = undefined
@@ -36,6 +37,8 @@
 
   let accOpened
 
+  let q = resource.q
+
   $: showSearchForm  = $resource.showSearchForm
 
   $: if(showSearchForm){
@@ -45,6 +48,10 @@
     try{
       app.f7.accordion.close("#searchAccordian")
     } catch(e){ /* empty */ }
+  }
+
+  $: if(showSearchForm){
+    formContext.updateInitialValues($q)
   }
 
   _defaults(formOpts, {
@@ -82,6 +89,11 @@
 
   $: isSearching = formContext ? formContext.isSubmitting : writable(false)
 
+  // let data = {}
+  let state
+  $: if(formContext) {
+    state = formContext.state
+  }
 </script>
 
 <div class="accordion-item" id="searchAccordian">
@@ -93,6 +105,14 @@
         <Button color="primary" loading={$isSearching} onClick={onSearch}>Search</Button>
       </CardFooter>
     </Formify>
+    <!-- <Columns>
+      <Col class="is-4">
+        <pre class="mt-4">field model: {stringify(data, null, 2)}</pre>
+      </Col>
+      <Col class="is-4">
+        <pre class="mt-4">state: {stringify($state, null, 2)}</pre>
+      </Col>
+    </Columns> -->
   </div>
 </div>
 
