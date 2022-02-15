@@ -51,6 +51,11 @@ clean:
 start:
 	cd demo && $(vite)
 
+## starts the old angular demo
+start.ag-demo:
+	cd ag-demo
+	npx webpack-dev-server --mode=development --content-base ./examples/demo
+
 ## locally preview production build
 start.preview:
 	$(vite) preview

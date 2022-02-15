@@ -119,6 +119,7 @@ const Copiter = (opts) => {
 const copter = Copiter()
 
 console.log(`
+  name:  ${ copter.name}
   can fly:  ${ copter.fly().isFlying() === true }
   can land: ${ copter.land().isFlying() === false }
   battery capacity: ${ copter.battery.capacity }

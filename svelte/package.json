@@ -6,9 +6,13 @@
   "type": "module",
   "author": "Joshua B",
   "license": "MIT",
+  "svelte": "index.js",
   "dependencies": {
     "@yakit/ui": "workspace:../ui",
+    "@yakit/core": "workspace:../core",
     "framework7-svelte": "^6.3.15",
+    "svelte": "^3.42.4",
+    "svelte-select": "^4.4.7",
     "svelte-spa-router": "^3.2.0"
   }
 }

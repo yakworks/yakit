@@ -2,13 +2,14 @@
 import Home from './routes/Home.svelte'
 import Name from './routes/Name.svelte'
 import Wild from './routes/Wild.svelte'
+import Grid from './Grid/Grid.svelte'
 import NotFound from './routes/NotFound.svelte'
 
 // Export the route definition object
 export default {
   // Exact path
   '/': Home,
-
+  '/grid': Grid,
   // Using named parameters, with last being optional
   '/hello/:first/:last?': Name,
 

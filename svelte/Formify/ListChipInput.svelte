@@ -43,12 +43,9 @@
   export let selectEl = undefined
 
   export let handleSelect = (event) => {
-    console.log("listSelect.handleSelect", event)
     selectedItem = event.detail
-    // console.log("listSelect.handleSelect val", value)
     if(selectedItem) {
       value = selectedItem.map((selection) => selection.value)
-      console.log("listSelect.handleSelect value", value)
     } else {
       selectedItem = null
       value = null
@@ -57,7 +54,6 @@
   }
 
   export let handleClear = (event) => {
-    console.log("handleClear", event)
     updateValidateField(name, event.detail)
     selectedItem = event.detail
     value = event.detail

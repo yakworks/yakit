@@ -189,6 +189,10 @@
   $: hasMediaSlots = $$slots.media;
   $: hasLabelSlots = $$slots.label;
 
+  // $: {
+  //   console.log("errorMessage", errorMessage)
+  // }
+
   $: errorMessage = get($errors, name) || ''
   $: hasErrorMessage = !!errorMessage || hasErrorSlots;
 

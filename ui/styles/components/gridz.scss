@@ -28,7 +28,7 @@ $grid-border: $border;
   width: 100%;
   height: 100%;
   background: gray;
-  opacity: 0.01;
+  opacity: 0.10;
 }
 // when dragging to reposition columns
 .ui-widget-content .ui-state-default.ui-sortable-helper {
@@ -189,6 +189,7 @@ $grid-border: $border;
 
     .ui-paging-info{
       padding-right: 12px;
+      padding-left: 12px;
     }
     .ui-pager-control{
       font-size: 12px;

@@ -14,7 +14,8 @@ import {_defaults, isFunction} from '../dash'
  * @property {function(function): Mixer} it the constructor function
  * @property {function(object): Mixer}   pipe the functions for the pipe
  * @property {function(...any): object}  with the functions for the pipe
- * @property {function(object): object}  extend adds props but does not overwrite
+ * @property {function(object): object}  extend adds props and overwrites
+ * @property {function(object): object}  defaults adds props but does not overwrite
  */
 
 
@@ -35,7 +36,7 @@ import {_defaults, isFunction} from '../dash'
 
 /**
  * mix builder to functionaly compose objects.
- * It expects the functions to be factory functions that accept and object
+ * It expects the functions to be factory functions that accept an object
  *
  * @example
  *  mix(target).it(Drone).with(
@@ -66,6 +67,7 @@ const mixer = ( target = {}, ...sources ) => {
    */
   o.it = function(constructor) {
     o.ctor = constructor
+    // o.target = object
     // mixConstructor(o.ctor)
     return o
   }
@@ -99,6 +101,14 @@ const mixer = ( target = {}, ...sources ) => {
   }
 
   /**
+   * Extends the target object dst by copying own enumerable properties
+   * same as Object.assign
+   */
+  o.extend = function(...supers ) {
+    return Object.assign(o.target, ...supers)
+  }
+
+  /**
    * Build -> if no factory functions are piped and want to merge simple objects.
    * Modifies the target in place as does not copy or clone.
    * Think of it more like a class extends where the supers are whats being extended.
@@ -108,7 +118,7 @@ const mixer = ( target = {}, ...sources ) => {
    * Once a property is set, additional values of the same property are ignored.
    * Uses the lodash _defaults
    */
-  o.extend = function(...supers ) {
+  o.defaults = function(...supers ) {
     return _defaults(o.target, ...supers)
   }
 
@@ -120,8 +130,8 @@ export const pipeObject = (...fns) => initialObj => {
     if(isFunction(fnOrObj)){
       return fnOrObj(accumFn)
     } else {
-      const objAsFunc = (obj) => _defaults(obj, fnOrObj)
       //assume its an object and merge it with _defaults
+      const objAsFunc = (obj) => _defaults(obj, fnOrObj)
       return objAsFunc(accumFn)
     }
   }, initialObj);

@@ -6,7 +6,7 @@ import growl from "@yakit/ui/growl"
  * generic handler to show errors in growl for now
  * FIXME this is tempory and we need a cleaner way to deal with them but this at least shows the problem
  */
-export async function handleError(er) {
+async function handleError(er) {
   let errMsg = er
   if(er.response){
     errMsg = await problemErrorFromResponse(er)
@@ -15,7 +15,7 @@ export async function handleError(er) {
   growl.error(errMsg.message, errMsg.name)
 }
 
-export async function problemErrorFromResponse(er) {
+async function problemErrorFromResponse(er) {
   let problem = await er.response.json()
   let messages = []
   console.log("handleError", problem)
@@ -29,4 +29,8 @@ export async function problemErrorFromResponse(er) {
     name: problem.title,
     message: messages.join('/n')
   }
+}
+
+export default {
+  handleError, problemErrorFromResponse
 }

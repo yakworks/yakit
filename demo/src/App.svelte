@@ -47,6 +47,9 @@
       >
         Say Hi
       </a>
+      <a href="#/grid" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+        Grid
+      </a>
       <a
         href="#/wild/card"
         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
@@ -63,7 +66,7 @@
   </div>
 
   <!-- content -->
-  <div class="flex-1 p-10 text-2xl font-bold">
+  <div class="flex-1 m-4">
     <Router {routes} />
   </div>
 </div>

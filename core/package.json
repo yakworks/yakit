@@ -12,8 +12,10 @@
     "dayjs": "^1.10.7",
     "dequal": "^2.0.2",
     "fast-safe-stringify": "^2.1.1",
+    "ky": "^0.28.7",
     "lodash": "^4.17.21",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "notyf": "^3.10.0"
   },
   "devDependencies": {
     "chance": "^1.1.8"

@@ -1,5 +1,5 @@
 <script>
-  import { Counter } from '@yakit/ui'
+  import Counter from './Counter.svelte'
   import logo from '../assets/yak.svg'
 </script>
 

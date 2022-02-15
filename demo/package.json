@@ -1,5 +1,5 @@
 {
-  "name": "@yakit/ui",
+  "name": "@yakit/demo",
   "description": "Framework agnostic ui stuff",
   "version": "1.0.0",
   "private": true,
@@ -12,7 +12,11 @@
   "author": "Joshua B",
   "license": "MIT",
   "dependencies": {
-    "@yakit/ui": "workspace:1.0.0"
+    "@yakit/grid": "workspace:1.0.0",
+    "@yakit/svelte": "workspace:1.0.0",
+    "@yakit/ui": "workspace:1.0.0",
+    "debounce": "^1.2.1",
+    "deep-diff": "^1.0.2"
   },
   "browserslist": [
     "defaults"

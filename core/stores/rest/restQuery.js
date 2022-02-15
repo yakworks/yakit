@@ -15,7 +15,7 @@ export const restQuery = ({ api }) => ds => {
 
     async get(id) {
       const item = await api.getById(id)
-      ds.stores.setItem(item)
+      // ds.stores.setItem(item)
       return item
     },
 
@@ -28,24 +28,32 @@ export const restQuery = ({ api }) => ds => {
       let searchParams = ds.setupSearchParams(params)
       const page = await api.get({ searchParams })
 
-      ds.stores.setPageView(page)
+      // ds.stores.setPageView(page)
       return page
     },
 
     // prunes params and stringifies the q param if exists
     setupSearchParams(params){
-      let pruned = prune(params) //removes properties with null or undefined values
-      let { q, sort, projections } = pruned
-      if(restrictSearch) q = {...q, ...restrictSearch}
+      params = prune(params) //removes properties with null or undefined values
+      //merge restrictSearch in if it there
+      if(ds.restrictSearch) {
+        params.q = {...params.q, ...ds.restrictSearch}
+      }
       //save it before we stringify
-      ds.stores.setQuery({...pruned, q, projections, sort})
+      // ds.stores.setQuery(params)
 
-      if(q) pruned.q = stringify(q)
-      if(projections) pruned.projections = stringify(projections)
+      return ds.stringifyQuery(params)
+    },
+
+    stringifyQuery(params){
+      let { q, sort, projections } = params
+      if(q) params.q = stringify(q)
+      if(projections) params.projections = stringify(projections)
       //stringify sort and remove the quotes and brackets
-      if(sort) pruned.sort = stringify(sort).replace(/{|}|"/g, '')
-      return pruned
+      if(sort) params.sort = stringify(sort).replace(/{|}|"/g, '')
+      return params
     }
+
   })
 
 }

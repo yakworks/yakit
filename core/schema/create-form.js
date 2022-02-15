@@ -37,12 +37,20 @@ export const createForm = (config) => {
   const validateFunction = config.validate;
   const onSubmit = config.onSubmit;
 
+  // const getInitial = {
+  //   values: () => util.cloneDeep(initialValues),
+  //   errors: () =>
+  //     validationSchema
+  //       ? util.getErrorsFromSchema(initialValues, validationSchema.fields)
+  //       : util.assignDeep(initialValues, NO_ERROR),
+  //   touched: () => util.assignDeep(initialValues, !IS_TOUCHED),
+  // };
   const getInitial = {
     values: () => util.cloneDeep(initialValues),
     errors: () =>
       validationSchema
         ? util.getErrorsFromSchema(initialValues, validationSchema.fields)
-        : util.assignDeep(initialValues, NO_ERROR),
+        : {},
     touched: () => util.assignDeep(initialValues, !IS_TOUCHED),
   };
 
@@ -181,6 +189,14 @@ export const createForm = (config) => {
     errors.set(getInitial.errors());
     touched.set(getInitial.touched());
     isModifying.set(false);
+    // logInfo()
+  }
+
+  function logInfo() {
+    console.log("form", get(form))
+    console.log("errors", get(errors))
+    console.log("touched", get(touched))
+    console.log("isModifying", get(isModifying))
   }
 
   async function clearErrorsAndSubmit(values) {

@@ -26,7 +26,6 @@ const SessionDataService = (opts) => {
 
   //overrides to load data on first search
   sessionDs.search = async (params = {}) => {
-    console.log("SessionDataService search", params)
     await sessionDs.init()
     return memDs.search(params)
   }
@@ -38,7 +37,6 @@ const SessionDataService = (opts) => {
       let dataCache = sessionDs.stores.getMasterData()
       //if dataCache is populated then its been init already
       if (isEmpty(dataCache)) {
-        console.log(`using ${storageKey} in sessionStorage`)
         // let sessionCache = sessionDs.getSessionData()
         // if(!sessionCache){
         //   //pull it from the uri key
@@ -51,7 +49,6 @@ const SessionDataService = (opts) => {
         return sessionCache
       }
     // } catch (e) {
-    //   console.log(`Unable to parse session for ${sourceUrl}, retrieving intial data.`, e)
     // }
   }
 

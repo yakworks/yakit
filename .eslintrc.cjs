@@ -32,5 +32,11 @@ module.exports = {
     'padded-blocks': 0,
     'space-before-function-paren': ['error', { anonymous: 'never', named: 'never', asyncArrow: 'always' }],
     'a11y-invalid-attribute': 0
+  },
+  globals:{
+    "_": false,
+    "angular": false,
+    "$": false,
+    "jQuery": false
   }
 }

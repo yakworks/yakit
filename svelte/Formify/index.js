@@ -7,3 +7,5 @@ export { default as ListRangeFields } from './ListRangeFields.svelte';
 export { default as FormifyField } from './FormifyField.svelte';
 export { default as Formify } from './Formify.svelte';
 export { default as FormifyColumns } from './FormifyColumns.svelte';
+
+export { default as problemHandler } from './problemHandler.js';
