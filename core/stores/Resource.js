@@ -228,6 +228,18 @@ export const Resource = ({dataApi, opts = {}}) => {
       return obj.query()
     },
 
+    async delete(id) {
+      let res = await dataApi.remove(id)
+      // currentPage.update( _page => {
+      //   const pageData = _page['data']
+      //   return pageData.filter(it => it.id != id)
+      // })
+      selectedIds.update( ids => {
+        return ids.filter(it => it != id)
+      })
+      obj.reload()
+      return res
+    },
     /**
      * saves to dataApi and updates the current store
      */

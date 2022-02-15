@@ -1,9 +1,11 @@
-// import { get, writable } from 'svelte/store';
+import { get, writable, derived } from 'svelte/store';
 import { isEmpty, cloneDeep, isFunction, merge } from '@yakit/core/dash'
 import appConfigApi from '@yakit/core/stores/AppConfigApi'
 import growl from "@yakit/ui/growl"
+import toast from "@yakit/ui/toast"
 import listConfig from "../listConfig"
 import {JqGridCtrl} from '@yakit/ui/jqGrid'
+import problemHandler from '@yakit/ui/toast/problemHandler'
 
 const not_implemented = "not implemented"
 
@@ -59,11 +61,24 @@ const JqGridListManager = ({ resource }) => {
       }
     },
 
-    toggleDensity(){
-      resource.state.update(_state => {
-        _state.isDense = !_state.isDense
-        return _state
-      })
+    deleteSelected() {
+      const selectedIds = get(resource.selectedIds)
+      if(selectedIds.length > 1){
+        growl.warn("Single item deletes are supported. Bulk deleting will be supported in a future release")
+      } else {
+        const id = selectedIds[0]
+        ctrl.delete(id)
+      }
+    },
+
+    async delete(id) {
+      try {
+        let res = await resource.delete(id)
+        toast(res)
+        // ctrl.gridCtrl.removeRow(id)
+      } catch (er) {
+        problemHandler.handleError(er)
+      }
     },
 
     reloadKeepSelected() {
@@ -105,24 +120,9 @@ const JqGridListManager = ({ resource }) => {
       throw Error(not_implemented)
     },
 
-    async search(filters) {
-      try {
-        ctrl.isSearching = true
-        await ctrl.gridCtrl?.search(filters)
-      } catch (er) {
-        ctrl.handleError(er)
-      } finally {
-        ctrl.isSearching = false
-      }
-    },
-
-    searchReset(searchForm) {
-      ctrl.searchModel = ctrl.initSearch || {}
-      searchForm.reset()
-    },
-
     handleError(er) {
       console.error(er)
+
       const message = er?.response?.status === 500 ? 'Unexpected error' : null
       growl.error(message || er)
     },
@@ -134,34 +134,6 @@ const JqGridListManager = ({ resource }) => {
         growl.error(`${response.failed.join('<br>')} `, response.defaultMessage)
       }
     },
-
-    // KEPT FOR REF, NOT USED
-    handleAction(action) {
-      const ids = ctrl.gridCtrl.getSelectedRowIds()
-      const run = async (ids) => {
-        ids.forEach((id) => {
-          ctrl.gridCtrl.highlightRow(id)
-        })
-
-        try {
-          const result = await action()
-          if(result.ok){
-            growl.success(result.title || 'Action is sucsess')
-            ctrl.gridCtrl.reload() // todo: should we reload only selected rows?
-          } else {
-            growl.error(result?.failed?.join('<br>') || '', result.title)
-          }
-        } catch (e) {
-          ctrl.handleError(e)
-        } finally {
-          ids.forEach((id) => {
-            ctrl.gridCtrl.highlightRow(id)
-          })
-        }
-      }
-      return run(ids)
-    },
-
   }
 
   return ctrl //Object.assign(ctrl, opts)

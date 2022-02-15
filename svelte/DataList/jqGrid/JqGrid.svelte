@@ -109,7 +109,7 @@
   let currentPage = resource.currentPage
 
   $: if(gridCtrl && gridCtrl.isReady && $currentPage){
-    console.log("$currentPage", resource.apiKey, $currentPage)
+    // console.log("$currentPage", resource.apiKey, $currentPage)
     gridCtrl.addJSONData($currentPage)
   }
 

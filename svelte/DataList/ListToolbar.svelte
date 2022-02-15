@@ -80,6 +80,7 @@
       }
     } catch(e){
       //deal with any unhandled exceptions
+      console.log("fireButtonClick error", e)
       problemHandler.handleError(e)
       // growl.error(e, "fireButtonClick Error")
     } finally {
@@ -95,7 +96,7 @@
 
 // <slot name="title" />
 </script>
-<!-- <p>qSearch {$qSearch} q {$q}</p> -->
+<!-- <p>selectedIds {$selectedIds}</p> -->
 
 <header class="is-light is-dense has-border toolbar">
   <div class="toolbar-container">
