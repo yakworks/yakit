@@ -1,5 +1,5 @@
 $icon-dimensions-small: $text-sm !default;
-@import "~bulma/sass/elements/icon.sass";
+@import "bulma/sass/elements/icon.sass";
 
 @mixin iconSize ($icon-size) {
   height: $icon-size;

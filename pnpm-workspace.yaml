@@ -7,6 +7,6 @@ packages:
   - 'grid'
   # - 'ag'
   # - 'ag-demo'
-  - 'demo'
+  - 'demos/kitchen-sink'
   # exclude packages that are inside test directories
   # - '!**/test/**'

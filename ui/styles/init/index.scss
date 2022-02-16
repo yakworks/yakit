@@ -17,7 +17,7 @@
 // @import "extends"
 
 @import "initial-variables";
-@import "~bulma/sass/utilities/initial-variables.sass";
+@import "bulma/sass/utilities/initial-variables.sass";
 
 @import "bulma-functions"; //fixes bulma functions to use css variables
 @import "theme-functions";
@@ -31,8 +31,8 @@
 @import "variables";
 
 // rest of bulma
-@import "~bulma/sass/utilities/mixins.sass";
-@import "~bulma/sass/utilities/controls.sass";
-@import "~bulma/sass/utilities/extends.sass";
+@import "bulma/sass/utilities/mixins.sass";
+@import "bulma/sass/utilities/controls.sass";
+@import "bulma/sass/utilities/extends.sass";
 
 /* ------ END init/_index.scss ----- */

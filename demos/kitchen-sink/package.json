@@ -1,0 +1,28 @@
+{
+  "name": "@yakit/kitchen-sink",
+  "description": "Monorepo to yakworks yakit js libs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "dom7": "^4.0.4",
+    "htm": "^3.1.0",
+    "path-to-regexp": "^6.2.0",
+    "skeleton-elements": "^4.0.0",
+    "ssr-window": "^4.0.2",
+    "swiper": "^8.0.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
+    "rollup": "^2.47.0",
+    "rollup-plugin-svelte": "^7.1.0",
+    "svelte": "^3.46.4",
+    "vite": "^2.8.3"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}

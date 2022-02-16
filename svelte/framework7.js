@@ -10,7 +10,7 @@ Framework7.use(Framework7Svelte);
 
 //setup f7, WIP, had around the App component so it can coexist with NG
 const f7params = {
-  el: '#f7app',
+  el: '#app',
   // App Name
   name: 'RCM',
   // App id
@@ -50,6 +50,11 @@ if (app.f7) {
   //not sure this will ever get hit, hacked in from App component
   f7init(f7params.el, f7params, true);
 }
+console.log("f7", f7)
+f7ready(() => {
+  // Framework7 initialized
+  f7.dialog.alert('Component mounted');
+})
 
 export { f7, f7ready, theme, useStore, app, f7init };
 export default app;

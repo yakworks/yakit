@@ -33,8 +33,6 @@ specifiers:
   jest: ^27.4.5
   jest-cli: ^27.4.5
   jest-transform-stub: ^2.0.0
-  jquery: 3.4.1
-  jquery-ui: 1.12.1
   ky: ^0.28.7
   lodash: ^4.17.21
   material-icons: ^1.10.6
@@ -66,8 +64,6 @@ dependencies:
   framework7-icons: 5.0.5
   framework7-svelte: 6.3.16
   free-jqgrid: 4.13.3
-  jquery: 3.4.1
-  jquery-ui: 1.12.1
   ky: 0.28.7
   lodash: 4.17.21
   material-icons: 1.10.6
@@ -4007,14 +4003,6 @@ packages:
       - ts-node
       - utf-8-validate
     dev: true
-
-  /jquery-ui/1.12.1:
-    resolution: {integrity: sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=}
-    dev: false
-
-  /jquery/3.4.1:
-    resolution: {integrity: sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==}
-    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

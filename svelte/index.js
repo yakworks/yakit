@@ -11,7 +11,7 @@ export { default as CardHeader } from './Card/CardHeader.svelte';
 export { default as CardTitle } from './Card/CardTitle.svelte';
 export { default as CardSubtitle } from './Card/CardSubtitle.svelte';
 
-export { default as Gridz } from './DataList/jqGrid/JqGrid.svelte';
+// export { default as Gridz } from './DataList/jqGrid/JqGrid.svelte';
 
 // export * from './Card';
 export * from './Charts';
