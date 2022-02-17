@@ -6,7 +6,7 @@ packages:
   - 'ui'
   - 'grid'
   - 'demos/kitchen-sink'
-  # - 'demos/demo'
+  - 'demos/demo'
   # - 'framework7/core'
   # - 'framework7/svelte'
   # exclude packages that are inside test directories
