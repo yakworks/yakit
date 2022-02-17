@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/fab-button",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/fab-button.js",
+  "module": "../../esm/components/fab-button.js",
+  "jsnext:main": "../../esm/components/fab-button.js",
+  "svelte": "../../esm/svelte/fab-button.svelte",
+  "typings": "fab-button.d.ts"
+}

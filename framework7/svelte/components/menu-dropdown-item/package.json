@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/menu-dropdown-item",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/menu-dropdown-item.js",
+  "module": "../../esm/components/menu-dropdown-item.js",
+  "jsnext:main": "../../esm/components/menu-dropdown-item.js",
+  "svelte": "../../esm/svelte/menu-dropdown-item.svelte",
+  "typings": "menu-dropdown-item.d.ts"
+}

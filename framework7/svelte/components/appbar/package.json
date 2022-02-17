@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/appbar",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/appbar.js",
+  "module": "../../esm/components/appbar.js",
+  "jsnext:main": "../../esm/components/appbar.js",
+  "svelte": "../../esm/svelte/appbar.svelte",
+  "typings": "appbar.d.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/preloader",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/preloader.js",
+  "module": "../../esm/components/preloader.js",
+  "jsnext:main": "../../esm/components/preloader.js",
+  "svelte": "../../esm/svelte/preloader.svelte",
+  "typings": "preloader.d.ts"
+}

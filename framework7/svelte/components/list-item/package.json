@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/list-item",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/list-item.js",
+  "module": "../../esm/components/list-item.js",
+  "jsnext:main": "../../esm/components/list-item.js",
+  "svelte": "../../esm/svelte/list-item.svelte",
+  "typings": "list-item.d.ts"
+}

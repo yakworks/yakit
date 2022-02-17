@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/photo-browser",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/photo-browser.js",
+  "module": "../../esm/components/photo-browser.js",
+  "jsnext:main": "../../esm/components/photo-browser.js",
+  "svelte": "../../esm/svelte/photo-browser.svelte",
+  "typings": "photo-browser.d.ts"
+}

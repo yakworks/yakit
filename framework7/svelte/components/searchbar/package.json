@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/searchbar",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/searchbar.js",
+  "module": "../../esm/components/searchbar.js",
+  "jsnext:main": "../../esm/components/searchbar.js",
+  "svelte": "../../esm/svelte/searchbar.svelte",
+  "typings": "searchbar.d.ts"
+}

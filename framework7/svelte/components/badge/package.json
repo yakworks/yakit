@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/badge",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/badge.js",
+  "module": "../../esm/components/badge.js",
+  "jsnext:main": "../../esm/components/badge.js",
+  "svelte": "../../esm/svelte/badge.svelte",
+  "typings": "badge.d.ts"
+}

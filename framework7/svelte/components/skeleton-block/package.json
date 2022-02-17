@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/skeleton-block",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/skeleton-block.js",
+  "module": "../../esm/components/skeleton-block.js",
+  "jsnext:main": "../../esm/components/skeleton-block.js",
+  "svelte": "../../esm/svelte/skeleton-block.svelte",
+  "typings": "skeleton-block.d.ts"
+}

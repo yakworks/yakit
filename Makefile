@@ -49,7 +49,7 @@ clean:
 
 ## starts the demo app
 start:
-	cd demo && $(vite)
+	cd demos/demo && $(vite)
 
 ## starts the old angular demo
 start.ag-demo:

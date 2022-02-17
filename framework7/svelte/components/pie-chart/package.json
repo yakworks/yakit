@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/pie-chart",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/pie-chart.js",
+  "module": "../../esm/components/pie-chart.js",
+  "jsnext:main": "../../esm/components/pie-chart.js",
+  "svelte": "../../esm/svelte/pie-chart.svelte",
+  "typings": "pie-chart.d.ts"
+}

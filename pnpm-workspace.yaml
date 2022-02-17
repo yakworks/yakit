@@ -5,8 +5,9 @@ packages:
   - 'svelte'
   - 'ui'
   - 'grid'
-  # - 'ag'
-  # - 'ag-demo'
   - 'demos/kitchen-sink'
+  # - 'demos/demo'
+  # - 'framework7/core'
+  # - 'framework7/svelte'
   # exclude packages that are inside test directories
   # - '!**/test/**'

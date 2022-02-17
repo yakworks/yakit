@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/messagebar-sheet",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/messagebar-sheet.js",
+  "module": "../../esm/components/messagebar-sheet.js",
+  "jsnext:main": "../../esm/components/messagebar-sheet.js",
+  "svelte": "../../esm/svelte/messagebar-sheet.svelte",
+  "typings": "messagebar-sheet.d.ts"
+}

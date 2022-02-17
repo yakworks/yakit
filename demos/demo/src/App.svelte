@@ -1,5 +1,5 @@
 <script>
-  import { App, Panel, View, f7, f7ready, Link } from 'framework7-svelte';
+  import { App, Panel, View, f7, f7ready, Link, Page, Block, Button } from 'framework7-svelte';
   import SideNav from './SideNav.svelte';
   import { onMount } from 'svelte';
   import routes from './routes';
@@ -33,9 +33,9 @@
       browserHistory: true,
       // browserHistoryRoot: 'http://localhost:9001/',
       // browserHistoryOnLoad: true,
-      // browserHistoryInitialMatch: true,
-      masterDetailBreakpoint:800
-      // browserHistorySeparator: '#'
+      browserHistoryInitialMatch: true,
+      // masterDetailBreakpoint:800
+      browserHistorySeparator: '#'
     },
 
   };
@@ -57,7 +57,48 @@
 </script>
 
 <App {...f7Params}>
-<Link href="/about/">About</Link> <Link href="/appbar/">appbar</Link>
-<!-- onViewInit={viewInit}  -->
-  <View url="/" main={true} class="safe-areas" onViewInit={viewInit}  />
+<header style="background-color: #a4c400;color:#fff;padding:0.25em">
+  <label for="toggle">Click to Toggle Nav</label>
+</header>
+<main>
+  <input id="toggle" type="checkbox" checked style="display:none" />
+  <nav>
+    <!-- <SideNav/> -->
+  </nav>
+  <article>
+    <View url="/" main={true} class="safe-areas" onViewInit={viewInit}  />
+  </article>
+</main>
+<div>
+
+</div>
 </App>
+
+<style>
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  overflow: hidden;
+}
+article {
+  height: 100%;
+  flex: 1;
+}
+nav,
+aside {
+  /* 12em is the width of the sidebars */
+  flex: 0 0 256px;
+  transition: margin 0.3s ease;
+  overflow-y: auto;
+}
+/* Checkbox hack to toggle nav visibility */
+
+input ~ nav {
+  margin-left: -256px;
+}
+input:checked ~ nav {
+  margin-left: 0;
+}
+</style>

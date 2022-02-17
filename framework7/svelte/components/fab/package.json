@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/fab",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/fab.js",
+  "module": "../../esm/components/fab.js",
+  "jsnext:main": "../../esm/components/fab.js",
+  "svelte": "../../esm/svelte/fab.svelte",
+  "typings": "fab.d.ts"
+}
