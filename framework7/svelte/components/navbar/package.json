@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/navbar",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/navbar.js",
+  "module": "../../esm/components/navbar.js",
+  "jsnext:main": "../../esm/components/navbar.js",
+  "svelte": "../../esm/svelte/navbar.svelte",
+  "typings": "navbar.d.ts"
+}

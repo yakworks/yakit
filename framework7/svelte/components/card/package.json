@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/card",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/card.js",
+  "module": "../../esm/components/card.js",
+  "jsnext:main": "../../esm/components/card.js",
+  "svelte": "../../esm/svelte/card.svelte",
+  "typings": "card.d.ts"
+}

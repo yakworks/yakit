@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/gauge",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/gauge.js",
+  "module": "../../esm/components/gauge.js",
+  "jsnext:main": "../../esm/components/gauge.js",
+  "svelte": "../../esm/svelte/gauge.svelte",
+  "typings": "gauge.d.ts"
+}

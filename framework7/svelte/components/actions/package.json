@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/actions",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/actions.js",
+  "module": "../../esm/components/actions.js",
+  "jsnext:main": "../../esm/components/actions.js",
+  "svelte": "../../esm/svelte/actions.svelte",
+  "typings": "actions.d.ts"
+}

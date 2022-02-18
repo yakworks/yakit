@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/use-icon",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/use-icon.js",
+  "module": "../../esm/components/use-icon.js",
+  "jsnext:main": "../../esm/components/use-icon.js",
+  "svelte": "../../esm/svelte/use-icon.svelte",
+  "typings": "use-icon.d.ts"
+}

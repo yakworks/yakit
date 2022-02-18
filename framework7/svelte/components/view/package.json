@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/view",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/view.js",
+  "module": "../../esm/components/view.js",
+  "jsnext:main": "../../esm/components/view.js",
+  "svelte": "../../esm/svelte/view.svelte",
+  "typings": "view.d.ts"
+}

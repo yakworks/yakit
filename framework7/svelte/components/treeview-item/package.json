@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/treeview-item",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/treeview-item.js",
+  "module": "../../esm/components/treeview-item.js",
+  "jsnext:main": "../../esm/components/treeview-item.js",
+  "svelte": "../../esm/svelte/treeview-item.svelte",
+  "typings": "treeview-item.d.ts"
+}

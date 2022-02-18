@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/messages",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/messages.js",
+  "module": "../../esm/components/messages.js",
+  "jsnext:main": "../../esm/components/messages.js",
+  "svelte": "../../esm/svelte/messages.svelte",
+  "typings": "messages.d.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/tab",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/tab.js",
+  "module": "../../esm/components/tab.js",
+  "jsnext:main": "../../esm/components/tab.js",
+  "svelte": "../../esm/svelte/tab.svelte",
+  "typings": "tab.d.ts"
+}

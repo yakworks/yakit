@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/menu",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/menu.js",
+  "module": "../../esm/components/menu.js",
+  "jsnext:main": "../../esm/components/menu.js",
+  "svelte": "../../esm/svelte/menu.svelte",
+  "typings": "menu.d.ts"
+}

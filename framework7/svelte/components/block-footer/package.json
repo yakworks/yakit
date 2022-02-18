@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/block-footer",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/block-footer.js",
+  "module": "../../esm/components/block-footer.js",
+  "jsnext:main": "../../esm/components/block-footer.js",
+  "svelte": "../../esm/svelte/block-footer.svelte",
+  "typings": "block-footer.d.ts"
+}

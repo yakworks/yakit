@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/accordion-item",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/accordion-item.js",
+  "module": "../../esm/components/accordion-item.js",
+  "jsnext:main": "../../esm/components/accordion-item.js",
+  "svelte": "../../esm/svelte/accordion-item.svelte",
+  "typings": "accordion-item.d.ts"
+}

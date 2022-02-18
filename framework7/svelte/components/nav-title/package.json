@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/nav-title",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/nav-title.js",
+  "module": "../../esm/components/nav-title.js",
+  "jsnext:main": "../../esm/components/nav-title.js",
+  "svelte": "../../esm/svelte/nav-title.svelte",
+  "typings": "nav-title.d.ts"
+}

@@ -3,7 +3,8 @@
   import SideNav from './SideNav.svelte';
   import { onMount } from 'svelte';
   import routes from './routes';
-  import store from './store';
+  import Router from 'svelte-spa-router'
+
 
   // Demo Theme
   let theme = 'aurora';
@@ -15,7 +16,6 @@
     id: 'io.framework7.testapp',
     theme,
     routes,
-    store,
     popup: {
       closeOnEscape: true,
     },
@@ -28,14 +28,17 @@
     actions: {
       closeOnEscape: true,
     },
+    clicks: {
+      externalLinks: '*',
+    },
     view: {
-      // router: false,
-      browserHistory: true,
-      // browserHistoryRoot: 'http://localhost:9001/',
-      // browserHistoryOnLoad: true,
-      browserHistoryInitialMatch: true,
-      // masterDetailBreakpoint:800
-      browserHistorySeparator: '#'
+      router: false,
+      // browserHistory: true,
+      // // browserHistoryRoot: 'http://localhost:9001/',
+      // // browserHistoryOnLoad: true,
+      // browserHistoryInitialMatch: true,
+      // // masterDetailBreakpoint:800
+      // browserHistorySeparator: '#'
     },
 
   };
@@ -60,8 +63,8 @@
 
 <main>
   <SideNav/>
-  <article>
-    <View url="/" main={true} class="safe-areas" onViewInit={viewInit}  />
+  <article class="safe-areas view view-main">
+    <Router {routes} />
   </article>
 </main>
 <div>

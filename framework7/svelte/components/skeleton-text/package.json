@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/skeleton-text",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/skeleton-text.js",
+  "module": "../../esm/components/skeleton-text.js",
+  "jsnext:main": "../../esm/components/skeleton-text.js",
+  "svelte": "../../esm/svelte/skeleton-text.svelte",
+  "typings": "skeleton-text.d.ts"
+}

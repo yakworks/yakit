@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/chip",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/chip.js",
+  "module": "../../esm/components/chip.js",
+  "jsnext:main": "../../esm/components/chip.js",
+  "svelte": "../../esm/svelte/chip.svelte",
+  "typings": "chip.d.ts"
+}

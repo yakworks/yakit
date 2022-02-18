@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/button",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/button.js",
+  "module": "../../esm/components/button.js",
+  "jsnext:main": "../../esm/components/button.js",
+  "svelte": "../../esm/svelte/button.svelte",
+  "typings": "button.d.ts"
+}

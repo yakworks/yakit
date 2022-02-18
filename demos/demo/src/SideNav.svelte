@@ -1,25 +1,7 @@
 <script>
-  import {
-    f7,
-    theme,
-    Page,
-    Navbar,
-    NavLeft,
-    NavTitle,
-    NavTitleLarge,
-    NavRight,
-    BlockTitle,
-    List,
-    ListItem,
-    Link,
-    Searchbar,
-    AccordionContent,
-    Block,
-    Icon,
-    Button
-
-  } from 'framework7-svelte';
+  import { f7, theme, Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
   import { onMount } from 'svelte';
+  import {link} from 'svelte-spa-router'
 
   // export let f7router;
 
@@ -28,97 +10,133 @@
     _html.classList.toggle("side-nav-open")
     _html.classList.toggle("side-nav-closed")
   }
+
+  const onResize = () => {
+    const $el = f7.$('.page-home');
+    if (f7.width >= 768) {
+      $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
+    } else {
+      $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
+    }
+  };
+
+  onMount(() => {
+    if (theme.aurora) {
+      const $el = f7.$('.page-home');
+      //run it first on mount
+      onResize();
+      //then listen
+      f7.on('resize', onResize);
+
+      // f7router.on('routeChange', (route) => {
+      //   const url = route.url;
+      //   if (!$el) return;
+      //   const $linkEl = $el.find(`a[href="${url}"]`);
+      //   if (!$linkEl.length) return;
+      //   $el.find('.item-selected').removeClass('item-selected');
+      //   $linkEl.addClass('item-selected');
+      // });
+    }
+  });
 </script>
 
 <div class="burger">
   <Button  iconF7="sidebar_left" on:click={ toggleSideNavClasses }/>
 </div>
 <aside class="side-nav">
-  <Navbar large transparent title="YakWorks" >
-
+  <Navbar title="YakWorks" >
     <NavRight>
       <Link
-        searchbarEnable=".searchbar-components"
-        iconIos="f7:search"
-        iconAurora="f7:search"
-        iconMd="material:search"
+        icon="f7:push_pin"
       />
     </NavRight>
-    <Searchbar
-      class="searchbar-components"
-      searchContainer=".components-list"
-      searchIn="a"
-      expandable
-      disableButton={!theme.aurora}
-    />
   </Navbar>
+  <!-- <p>foo</p> -->
+  <!--page-content give us padding for the navbar and div allows us to style here  -->
+  <div class="nav-content page-content">
+    <List class="menu-list mt-0" noHairlines accordionList>
+      <ListItem title="About Framework7" link="#/about" >
+        <span slot="media">
+          <Icon md="material:home" aurora="f7:house" ios="f7:house_fill" />
+        </span>
 
-  <List class="searchbar-hide-on-search">
-    <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about/">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-  </List>
-
-  <List accordionList>
-    <ListItem accordionItem title="Lorem Ipsum">
-      <Icon slot="media" material="power" />
-      <AccordionContent>
-        <Block>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum id neque nec</p>
-        </Block>
-      </AccordionContent>
-    </ListItem>
-    <ListItem accordionItem title="Nested List">
-      <Icon slot="media" material="power" />
-      <AccordionContent>
-        <li>
-          <ul>
-
-              <ListItem title="Item 1" link>
-                <i class="icon-empty" slot="media" />
-              </ListItem>
-              <ListItem title="Item 2" mediaItem={true} link />
-              <ListItem title="Item 3" link />
-              <ListItem title="Item 4" link />
-
-          </ul>
-        </li>
-      </AccordionContent>
-    </ListItem>
+      </ListItem>
+      <ListItem link="#/accordion" title="Accordion">
+        <i class="icon material-icons" slot="media">dashboard</i>
+      </ListItem>
+      <ListItem link="/action-sheet/" title="Action Sheet">
+        <i class="icon icon-f7" slot="media" />
+      </ListItem>
+      <ListItem link="/appbar/" title="Appbar">
+        <i class="icon icon-f7" slot="media" />
+      </ListItem>
+      <ListItem link="/panel/" title="Panel / Side Panels">
+        <i class="icon icon-f7" slot="media" />
+      </ListItem>
+      <ListItem link="/tabs-routable/" title="Tabs Routable">
+        <i class="icon icon-f7" slot="media" />
+      </ListItem>
+      <ListItem accordionItem title="Lorem Ipsum">
+        <Icon slot="media" material="power" />
+        <AccordionContent>
+          <Block>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum id neque nec</p>
+          </Block>
+        </AccordionContent>
+      </ListItem>
+      <ListItem accordionItem title="Nested List">
+        <Icon slot="media" material="power" />
+        <AccordionContent>
+          <li>
+            <ul>
+                <ListItem title="Item 1" link>
+                  <i class="icon-empty" slot="media" />
+                </ListItem>
+                <ListItem title="Item 2" mediaItem={true} link />
+            </ul>
+          </li>
+        </AccordionContent>
+      </ListItem>
     </List>
 
-  <BlockTitle medium class="searchbar-found">Components</BlockTitle>
-  <List class="components-list searchbar-found">
-    <ListItem link="/#/accordion/" title="Accordion">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-    <ListItem link="/action-sheet/" title="Action Sheet">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-    <ListItem link="/appbar/" title="Appbar">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-    <ListItem link="/panel/" title="Panel / Side Panels">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-    <ListItem link="/tabs-routable/" title="Tabs Routable">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
-  </List>
+  </div>
 </aside>
 
 <style>
 
+:global(aside.side-nav) {
+  --side-nav-width: 256px:
+}
 aside.side-nav{
-  /* 12em is the width of the sidebars */
-  flex: 0 0 256px;
+  flex: 0 0 var(--side-nav-width);
   transition: margin 0.3s ease;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   margin-left: -256px;
   width: 256px;
   --f7-safe-area-right: 0px;
   --f7-safe-area-outer-right: 0px;
   border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color);
+  position: static;
+}
+
+aside.side-nav :global(.navbar){
+  width: 256px;
+  /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
+}
+aside.side-nav :global(.navbar .navbar-inner){
+  padding: 0;
+  /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
+}
+
+.nav-content {
+  padding-top: 0;
+}
+.nav-content :global(.menu-list){
+  --menu-list-offset: 4px;
+  --f7-list-font-size: 16px;
+  --f7-list-margin-vertical: 8px;
+  --f7-list-item-title-font-size: 16px;
+  padding-top: 0;
 }
 
 :global(.side-nav-open) aside.side-nav {

@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/input",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/input.js",
+  "module": "../../esm/components/input.js",
+  "jsnext:main": "../../esm/components/input.js",
+  "svelte": "../../esm/svelte/input.svelte",
+  "typings": "input.d.ts"
+}

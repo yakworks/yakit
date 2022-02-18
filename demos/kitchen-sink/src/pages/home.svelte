@@ -115,8 +115,10 @@
     </ListItem>
     </List>
 
-  <BlockTitle medium class="searchbar-found">Components</BlockTitle>
-  <List class="components-list searchbar-found">
+  <List class="components-list menu-list searchbar-found">
+    <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about/">
+      <i class="icon icon-f7" slot="media" />
+    </ListItem>
     <ListItem reloadDetail={theme.aurora} link="/accordion/" title="Accordion">
       <i class="icon icon-f7" slot="media" />
     </ListItem>

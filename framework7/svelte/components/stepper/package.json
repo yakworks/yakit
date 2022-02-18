@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/stepper",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/stepper.js",
+  "module": "../../esm/components/stepper.js",
+  "jsnext:main": "../../esm/components/stepper.js",
+  "svelte": "../../esm/svelte/stepper.svelte",
+  "typings": "stepper.d.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/block-title",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/block-title.js",
+  "module": "../../esm/components/block-title.js",
+  "jsnext:main": "../../esm/components/block-title.js",
+  "svelte": "../../esm/svelte/block-title.svelte",
+  "typings": "block-title.d.ts"
+}

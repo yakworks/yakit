@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/sheet",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/sheet.js",
+  "module": "../../esm/components/sheet.js",
+  "jsnext:main": "../../esm/components/sheet.js",
+  "svelte": "../../esm/svelte/sheet.svelte",
+  "typings": "sheet.d.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "framework7-svelte/login-screen-title",
+  "private": true,
+  "sideEffects": false,
+  "main": "../../cjs/components/login-screen-title.js",
+  "module": "../../esm/components/login-screen-title.js",
+  "jsnext:main": "../../esm/components/login-screen-title.js",
+  "svelte": "../../esm/svelte/login-screen-title.svelte",
+  "typings": "login-screen-title.d.ts"
+}
