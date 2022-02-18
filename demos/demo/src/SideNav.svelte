@@ -1,7 +1,6 @@
 <script>
-  import { f7, theme, Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
+  import { Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
   import { onMount } from 'svelte';
-  import {link} from 'svelte-spa-router'
 
   // export let f7router;
 
@@ -10,34 +9,6 @@
     _html.classList.toggle("side-nav-open")
     _html.classList.toggle("side-nav-closed")
   }
-
-  const onResize = () => {
-    const $el = f7.$('.page-home');
-    if (f7.width >= 768) {
-      $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
-    } else {
-      $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
-    }
-  };
-
-  onMount(() => {
-    if (theme.aurora) {
-      const $el = f7.$('.page-home');
-      //run it first on mount
-      onResize();
-      //then listen
-      f7.on('resize', onResize);
-
-      // f7router.on('routeChange', (route) => {
-      //   const url = route.url;
-      //   if (!$el) return;
-      //   const $linkEl = $el.find(`a[href="${url}"]`);
-      //   if (!$linkEl.length) return;
-      //   $el.find('.item-selected').removeClass('item-selected');
-      //   $linkEl.addClass('item-selected');
-      // });
-    }
-  });
 </script>
 
 <div class="burger">
@@ -55,13 +26,13 @@
   <!--page-content give us padding for the navbar and div allows us to style here  -->
   <div class="nav-content page-content">
     <List class="menu-list mt-0" noHairlines accordionList>
-      <ListItem title="About Framework7" link="#/about" >
+      <ListItem title="About Framework7" link="/about/" >
         <span slot="media">
           <Icon md="material:home" aurora="f7:house" ios="f7:house_fill" />
         </span>
 
       </ListItem>
-      <ListItem link="#/accordion" title="Accordion">
+      <ListItem link="/accordion/" title="Accordion">
         <i class="icon material-icons" slot="media">dashboard</i>
       </ListItem>
       <ListItem link="/action-sheet/" title="Action Sheet">
