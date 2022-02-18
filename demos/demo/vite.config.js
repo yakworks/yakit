@@ -6,7 +6,7 @@ import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
 
 // const buildFolder = process.env.NODE_ENV === 'production' ? 'packages' : 'build';
-const buildFolder = '../../../framework7/build'
+const buildFolder = '../../framework7'
 
 
 // const __filename = new URL('', import.meta.url).pathname;

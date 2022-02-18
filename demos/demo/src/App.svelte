@@ -57,14 +57,9 @@
 </script>
 
 <App {...f7Params}>
-<header style="background-color: #a4c400;color:#fff;padding:0.25em">
-  <label for="toggle">Click to Toggle Nav</label>
-</header>
+
 <main>
-  <input id="toggle" type="checkbox" checked style="display:none" />
-  <nav>
-    <!-- <SideNav/> -->
-  </nav>
+  <SideNav/>
   <article>
     <View url="/" main={true} class="safe-areas" onViewInit={viewInit}  />
   </article>
@@ -75,6 +70,7 @@
 </App>
 
 <style>
+
 main {
   height: 100%;
   display: flex;
@@ -86,19 +82,5 @@ article {
   height: 100%;
   flex: 1;
 }
-nav,
-aside {
-  /* 12em is the width of the sidebars */
-  flex: 0 0 256px;
-  transition: margin 0.3s ease;
-  overflow-y: auto;
-}
-/* Checkbox hack to toggle nav visibility */
 
-input ~ nav {
-  margin-left: -256px;
-}
-input:checked ~ nav {
-  margin-left: 0;
-}
 </style>
