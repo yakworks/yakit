@@ -1,5 +1,5 @@
 <script>
-  import { f7, theme, Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
+  import { f7,f7ready, theme, Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
   import { onMount } from 'svelte';
   import {link} from 'svelte-spa-router'
 
@@ -24,9 +24,14 @@
     if (theme.aurora) {
       const $el = f7.$('.page-home');
       //run it first on mount
-      onResize();
-      //then listen
-      f7.on('resize', onResize);
+      f7ready(() => {
+        // Framework7 initialized
+        f7.dialog.alert('Component mounted');
+        onResize();
+        //then listen
+        f7.on('resize', onResize);
+      })
+
 
       // f7router.on('routeChange', (route) => {
       //   const url = route.url;

@@ -8,6 +8,8 @@
     "dev": "vite"
   },
   "dependencies": {
+    "@yakit/core": "workspace:1.0.0",
+    "@yakit/ui": "workspace:1.0.0",
     "dom7": "^4.0.4",
     "htm": "^3.1.0",
     "less": "^4.1.2",

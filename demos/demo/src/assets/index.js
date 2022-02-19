@@ -1,6 +1,6 @@
 import 'framework7/css/bundle'
-// import './vendor.css.js'
+import './vendor.css.js'
 
-// import './styles.scss'
+import './styles.scss'
 
 import './demo.css'

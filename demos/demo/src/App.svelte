@@ -27,9 +27,9 @@
     actions: {
       closeOnEscape: true,
     },
-    clicks: {
-      externalLinks: '*',
-    },
+    // clicks: {
+    //   externalLinks: '*',
+    // },
     view: {
       router: false,
     },
