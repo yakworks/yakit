@@ -15,7 +15,6 @@
   const f7Params = {
     id: 'io.framework7.testapp',
     theme,
-    routes,
     popup: {
       closeOnEscape: true,
     },
@@ -33,12 +32,6 @@
     },
     view: {
       router: false,
-      // browserHistory: true,
-      // // browserHistoryRoot: 'http://localhost:9001/',
-      // // browserHistoryOnLoad: true,
-      // browserHistoryInitialMatch: true,
-      // // masterDetailBreakpoint:800
-      // browserHistorySeparator: '#'
     },
 
   };
@@ -57,6 +50,28 @@
   //     f7.dialog.alert('Component mounted');
   //   })
   // })
+  function routeLoading(event) {
+    console.log('***** routeLoading *****')
+
+    console.log('Route', event.detail.route)
+    console.log('Location', event.detail.location)
+    console.log('Querystring', event.detail.querystring)
+    console.log('User data', event.detail.userData)
+}
+
+  function routeLoaded(event) {
+    console.log('***** routeLoaded *****')
+
+    // The first 5 properties are the same as for the routeLoading event
+    console.log('Route', event.detail.route)
+    console.log('Location', event.detail.location)
+    console.log('Querystring', event.detail.querystring)
+    console.log('Params', event.detail.params)
+    console.log('User data', event.detail.userData)
+    // The last two properties are unique to routeLoaded
+    // console.log('Component', event.detail.component) // This is a Svelte component, so a function
+    console.log('Name', event.detail.name)
+  }
 </script>
 
 <App {...f7Params}>
@@ -64,7 +79,9 @@
 <main>
   <SideNav/>
   <article class="safe-areas view view-main">
-    <Router {routes} />
+    <Router {routes} restoreScrollState={true}
+      on:routeLoading={routeLoading}
+      on:routeLoaded={routeLoaded}/>
   </article>
 </main>
 <div>

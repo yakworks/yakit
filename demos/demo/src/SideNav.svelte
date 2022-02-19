@@ -55,25 +55,50 @@
   <!--page-content give us padding for the navbar and div allows us to style here  -->
   <div class="nav-content page-content">
     <List class="menu-list mt-0" noHairlines accordionList>
-      <ListItem title="About Framework7" link="#/about" >
+      <ListItem title="About Framework7" link="#/home" >
         <span slot="media">
           <Icon md="material:home" aurora="f7:house" ios="f7:house_fill" />
         </span>
-
       </ListItem>
-      <ListItem link="#/accordion" title="Accordion">
+      <li class="">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a class="item-link" use:link={"/"}>
+          <div class="item-content">
+            <div class="item-media"> <i class="icon material-icons">home</i></div>
+            <div class="item-inner"> <div class="item-title"> Home </div> </div>
+          </div>
+        </a>
+      </li>
+      <li class="">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a class="item-link" use:link={"/about"}>
+          <div class="item-content">
+            <div class="item-media"> <i class="icon material-icons">home</i></div>
+            <div class="item-inner"> <div class="item-title"> About </div> </div>
+          </div>
+        </a>
+      </li>
+      <li class="">
+        <a class="item-link" use:link={"/accordion"}>
+          <div class="item-content">
+            <div class="item-media"> <i class="icon material-icons">dashboard</i></div>
+            <div class="item-inner"> <div class="item-title"> Accordion </div> </div>
+          </div>
+        </a>
+      </li>
+      <!-- <ListItem link="#/accordion" title="Accordion">
         <i class="icon material-icons" slot="media">dashboard</i>
-      </ListItem>
-      <ListItem link="/action-sheet/" title="Action Sheet">
+      </ListItem> -->
+      <ListItem link="#/action-sheet" title="Action Sheet">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
-      <ListItem link="/appbar/" title="Appbar">
+      <ListItem link="#/appbar" title="Appbar">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
-      <ListItem link="/panel/" title="Panel / Side Panels">
+      <ListItem link="#/panel" title="Panel / Side Panels">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
-      <ListItem link="/tabs-routable/" title="Tabs Routable">
+      <ListItem link="#/tabs-routable" title="Tabs Routable">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
       <ListItem accordionItem title="Lorem Ipsum">

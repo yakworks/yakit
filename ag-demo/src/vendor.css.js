@@ -1,7 +1,6 @@
 // Framework7 less
 import '@yakit/ui/styles/framework7/framework7.less'
 // Framework7 overrides sass
-// import './framework7/index.sass'
 import "@mdi/font/css/materialdesignicons.css"
 import "@fortawesome/fontawesome-free/css/all.css"
 // import 'ti-icons/css/themify-icons.css'

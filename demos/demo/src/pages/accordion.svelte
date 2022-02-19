@@ -10,8 +10,10 @@
     AccordionItem,
     AccordionToggle,
   } from 'framework7-svelte';
+  import {fade} from 'svelte/transition'
 </script>
 
+<div transition:fade="{{delay: 200, duration: 300}}">
 <Page>
   <Navbar title="Accordion" backLink="Back" />
 
@@ -139,3 +141,4 @@
     {/each}
   </Block>
 </Page>
+</div>

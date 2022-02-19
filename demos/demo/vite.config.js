@@ -25,6 +25,13 @@ export default {
       compilerOptions: {
         dev: true //!production
       },
+      onwarn: (warning, onwarn) => {
+        //disable all of them
+        return
+        // if (warning.code === 'a11y-missing-attribute') return true
+        // // let Rollup handle all other warnings normally
+        // onwarn(warning)
+      }
 
       // @ts-ignore This is temporary until the type definitions are fixed!
       // hot: !production

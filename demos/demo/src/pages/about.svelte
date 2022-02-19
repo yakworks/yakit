@@ -1,7 +1,10 @@
 <script>
   import { Page, BlockTitle, Block, Navbar } from 'framework7-svelte';
+  import {fade} from 'svelte/transition'
+  import Counter from './Counter.svelte';
 </script>
 
+<div transition:fade="{{delay: 250, duration: 300}}">
 <Page class="page-about">
   <Navbar large transparent title="About" titleLarge="About" backLink="Framework7" />
 
@@ -27,5 +30,7 @@
       Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or
       PhoneGap) or web app that looks like and feels as great native iOS or Android (Material) apps.
     </p>
+    <Counter />
   </Block>
 </Page>
+</div>
