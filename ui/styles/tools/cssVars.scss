@@ -2,7 +2,7 @@
 // Module: General helper functions
 // dont import, access module with @use "..cssVars"
 // ------
-
+@use 'sass:math';
 @use "sass:color";
 @use "sass:string";
 @use "util";
@@ -29,6 +29,18 @@
 
 }
 
+// make sure ends with %
+@function makePct($val) {
+  @if type-of($val) == 'number' {
+     @if math.unit($val) == '%' {
+       @return $val;
+     }
+     @return $val * 1%;
+  }
+  // $noPctVal: util.replace(#{$val}, '%');
+  @return $val;
+}
+
 // define color var, no hsl
 @function color_val($color, $ladjust ) {
   @if type-of($color) == 'color' {
@@ -39,7 +51,7 @@
 }
 
 // hsl string from color
-@function hslString($color, $ladjust: 0) {
+@function hslString($color, $ladjust: 0%) {
   @if $ladjust {
     $color: color.adjust($color, $lightness: $ladjust);
   }

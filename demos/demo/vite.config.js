@@ -1,4 +1,5 @@
 // eslint-disable-next-line
+import { defineConfig } from 'vite'
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess'
 // import { svelte } from '@sveltejs/vite-plugin-svelte';
@@ -13,9 +14,21 @@ const buildFolder = '../../framework7'
 // Will contain trailing slash
 const basedir = new URL('.', import.meta.url).pathname;
 const production = process.env.NODE_ENV === 'production'
+/**
+ * Change this to `true` to generate source maps alongside your production bundle. This is useful for debugging, but
+ * will increase total bundle size and expose your source code.
+ */
+const sourceMapsInProduction = true
+/**
+ * Babel will compile modern JavaScript down to a format compatible with older browsers, but it will also increase your
+ * final bundle size and build speed. Edit the `browserslist` property in the package.json file to define which
+ * browsers Babel should target.
+ *
+ * Browserslist documentation: https://github.com/browserslist/browserslist#browserslist-
+ */
+const useBabel = true
 
-
-export default {
+const cfg = defineConfig({
   plugins: [
     svelte({
       emitCss: production,
@@ -41,6 +54,7 @@ export default {
   base: '',
   publicDir: path.resolve(basedir, 'public'),
   build: {
+    sourcemap: sourceMapsInProduction,
     outDir: path.resolve(basedir, 'dist'),
     assetsInlineLimit: 0,
     emptyOutDir: true,
@@ -69,4 +83,6 @@ export default {
       'framework7-svelte': path.resolve(basedir, `${buildFolder}/svelte`),
     },
   },
-};
+})
+
+export default cfg

@@ -113,7 +113,7 @@
 // MODIFIED SASS FUNCTIONS
 @function lighten($color, $amount)
   @if type-of($color) == 'color'
-    @return color.adjust($color, $lightness: $amount)
+    @return color.adjust($color, $lightness: cssVars.makePct($amount))
   @return cssVars.lighten($color, $amount)
 
 @function darken($color, $amount)
