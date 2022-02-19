@@ -26,7 +26,7 @@
       //run it first on mount
       f7ready(() => {
         // Framework7 initialized
-        f7.dialog.alert('Component mounted');
+        // f7.dialog.alert('Component mounted');
         onResize();
         //then listen
         f7.on('resize', onResize);
@@ -84,10 +84,19 @@
         </a>
       </li>
       <li class="">
-        <a class="item-link" use:link={"/accordion"}>
+        <a class="item-link" href="#" use:link={"/accordion"}>
           <div class="item-content">
             <div class="item-media"> <i class="icon material-icons">dashboard</i></div>
             <div class="item-inner"> <div class="item-title"> Accordion </div> </div>
+          </div>
+        </a>
+      </li>
+
+      <li class="">
+        <a class="item-link" href="#" use:link={"/color-themes"}>
+          <div class="item-content">
+            <div class="item-media"> <i class="icon material-icons">dashboard</i></div>
+            <div class="item-inner"> <div class="item-title"> Themes </div> </div>
           </div>
         </a>
       </li>

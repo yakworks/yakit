@@ -7,6 +7,7 @@ import ActionSheet from './pages/action-sheet.svelte';
 import Appbar from './pages/appbar.svelte';
 import TabsRoutable from './pages/tabs-routable.svelte';
 import Panel from './pages/panel.svelte';
+import ColorThemes from './pages/color-themes.svelte';
 
 import NotFound from './pages/404.svelte';
 
@@ -17,6 +18,7 @@ export default {
   '/accordion': Accordion,
   '/action-sheet': ActionSheet,
   '/appbar': Appbar,
+  '/color-themes': ColorThemes,
 
   // Catch-all, must be last
   '*': NotFound

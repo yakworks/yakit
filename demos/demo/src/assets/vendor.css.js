@@ -1,5 +1,5 @@
 // Framework7 less
-import '@yakit/ui/styles/framework7/framework7.less'
+// import '@yakit/ui/styles/framework7/framework7.less'
 // Also "@yakit/ui/styles/all" has a f7 import that overrides a number of vars
 
 // Icons
