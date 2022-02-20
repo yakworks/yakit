@@ -1,5 +1,6 @@
 <script>
   import { App, Panel, View } from 'framework7-svelte';
+  import SideNav from './SideNav.svelte';
   import routes from './routes';
   import store from './store';
 
@@ -45,6 +46,28 @@
     <View url="/panel-right/" />
   </Panel>
 
-  <View url="/" main={true} class="safe-areas"
+  <main>
+    <SideNav/>
+    <article >
+      <View url="/" main={true} class="safe-areas"
         browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/>
+    </article>
+  </main>
+
 </App>
+
+<style>
+
+  main {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+  }
+  article {
+    height: 100%;
+    flex: 1;
+  }
+
+</style>

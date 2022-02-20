@@ -4,7 +4,6 @@
   import {link} from 'svelte-spa-router'
 
   // export let f7router;
-
   export let opened = true
 
   $: {
@@ -32,6 +31,7 @@
     }
   };
 
+
   onMount(() => {
     if (theme.aurora) {
       const $el = f7.$('.page-home');
@@ -58,7 +58,7 @@
 </script>
 
 <div class="burger">
-  <Button  iconF7="sidebar_left" on:click={ toggleSideNavClasses }/>
+  <Button  iconF7="sidebar_left" on:click={ () => opened = !opened}/>
 </div>
 <aside class="side-nav">
   <Navbar title="YakWorks" >
@@ -72,7 +72,7 @@
   <!--page-content give us padding for the navbar and div allows us to style here  -->
   <div class="nav-content page-content">
     <List class="menu-list mt-0" noHairlines accordionList>
-      <ListItem title="About Framework7" link="#/home" >
+      <ListItem title="About Framework7" link="/home" >
         <span slot="media">
           <Icon md="material:home" aurora="f7:house" ios="f7:house_fill" />
         </span>
@@ -115,10 +115,10 @@
       <!-- <ListItem link="#/accordion" title="Accordion">
         <i class="icon material-icons" slot="media">dashboard</i>
       </ListItem> -->
-      <ListItem link="#/action-sheet" title="Action Sheet">
+      <ListItem link="/action-sheet" title="Action Sheet">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
-      <ListItem link="#/appbar" title="Appbar">
+      <ListItem link="/appbar" title="Appbar">
         <i class="icon icon-f7" slot="media" />
       </ListItem>
       <ListItem link="#/panel" title="Panel / Side Panels">
