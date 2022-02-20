@@ -434,11 +434,11 @@ export default [
     component: SubnavbarTitle,
   },
   {
-    path: '/swiper(/?)',
+    path: '/swiper/',
     component: Swiper,
     routes: [
       {
-        path: 'swiper-horizontal(/?)',
+        path: 'swiper-horizontal/',
         component: SwiperHorizontal,
       },
       {

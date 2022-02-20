@@ -45,10 +45,10 @@
   <Panel right reveal resizable>
     <View url="/panel-right/" />
   </Panel>
-
-  <main>
+  <!-- <View url="/" main={true} class="safe-areas" browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/> -->
+  <main class="views">
     <SideNav/>
-    <article >
+    <article>
       <View url="/" main={true} class="safe-areas"
         browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/>
     </article>
