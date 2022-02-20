@@ -16,11 +16,13 @@
   } from 'framework7-svelte';
   import { onMount } from 'svelte';
 
-  export let f7router;
+  export let f7router = undefined; export let f7route = undefined;
+
 
   const onResize = () => {
     const $el = f7.$('.page-home');
     if (f7.width >= 768) {
+      console.log("f7.width > 768", f7)
       $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
     } else {
       $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
@@ -78,32 +80,32 @@
   </Navbar>
 
   <List class="searchbar-hide-on-search">
-    <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about/">
+    <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
   </List>
 
   <BlockTitle medium class="searchbar-found">Components</BlockTitle>
   <List class="components-list searchbar-found">
-    <ListItem reloadDetail={theme.aurora} link="/accordion/" title="Accordion">
+    <ListItem reloadDetail={theme.aurora} link="/accordion" title="Accordion">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/action-sheet/" title="Action Sheet">
+    <ListItem reloadDetail={theme.aurora} link="/action-sheet" title="Action Sheet">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/appbar/" title="Appbar">
+    <ListItem reloadDetail={theme.aurora} link="/appbar" title="Appbar">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/area-chart/" title="Area Chart">
+    <ListItem reloadDetail={theme.aurora} link="/area-chart" title="Area Chart">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/autocomplete/" title="Autocomplete">
+    <ListItem reloadDetail={theme.aurora} link="/autocomplete" title="Autocomplete">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/badge/" title="Badge">
+    <ListItem reloadDetail={theme.aurora} link="/badge" title="Badge">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
-    <ListItem reloadDetail={theme.aurora} link="/breadcrumbs/" title="Breadcrumbs">
+    <ListItem reloadDetail={theme.aurora} link="/breadcrumbs" title="Breadcrumbs">
       <i class="icon icon-f7" slot="media" />
     </ListItem>
     <ListItem reloadDetail={theme.aurora} link="/buttons/" title="Buttons">

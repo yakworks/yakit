@@ -1,5 +1,7 @@
 <script>
   import { Page, BlockTitle, Block, Navbar } from 'framework7-svelte';
+  let f7route =  undefined, f7router =  undefined
+
 </script>
 
 <Page class="page-about">

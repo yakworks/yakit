@@ -1,5 +1,6 @@
-// eslint-disable-next-line
+import { defineConfig } from 'vite'
 import svelte from 'rollup-plugin-svelte';
+import sveltePreprocess from 'svelte-preprocess'
 // import { svelte } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
@@ -11,9 +12,44 @@ const buildFolder = '../../framework7'
 // const __filename = new URL('', import.meta.url).pathname;
 // Will contain trailing slash
 const basedir = new URL('.', import.meta.url).pathname;
+const production = process.env.NODE_ENV === 'production'
+/**
+ * Change this to `true` to generate source maps alongside your production bundle. This is useful for debugging, but
+ * will increase total bundle size and expose your source code.
+ */
+const sourceMapsInProduction = true
+/**
+ * Babel will compile modern JavaScript down to a format compatible with older browsers, but it will also increase your
+ * final bundle size and build speed. Edit the `browserslist` property in the package.json file to define which
+ * browsers Babel should target.
+ *
+ * Browserslist documentation: https://github.com/browserslist/browserslist#browserslist-
+ */
+const useBabel = true
 
-export default {
-  plugins: [svelte()],
+const cfg = defineConfig({
+  plugins: [
+    svelte({
+      emitCss: production,
+      preprocess: sveltePreprocess({
+        postcss: true
+      }),
+      compilerOptions: {
+        //When this is true components get "was created with unknown prop 'f7route'"
+        dev: !production
+      },
+      onwarn: (warning, onwarn) => {
+        //disable all of them
+        return
+        // if (warning.code === 'a11y-missing-attribute') return true
+        // // let Rollup handle all other warnings normally
+        // onwarn(warning)
+      }
+
+      // @ts-ignore This is temporary until the type definitions are fixed!
+      // hot: !production
+    })
+  ],
   root: './',
   base: '',
   publicDir: path.resolve(basedir, 'public'),
@@ -46,4 +82,6 @@ export default {
       'framework7-svelte': path.resolve(basedir, `${buildFolder}/svelte`),
     },
   },
-};
+})
+
+export default cfg

@@ -130,17 +130,18 @@ export default [
   },
   // About page
   {
-    path: '/about/',
+    path: '/about',
     component: About,
+    extraStuff: true
   },
   // Left Panel
   {
-    path: '/panel-left/',
+    path: '/panel-left(/?)',
     component: PanelLeft,
   },
   // Right Panel
   {
-    path: '/panel-right/',
+    path: '/panel-right(/?)',
     component: PanelRight,
   },
   // Right Panel pages
@@ -197,341 +198,341 @@ export default [
 
   // Components
   {
-    path: '/accordion/',
+    path: '/accordion(/?)',
     component: Accordion,
   },
   {
-    path: '/action-sheet/',
+    path: '/action-sheet(/?)',
     component: ActionSheet,
   },
   {
-    path: '/appbar/',
+    path: '/appbar(/?)',
     component: Appbar,
   },
   {
-    path: '/area-chart/',
+    path: '/area-chart(/?)',
     component: AreaChart,
   },
   {
-    path: '/autocomplete/',
+    path: '/autocomplete(/?)',
     component: Autocomplete,
   },
   {
-    path: '/badge/',
+    path: '/badge(/?)',
     component: Badge,
   },
   {
-    path: '/breadcrumbs/',
+    path: '/breadcrumbs(/?)',
     component: Breadcrumbs,
   },
   {
-    path: '/buttons/',
+    path: '/buttons(/?)',
     component: Buttons,
   },
   {
-    path: '/calendar/',
+    path: '/calendar(/?)',
     component: Calendar,
   },
   {
-    path: '/calendar-page/',
+    path: '/calendar-page(/?)',
     component: CalendarPage,
   },
   {
-    path: '/cards/',
+    path: '/cards(/?)',
     component: Cards,
   },
   {
-    path: '/cards-expandable/',
+    path: '/cards-expandable(/?)',
     component: CardsExpandable,
   },
   {
-    path: '/checkbox/',
+    path: '/checkbox(/?)',
     component: Checkbox,
   },
   {
-    path: '/chips/',
+    path: '/chips(/?)',
     component: Chips,
   },
   {
-    path: '/color-picker/',
+    path: '/color-picker(/?)',
     component: ColorPicker,
   },
   {
-    path: '/contacts-list/',
+    path: '/contacts-list(/?)',
     component: ContactsList,
   },
   {
-    path: '/content-block/',
+    path: '/content-block(/?)',
     component: ContentBlock,
   },
   {
-    path: '/data-table/',
+    path: '/data-table(/?)',
     component: DataTable,
   },
   {
-    path: '/dialog/',
+    path: '/dialog(/?)',
     component: Dialog,
   },
   {
-    path: '/elevation/',
+    path: '/elevation(/?)',
     component: Elevation,
   },
   {
-    path: '/fab/',
+    path: '/fab(/?)',
     component: Fab,
   },
   {
-    path: '/fab-morph/',
+    path: '/fab-morph(/?)',
     component: FabMorph,
   },
   {
-    path: '/form-storage/',
+    path: '/form-storage(/?)',
     component: FormStorage,
   },
   {
-    path: '/gauge/',
+    path: '/gauge(/?)',
     component: Gauge,
   },
   {
-    path: '/grid/',
+    path: '/grid(/?)',
     component: Grid,
   },
   {
-    path: '/icons/',
+    path: '/icons(/?)',
     component: Icons,
   },
   {
-    path: '/infinite-scroll/',
+    path: '/infinite-scroll(/?)',
     component: InfiniteScroll,
   },
   {
-    path: '/inputs/',
+    path: '/inputs(/?)',
     component: Inputs,
   },
   {
-    path: '/lazy-load/',
+    path: '/lazy-load(/?)',
     component: LazyLoad,
   },
   {
-    path: '/list/',
+    path: '/list(/?)',
     component: List,
   },
   {
-    path: '/list-index/',
+    path: '/list-index(/?)',
     component: ListIndex,
   },
   {
-    path: '/login-screen/',
+    path: '/login-screen(/?)',
     component: LoginScreen,
   },
   {
-    path: '/login-screen-page/',
+    path: '/login-screen-page(/?)',
     component: LoginScreenPage,
   },
   {
-    path: '/menu/',
+    path: '/menu(/?)',
     component: Menu,
   },
   {
-    path: '/menu-list/',
+    path: '/menu-list(/?)',
     component: MenuList,
   },
   {
-    path: '/messages/',
+    path: '/messages(/?)',
     component: Messages,
   },
   {
-    path: '/navbar/',
+    path: '/navbar(/?)',
     component: Navbar,
   },
   {
-    path: '/navbar-hide-scroll/',
+    path: '/navbar-hide-scroll(/?)',
     component: NavbarHideScroll,
   },
   {
-    path: '/notifications/',
+    path: '/notifications(/?)',
     component: Notifications,
   },
   {
-    path: '/panel/',
+    path: '/panel(/?)',
     component: Panel,
   },
   {
-    path: '/photo-browser/',
+    path: '/photo-browser(/?)',
     component: PhotoBrowser,
   },
   {
-    path: '/picker/',
+    path: '/picker(/?)',
     component: Picker,
   },
   {
-    path: '/pie-chart/',
+    path: '/pie-chart(/?)',
     component: PieChart,
   },
   {
-    path: '/popup/',
+    path: '/popup(/?)',
     component: Popup,
   },
   {
-    path: '/popover/',
+    path: '/popover(/?)',
     component: Popover,
   },
   {
-    path: '/preloader/',
+    path: '/preloader(/?)',
     component: Preloader,
   },
   {
-    path: '/progressbar/',
+    path: '/progressbar(/?)',
     component: Progressbar,
   },
   {
-    path: '/pull-to-refresh/',
+    path: '/pull-to-refresh(/?)',
     component: PullToRefresh,
   },
   {
-    path: '/radio/',
+    path: '/radio(/?)',
     component: Radio,
   },
   {
-    path: '/range/',
+    path: '/range(/?)',
     component: Range,
   },
   {
-    path: '/searchbar/',
+    path: '/searchbar(/?)',
     component: Searchbar,
   },
   {
-    path: '/searchbar-expandable/',
+    path: '/searchbar-expandable(/?)',
     component: SearchbarExpandable,
   },
   {
-    path: '/sheet-modal/',
+    path: '/sheet-modal(/?)',
     component: SheetModal,
   },
   {
-    path: '/skeleton/',
+    path: '/skeleton(/?)',
     component: Skeleton,
   },
   {
-    path: '/smart-select/',
+    path: '/smart-select(/?)',
     component: SmartSelect,
   },
   {
-    path: '/sortable/',
+    path: '/sortable(/?)',
     component: Sortable,
   },
   {
-    path: '/stepper/',
+    path: '/stepper(/?)',
     component: Stepper,
   },
   {
-    path: '/subnavbar/',
+    path: '/subnavbar(/?)',
     component: Subnavbar,
   },
   {
-    path: '/subnavbar-title/',
+    path: '/subnavbar-title(/?)',
     component: SubnavbarTitle,
   },
   {
-    path: '/swiper/',
+    path: '/swiper(/?)',
     component: Swiper,
     routes: [
       {
-        path: 'swiper-horizontal/',
+        path: 'swiper-horizontal(/?)',
         component: SwiperHorizontal,
       },
       {
-        path: 'swiper-vertical/',
+        path: 'swiper-vertical(/?)',
         component: SwiperVertical,
       },
       {
-        path: 'swiper-space-between/',
+        path: 'swiper-space-between(/?)',
         component: SwiperSpaceBetween,
       },
       {
-        path: 'swiper-multiple/',
+        path: 'swiper-multiple(/?)',
         component: SwiperMultiple,
       },
       {
-        path: 'swiper-nested/',
+        path: 'swiper-nested(/?)',
         component: SwiperNested,
       },
       {
-        path: 'swiper-loop/',
+        path: 'swiper-loop(/?)',
         component: SwiperLoop,
       },
       {
-        path: 'swiper-3d-cube/',
+        path: 'swiper-3d-cube(/?)',
         component: Swiper3dCube,
       },
       {
-        path: 'swiper-3d-coverflow/',
+        path: 'swiper-3d-coverflow(/?)',
         component: Swiper3dCoverflow,
       },
       {
-        path: 'swiper-3d-flip/',
+        path: 'swiper-3d-flip(/?)',
         component: Swiper3dFlip,
       },
       {
-        path: 'swiper-fade/',
+        path: 'swiper-fade(/?)',
         component: SwiperFade,
       },
       {
-        path: 'swiper-scrollbar/',
+        path: 'swiper-scrollbar(/?)',
         component: SwiperScrollbar,
       },
       {
-        path: 'swiper-gallery/',
+        path: 'swiper-gallery(/?)',
         component: SwiperGallery,
       },
       {
-        path: 'swiper-custom-controls/',
+        path: 'swiper-custom-controls(/?)',
         component: SwiperCustomControls,
       },
       {
-        path: 'swiper-parallax/',
+        path: 'swiper-parallax(/?)',
         component: SwiperParallax,
       },
       {
-        path: 'swiper-lazy/',
+        path: 'swiper-lazy(/?)',
         component: SwiperLazy,
       },
       {
-        path: 'swiper-pagination-progress/',
+        path: 'swiper-pagination-progress(/?)',
         component: SwiperPaginationProgress,
       },
       {
-        path: 'swiper-pagination-fraction/',
+        path: 'swiper-pagination-fraction(/?)',
         component: SwiperPaginationFraction,
       },
       {
-        path: 'swiper-zoom/',
+        path: 'swiper-zoom(/?)',
         component: SwiperZoom,
       },
     ],
   },
   {
-    path: '/swipeout/',
+    path: '/swipeout(/?)',
     component: Swipeout,
   },
   {
-    path: '/tabs/',
+    path: '/tabs(/?)',
     component: Tabs,
   },
   {
-    path: '/tabs-static/',
+    path: '/tabs-static(/?)',
     component: TabsStatic,
   },
   {
-    path: '/tabs-animated/',
+    path: '/tabs-animated(/?)',
     component: TabsAnimated,
   },
   {
-    path: '/tabs-swipeable/',
+    path: '/tabs-swipeable(/?)',
     component: TabsSwipeable,
   },
   {
-    path: '/tabs-routable/',
+    path: '/tabs-routable(/?)',
     component: TabsRoutable,
     tabs: [
       {
@@ -573,77 +574,77 @@ export default [
     ],
   },
   {
-    path: '/text-editor/',
+    path: '/text-editor(/?)',
     component: TextEditor,
   },
   {
-    path: '/toast/',
+    path: '/toast(/?)',
     component: Toast,
   },
   {
-    path: '/toggle/',
+    path: '/toggle(/?)',
     component: Toggle,
   },
   {
-    path: '/toolbar-tabbar/',
+    path: '/toolbar-tabbar(/?)',
     component: ToolbarTabbar,
     routes: [
       {
-        path: 'tabbar/',
+        path: 'tabbar(/?)',
         component: Tabbar,
       },
       {
-        path: 'tabbar-labels/',
+        path: 'tabbar-labels(/?)',
         component: TabbarLabels,
       },
       {
-        path: 'tabbar-scrollable/',
+        path: 'tabbar-scrollable(/?)',
         component: TabbarScrollable,
       },
       {
-        path: 'toolbar-hide-scroll/',
+        path: 'toolbar-hide-scroll(/?)',
         component: ToolbarHideScroll,
       },
     ],
   },
   {
-    path: '/tooltip/',
+    path: '/tooltip(/?)',
     component: Tooltip,
   },
   {
-    path: '/timeline/',
+    path: '/timeline(/?)',
     component: Timeline,
   },
   {
-    path: '/timeline-vertical/',
+    path: '/timeline-vertical(/?)',
     component: TimelineVertical,
   },
   {
-    path: '/timeline-horizontal/',
+    path: '/timeline-horizontal(/?)',
     component: TimelineHorizontal,
   },
   {
-    path: '/timeline-horizontal-calendar/',
+    path: '/timeline-horizontal-calendar(/?)',
     component: TimelineHorizontalCalendar,
   },
   {
-    path: '/treeview/',
+    path: '/treeview(/?)',
     component: Treeview,
   },
   {
-    path: '/virtual-list/',
+    path: '/virtual-list(/?)',
     component: VirtualList,
   },
 
   // Color Themes
   {
-    path: '/color-themes/',
+    path: '/color-themes(/?)',
     component: ColorThemes,
   },
 
   // Page Transitions
   {
-    path: '/page-transitions/',
+    path: '/page-transitions(/?)',
     component: PageTransitions,
   },
   {
