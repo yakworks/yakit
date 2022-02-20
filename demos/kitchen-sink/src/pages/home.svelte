@@ -13,10 +13,6 @@
     ListItem,
     Link,
     Searchbar,
-    AccordionContent,
-    Block,
-    Icon
-
   } from 'framework7-svelte';
   import { onMount } from 'svelte';
 
@@ -87,38 +83,8 @@
     </ListItem>
   </List>
 
-  <List accordionList>
-    <ListItem accordionItem title="Lorem Ipsum">
-      <Icon slot="media" material="power" />
-      <AccordionContent>
-        <Block>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum id neque nec</p>
-        </Block>
-      </AccordionContent>
-    </ListItem>
-    <ListItem accordionItem title="Nested List">
-      <Icon slot="media" material="power" />
-      <AccordionContent>
-        <li>
-          <ul>
-
-              <ListItem title="Item 1" link>
-                <i class="icon-empty" slot="media" />
-              </ListItem>
-              <ListItem title="Item 2" mediaItem={true} link />
-              <ListItem title="Item 3" link />
-              <ListItem title="Item 4" link />
-
-          </ul>
-        </li>
-      </AccordionContent>
-    </ListItem>
-    </List>
-
-  <List class="components-list menu-list searchbar-found">
-    <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about/">
-      <i class="icon icon-f7" slot="media" />
-    </ListItem>
+  <BlockTitle medium class="searchbar-found">Components</BlockTitle>
+  <List class="components-list searchbar-found">
     <ListItem reloadDetail={theme.aurora} link="/accordion/" title="Accordion">
       <i class="icon icon-f7" slot="media" />
     </ListItem>

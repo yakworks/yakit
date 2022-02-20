@@ -1,11 +1,10 @@
 <script>
-  import { App, Panel, View, f7, f7ready } from 'framework7-svelte';
-  import { onMount } from 'svelte';
+  import { App, Panel, View } from 'framework7-svelte';
   import routes from './routes';
   import store from './store';
 
   // Demo Theme
-  let theme = 'aurora';
+  let theme = 'auto';
   if (document.location.search.indexOf('theme=') >= 0) {
     theme = document.location.search.split('theme=')[1].split('&')[0];
   }
@@ -27,22 +26,15 @@
     actions: {
       closeOnEscape: true,
     },
-    view: {
-      // history: true,
-      browserHistory: true,
-      browserHistoryRoot: 'http://localhost:9001',
-      browserHistoryInitialMatch: true
+    view:{
+      // browserHistory: true,
+      // browserHistoryRoot: 'http://localhost:9001/',
+      // browserHistoryOnLoad: true,
+      // browserHistoryInitialMatch: true,
+      // masterDetailBreakpoint:800
       // browserHistorySeparator: '#'
-    },
-
+    }
   };
-
-  // onMount(() => {
-  //   f7ready(() => {
-  //     // Framework7 initialized
-  //     f7.dialog.alert('Component mounted');
-  //   })
-  // })
 </script>
 
 <App {...f7Params}>
@@ -52,5 +44,6 @@
   <Panel right reveal resizable>
     <View url="/panel-right/" />
   </Panel>
-  <View url="/" main={true} class="safe-areas" masterDetailBreakpoint={768} />
+  <View url="/" main={true} class="safe-areas" masterDetailBreakpoint={768}
+        browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/>
 </App>
