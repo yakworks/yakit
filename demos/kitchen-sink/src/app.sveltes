@@ -4,7 +4,7 @@
   import store from './store';
 
   // Demo Theme
-  let theme = 'auto';
+  let theme = 'aurora';
   if (document.location.search.indexOf('theme=') >= 0) {
     theme = document.location.search.split('theme=')[1].split('&')[0];
   }
@@ -44,6 +44,7 @@
   <Panel right reveal resizable>
     <View url="/panel-right/" />
   </Panel>
-  <View url="/" main={true} class="safe-areas" masterDetailBreakpoint={768}
+
+  <View url="/" main={true} class="safe-areas"
         browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/>
 </App>

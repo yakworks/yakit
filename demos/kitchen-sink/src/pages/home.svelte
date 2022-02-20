@@ -21,36 +21,41 @@
 
   const onResize = () => {
     const $el = f7.$('.page-home');
-    if (f7.width >= 768) {
-      console.log("f7.width > 768", f7)
-      $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
-    } else {
-      $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
-    }
+    // if (f7.width >= 768) {
+    //   console.log("f7.width > 768", f7)
+    //   $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
+    // } else {
+    //   $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
+    // }
   };
 
   const onPageAfterIn = () => {
     if (!theme.aurora) return;
     if (f7.width >= 768) {
-      f7router.navigate('/about/', { reloadDetail: true });
+      // f7router.navigate('/about/', { reloadDetail: true });
     }
   };
 
   onMount(() => {
+    console.log("f7", f7)
+    console.log("theme", theme)
+    console.log("f7router", f7router)
+    console.log("f7route", f7route)
+    //this was the old way
     if (theme.aurora) {
       const $el = f7.$('.page-home');
       onResize();
 
       f7.on('resize', onResize);
 
-      f7router.on('routeChange', (route) => {
-        const url = route.url;
-        if (!$el) return;
-        const $linkEl = $el.find(`a[href="${url}"]`);
-        if (!$linkEl.length) return;
-        $el.find('.item-selected').removeClass('item-selected');
-        $linkEl.addClass('item-selected');
-      });
+      // f7router.on('routeChange', (route) => {
+      //   const url = route.url;
+      //   if (!$el) return;
+      //   const $linkEl = $el.find(`a[href="${url}"]`);
+      //   if (!$linkEl.length) return;
+      //   $el.find('.item-selected').removeClass('item-selected');
+      //   $linkEl.addClass('item-selected');
+      // });
     }
   });
 </script>
