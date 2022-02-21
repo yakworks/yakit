@@ -4,7 +4,7 @@ packages:
   - 'core'
   - 'svelte'
   - 'ui'
-  - 'grid'
+  # - 'grid'
   - 'demos/kitchen-sink'
   - 'demos/demo'
   # - 'framework7/core'

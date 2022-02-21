@@ -10,8 +10,6 @@
   "dependencies": {
     "@yakit/ui": "workspace:../ui",
     "@yakit/core": "workspace:../core",
-    "svelte": "^3.42.4",
-    "svelte-select": "^4.4.7",
-    "svelte-spa-router": "^3.2.0"
+    "svelte-select": "^4.4.7"
   }
 }

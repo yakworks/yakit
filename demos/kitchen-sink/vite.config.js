@@ -64,7 +64,8 @@ const cfg = defineConfig({
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
+    exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7', 'free-jqgrid'],
+    // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
   },
   // resolve: {
   //   alias: {
@@ -72,15 +73,6 @@ const cfg = defineConfig({
   //       basedir,
   //       `${buildFolder}/core/framework7-lite-bundle.esm.js`,
   //     ),
-  //     'framework7/css/bundle': path.resolve(
-  //       basedir,
-  //       `${buildFolder}/core/framework7-bundle.css`,
-  //     ),
-  //     'framework7/lite': path.resolve(
-  //       basedir,
-  //       `${buildFolder}/core/framework7-lite.esm.js`,
-  //     ),
-  //     'framework7-svelte': path.resolve(basedir, `${buildFolder}/svelte`),
   //   },
   // },
 })

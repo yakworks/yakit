@@ -2,6 +2,7 @@
   import { f7,f7ready, theme, Page, Panel,
     Navbar, NavRight, NavLeft, NavTitle, NavTitleLarge, Searchbar, BlockTitle,
     List,ListItem,Link,AccordionContent,Block,Icon,Button, View} from 'framework7-svelte';
+  // import {JqGridCtrl} from '@yakit/ui/jqGrid';
   import { onMount } from 'svelte';
   // import routes from '../routes';
 

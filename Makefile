@@ -51,15 +51,13 @@ clean:
 start:
 	cd demos/demo && $(vite)
 
-## starts the old angular demo
-start.ag-demo:
-	cd ag-demo
-	npx webpack-dev-server --mode=development --content-base ./examples/demo
+## starts the demo app
+start.sink:
+	cd demos/kitchen-sink && $(vite)
 
 ## locally preview production build
 start.preview:
 	$(vite) preview
-
 
 clean.dist:
 	rm -rf dist/

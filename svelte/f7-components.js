@@ -14,6 +14,7 @@ export { default as Block } from 'framework7-svelte/esm/svelte/block.svelte';
 export { default as BlockHeader } from 'framework7-svelte/esm/svelte/block-header.svelte';
 export { default as BlockFooter } from 'framework7-svelte/esm/svelte/block-footer.svelte';
 export { default as BlockTitle } from 'framework7-svelte/esm/svelte/block-title.svelte';
+export { default as Button } from 'framework7-svelte/esm/svelte/button.svelte';
 // export { default as F7Button } from 'framework7-svelte/esm/svelte/button.svelte';
 
 export { default as Icon } from 'framework7-svelte/esm/svelte/icon.svelte';

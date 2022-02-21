@@ -2,7 +2,7 @@
   import { app,f7ready, App, Panel, View, Fab, Icon } from 'framework7-svelte';
   import SideNav from './side-nav/SideNav.svelte';
   import routes from './routes';
-  import store from './store';
+  // import store from './store';
   import { onMount } from 'svelte';
 
   // Demo Theme
@@ -17,7 +17,6 @@
     id: 'io.framework7.testapp',
     theme,
     routes,
-    store,
     popup: {
       closeOnEscape: true,
     },
@@ -29,14 +28,6 @@
     },
     actions: {
       closeOnEscape: true,
-    },
-    view:{
-      // browserHistory: true,
-      // browserHistoryRoot: 'http://localhost:9001/',
-      // browserHistoryOnLoad: true,
-      // browserHistoryInitialMatch: true,
-      // masterDetailBreakpoint:800
-      // browserHistorySeparator: '#'
     }
   };
 
