@@ -4,13 +4,12 @@
 @import "bulma";
 @import 'framework7';
 
-// do overrides
 @import "forms";
-@import "bs_hacks";
-@import "layout";
 @import "utilities";
 @import "components";
-@import "extra";
+
+//has the flex table stuff
+// @import "extra";
 
 // vendor sass
 @import 'vendor/index';
