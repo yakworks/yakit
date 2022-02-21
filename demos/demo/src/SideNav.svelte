@@ -5,30 +5,18 @@
 
   // export let f7router;
 
-  export let opened = true
-
-  $: {
-    toggleSideNavClasses(opened)
-  }
-  function toggleSideNavClasses(_){
+  function toggleSideNavClasses(){
     let _html = document.body.parentElement
-    if(opened){
-      _html.classList.add("side-nav-open")
-      _html.classList.remove("side-nav-closed")
-    } else{
-      _html.classList.remove("side-nav-open")
-      _html.classList.add("side-nav-closed")
-    }
+    _html.classList.toggle("side-nav-open")
+    _html.classList.toggle("side-nav-closed")
   }
 
   const onResize = () => {
     const $el = f7.$('.page-home');
     if (f7.width >= 768) {
-      // $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
-      opened = true
+      $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
     } else {
-      // $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
-      opened = false
+      $el.find('.list:not(.searchbar-not-found)').removeClass('menu-list');
     }
   };
 

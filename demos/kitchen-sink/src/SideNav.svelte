@@ -1,10 +1,12 @@
 <script>
-  import { f7,f7ready, theme, Navbar, NavRight,List,ListItem,Link,AccordionContent,Block,Icon,Button} from 'framework7-svelte';
+  import { f7,f7ready, theme, Page, Panel,
+    Navbar, NavRight, NavLeft, NavTitle, NavTitleLarge, Searchbar, BlockTitle,
+    List,ListItem,Link,AccordionContent,Block,Icon,Button, View} from 'framework7-svelte';
   import { onMount } from 'svelte';
-  import {link} from 'svelte-spa-router'
+  import routes from './routes';
 
-  // export let f7router;
   export let opened = true
+  export let mainRouter = undefined
 
   $: {
     toggleSideNavClasses(opened)
@@ -18,6 +20,33 @@
       _html.classList.remove("side-nav-open")
       _html.classList.add("side-nav-closed")
     }
+  }
+
+  let currentRoute
+
+  // listen to highlight active item
+  $: if(mainRouter){
+    currentRoute = mainRouter.currentRoute
+    mainRouter.on('routeChange', (route) => {
+      currentRoute = route
+      // highlightActive()
+    });
+  }
+
+  $: if(currentRoute){
+    console.log('currentRoute changed, highlighting active', currentRoute)
+    highlightActive()
+  }
+
+  function highlightActive(){
+    if(!currentRoute.url) return
+    const $el = f7.$('.page-home');
+    const url = currentRoute.url;
+    if (!$el) return;
+    const $linkEl = $el.find(`a[href="${url}"]`);
+    if (!$linkEl.length) return;
+    $el.find('.item-selected').removeClass('item-selected');
+    $linkEl.addClass('item-selected');
   }
 
   const onResize = () => {
@@ -37,22 +66,13 @@
       const $el = f7.$('.page-home');
       //run it first on mount
       f7ready(() => {
-        // Framework7 initialized
-        // f7.dialog.alert('Component mounted');
+        console.log("onMount f7ready")
+        // fire it right away
         onResize();
         //then listen
         f7.on('resize', onResize);
+        // currentRoute = mainRouter.getCurrentRoute()
       })
-
-
-      // f7router.on('routeChange', (route) => {
-      //   const url = route.url;
-      //   if (!$el) return;
-      //   const $linkEl = $el.find(`a[href="${url}"]`);
-      //   if (!$linkEl.length) return;
-      //   $el.find('.item-selected').removeClass('item-selected');
-      //   $linkEl.addClass('item-selected');
-      // });
     }
   });
 </script>
@@ -60,97 +80,9 @@
 <div class="burger">
   <Button  iconF7="sidebar_left" on:click={ () => opened = !opened}/>
 </div>
+
 <aside class="side-nav">
-  <Navbar title="YakWorks" >
-    <NavRight>
-      <Link
-        icon="f7:push_pin"
-      />
-    </NavRight>
-  </Navbar>
-  <!-- <p>foo</p> -->
-  <!--page-content give us padding for the navbar and div allows us to style here  -->
-  <div class="nav-content page-content">
-    <List class="menu-list mt-0" noHairlines accordionList>
-      <ListItem title="About Framework7" link="/home" >
-        <span slot="media">
-          <Icon md="material:home" aurora="f7:house" ios="f7:house_fill" />
-        </span>
-      </ListItem>
-      <li class="">
-        <!-- svelte-ignore a11y-missing-attribute -->
-        <a class="item-link" use:link={"/"}>
-          <div class="item-content">
-            <div class="item-media"> <i class="icon material-icons">home</i></div>
-            <div class="item-inner"> <div class="item-title"> Home </div> </div>
-          </div>
-        </a>
-      </li>
-      <li class="">
-        <!-- svelte-ignore a11y-missing-attribute -->
-        <a class="item-link" use:link={"/about"}>
-          <div class="item-content">
-            <div class="item-media"> <i class="icon material-icons">home</i></div>
-            <div class="item-inner"> <div class="item-title"> About </div> </div>
-          </div>
-        </a>
-      </li>
-      <li class="">
-        <a class="item-link" href="#" use:link={"/accordion"}>
-          <div class="item-content">
-            <div class="item-media"> <i class="icon material-icons">dashboard</i></div>
-            <div class="item-inner"> <div class="item-title"> Accordion </div> </div>
-          </div>
-        </a>
-      </li>
-
-      <li class="">
-        <a class="item-link" href="#" use:link={"/color-themes"}>
-          <div class="item-content">
-            <div class="item-media"> <i class="icon material-icons">dashboard</i></div>
-            <div class="item-inner"> <div class="item-title"> Themes </div> </div>
-          </div>
-        </a>
-      </li>
-      <!-- <ListItem link="#/accordion" title="Accordion">
-        <i class="icon material-icons" slot="media">dashboard</i>
-      </ListItem> -->
-      <ListItem link="/action-sheet" title="Action Sheet">
-        <i class="icon icon-f7" slot="media" />
-      </ListItem>
-      <ListItem link="/appbar" title="Appbar">
-        <i class="icon icon-f7" slot="media" />
-      </ListItem>
-      <ListItem link="#/panel" title="Panel / Side Panels">
-        <i class="icon icon-f7" slot="media" />
-      </ListItem>
-      <ListItem link="#/tabs-routable" title="Tabs Routable">
-        <i class="icon icon-f7" slot="media" />
-      </ListItem>
-      <ListItem accordionItem title="Lorem Ipsum">
-        <Icon slot="media" material="power" />
-        <AccordionContent>
-          <Block>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum id neque nec</p>
-          </Block>
-        </AccordionContent>
-      </ListItem>
-      <ListItem accordionItem title="Nested List">
-        <Icon slot="media" material="power" />
-        <AccordionContent>
-          <li>
-            <ul>
-                <ListItem title="Item 1" link>
-                  <i class="icon-empty" slot="media" />
-                </ListItem>
-                <ListItem title="Item 2" mediaItem={true} link />
-            </ul>
-          </li>
-        </AccordionContent>
-      </ListItem>
-    </List>
-
-  </div>
+  <View url="/side-nav-menu/" linksView=".view-main" />
 </aside>
 
 <style>
@@ -171,24 +103,24 @@ aside.side-nav{
 }
 
 aside.side-nav :global(.navbar){
-  width: 256px;
+  /* width: 256px; */
   /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
 }
 aside.side-nav :global(.navbar .navbar-inner){
-  padding: 0;
+  /* padding: 0; */
   /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
 }
 
-.nav-content {
+/* .nav-content {
   padding-top: 0;
-}
-.nav-content :global(.menu-list){
+} */
+/* .nav-content :global(.menu-list){
   --menu-list-offset: 4px;
   --f7-list-font-size: 16px;
   --f7-list-margin-vertical: 8px;
   --f7-list-item-title-font-size: 16px;
   padding-top: 0;
-}
+} */
 
 :global(.side-nav-open) aside.side-nav {
   margin-left: 0;

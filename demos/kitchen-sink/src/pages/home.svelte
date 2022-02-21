@@ -37,10 +37,6 @@
   };
 
   onMount(() => {
-    console.log("f7", f7)
-    console.log("theme", theme)
-    console.log("f7router", f7router)
-    console.log("f7route", f7route)
     //this was the old way
     if (theme.aurora) {
       const $el = f7.$('.page-home');

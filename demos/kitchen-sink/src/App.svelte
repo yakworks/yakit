@@ -1,14 +1,17 @@
 <script>
-  import { App, Panel, View } from 'framework7-svelte';
+  import { app,f7ready, App, Panel, View } from 'framework7-svelte';
   import SideNav from './SideNav.svelte';
   import routes from './routes';
   import store from './store';
+  import { onMount } from 'svelte';
 
   // Demo Theme
   let theme = 'aurora';
   if (document.location.search.indexOf('theme=') >= 0) {
     theme = document.location.search.split('theme=')[1].split('&')[0];
   }
+
+  let mainRouter
 
   const f7Params = {
     id: 'io.framework7.testapp',
@@ -36,6 +39,23 @@
       // browserHistorySeparator: '#'
     }
   };
+
+  onMount(() => {
+    f7ready(() => {
+      console.log("f7 app", app)
+    })
+  });
+
+  function mainViewInit(view) {
+    console.log("main view init", view)
+    mainRouter = view.router
+    // const url = new URL(window.location);
+    // if (url.pathname.toLocaleLowerCase() !== "/") {
+    //   console.log(`navigate to ${url.pathname} on init`);
+    //   view.router.navigate(url.pathname);
+    //   view.router.refreshPage();
+    // }
+  }
 </script>
 
 <App {...f7Params}>
@@ -47,10 +67,10 @@
   </Panel>
   <!-- <View url="/" main={true} class="safe-areas" browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/> -->
   <main class="views">
-    <SideNav/>
+    <SideNav {mainRouter} />
     <article>
       <View url="/" main={true} class="safe-areas"
-        browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true}/>
+        browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true} onViewInit={mainViewInit}/>
     </article>
   </main>
 
