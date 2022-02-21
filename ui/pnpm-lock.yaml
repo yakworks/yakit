@@ -1,0 +1,175 @@
+lockfileVersion: 5.3
+
+specifiers:
+  '@fortawesome/fontawesome-free': ^6.0.0
+  '@mdi/font': ^6.5.95
+  '@yakit/core': workspace:../core
+  apexcharts: ^3.33.1
+  bulma: github:yakworks/bulma
+  framework7: ^6.3.15
+  framework7-icons: ^5.0.5
+  free-jqgrid: 4.13.3
+  ky: ^0.28.7
+  notyf: ^3.10.0
+  sweetalert2: ^11.4.0
+
+dependencies:
+  '@fortawesome/fontawesome-free': 6.0.0
+  '@mdi/font': 6.5.95
+  '@yakit/core': link:../core
+  apexcharts: 3.33.1
+  bulma: github.com/yakworks/bulma/f96ae80e2c9f5674c06aea711ea7aba6266fbce4
+  framework7: 6.3.16
+  framework7-icons: 5.0.5
+  free-jqgrid: 4.13.3
+  ky: 0.28.7
+  notyf: 3.10.0
+  sweetalert2: 11.4.4
+
+packages:
+
+  /@fortawesome/fontawesome-free/6.0.0:
+    resolution: {integrity: sha512-6LB4PYBST1Rx40klypw1SmSDArjFOcfBf2LeX9Zg5EKJT2eXiyiJq+CyBYKeXyK0sXS2FsCJWSPr/luyhuvh0Q==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dev: false
+
+  /@mdi/font/6.5.95:
+    resolution: {integrity: sha512-ES5rj6J39FUkHe/b3C9SJs8bqIungYhuU7rBINTBaHOv/Ce4RCb3Gw08CZVl32W33UEkgRkzyWaIedV4at+QHg==}
+    dev: false
+
+  /apexcharts/3.33.1:
+    resolution: {integrity: sha512-5aVzrgJefd8EH4w7oRmuOhA3+cxJxQg27cYg3ANVGvPCOB4AY3mVVNtFHRFaIq7bv8ws4GRaA9MWfzoWQw3MPQ==}
+    dependencies:
+      svg.draggable.js: 2.2.2
+      svg.easing.js: 2.0.0
+      svg.filter.js: 2.0.2
+      svg.pathmorphing.js: 0.1.3
+      svg.resize.js: 1.4.3
+      svg.select.js: 3.0.1
+    dev: false
+
+  /dom7/3.0.0:
+    resolution: {integrity: sha512-oNlcUdHsC4zb7Msx7JN3K0Nro1dzJ48knvBOnDPKJ2GV9wl1i5vydJZUSyOfrkKFDZEud/jBsTk92S/VGSAe/g==}
+    dependencies:
+      ssr-window: 3.0.0
+    dev: false
+
+  /framework7-icons/5.0.5:
+    resolution: {integrity: sha512-bvHMLyujV9TFuudehd3ORZ/EvNp19Ir3ckVzYAOf3MkLymHba/9oHLsgopCh0x5UsrYZUpkrE+fd7ggj5y4wRw==}
+    engines: {node: '>= 0.10.0'}
+    dev: false
+
+  /framework7/6.3.16:
+    resolution: {integrity: sha512-OuOnIQV5TfT8L2j4EHzzlIzmz5F4+IxoxOySEaolsyttvcsrn/pLBzZV8f3gemvLFbNj5tagQBimpH6v67NP6w==}
+    requiresBuild: true
+    dependencies:
+      dom7: 3.0.0
+      htm: 3.1.0
+      path-to-regexp: 6.2.0
+      skeleton-elements: 3.5.0
+      ssr-window: 3.0.0
+      swiper: 6.8.4
+    dev: false
+
+  /free-jqgrid/4.13.3:
+    resolution: {integrity: sha1-EdmI/BWXblL+zik1/D8DVQDglA8=}
+    dev: false
+
+  /htm/3.1.0:
+    resolution: {integrity: sha512-L0s3Sid5r6YwrEvkig14SK3Emmc+kIjlfLhEGn2Vy3bk21JyDEes4MoDsbJk6luaPp8bugErnxPz86ZuAw6e5Q==}
+    dev: false
+
+  /ky/0.28.7:
+    resolution: {integrity: sha512-a23i6qSr/ep15vdtw/zyEQIDLoUaKDg9Jf04CYl/0ns/wXNYna26zJpI+MeIFaPeDvkrjLPrKtKOiiI3IE53RQ==}
+    engines: {node: '>=12'}
+    dev: false
+
+  /notyf/3.10.0:
+    resolution: {integrity: sha512-Mtnp+0qiZxgrH+TzVlzhWyZceHdAZ/UWK0/ju9U0HQeDpap1mZ8cC7H5wSI5mwgni6yeAjaxsTw0sbMK+aSuHw==}
+    dev: false
+
+  /path-to-regexp/6.2.0:
+    resolution: {integrity: sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg==}
+    dev: false
+
+  /skeleton-elements/3.5.0:
+    resolution: {integrity: sha512-KOU3wHGyCOtfMWLYF9wn2JzxM/l0Vu4miqqdoz9HeTfd1fwIsEePrcIrZ4+8wbg6yK82UPLLyH7fAZAwhQwZNw==}
+    dev: false
+
+  /ssr-window/3.0.0:
+    resolution: {integrity: sha512-q+8UfWDg9Itrg0yWK7oe5p/XRCJpJF9OBtXfOPgSJl+u3Xd5KI328RUEvUqSMVM9CiQUEf1QdBzJMkYGErj9QA==}
+    dev: false
+
+  /svg.draggable.js/2.2.2:
+    resolution: {integrity: sha512-JzNHBc2fLQMzYCZ90KZHN2ohXL0BQJGQimK1kGk6AvSeibuKcIdDX9Kr0dT9+UJ5O8nYA0RB839Lhvk4CY4MZw==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /svg.easing.js/2.0.0:
+    resolution: {integrity: sha1-iqmUawqOJ4V6XEChDrpAkeVpHxI=}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /svg.filter.js/2.0.2:
+    resolution: {integrity: sha1-kQCOFROJ3ZIwd5/L5uLJo2LRwgM=}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /svg.js/2.7.1:
+    resolution: {integrity: sha512-ycbxpizEQktk3FYvn/8BH+6/EuWXg7ZpQREJvgacqn46gIddG24tNNe4Son6omdXCnSOaApnpZw6MPCBA1dODA==}
+    dev: false
+
+  /svg.pathmorphing.js/0.1.3:
+    resolution: {integrity: sha512-49HWI9X4XQR/JG1qXkSDV8xViuTLIWm/B/7YuQELV5KMOPtXjiwH4XPJvr/ghEDibmLQ9Oc22dpWpG0vUDDNww==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /svg.resize.js/1.4.3:
+    resolution: {integrity: sha512-9k5sXJuPKp+mVzXNvxz7U0uC9oVMQrrf7cFsETznzUDDm0x8+77dtZkWdMfRlmbkEEYvUn9btKuZ3n41oNA+uw==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+      svg.select.js: 2.1.2
+    dev: false
+
+  /svg.select.js/2.1.2:
+    resolution: {integrity: sha512-tH6ABEyJsAOVAhwcCjF8mw4crjXSI1aa7j2VQR8ZuJ37H2MBUbyeqYr5nEO7sSN3cy9AR9DUwNg0t/962HlDbQ==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /svg.select.js/3.0.1:
+    resolution: {integrity: sha512-h5IS/hKkuVCbKSieR9uQCj9w+zLHoPh+ce19bBYyqF53g6mnPB8sAtIbe1s9dh2S2fCmYX2xel1Ln3PJBbK4kw==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      svg.js: 2.7.1
+    dev: false
+
+  /sweetalert2/11.4.4:
+    resolution: {integrity: sha512-9yYWQuRT1v9JNI/paPTSYV+68MHwe9C+HQ/I2jtfaFzoJgYRftWXOs4JqmDSjT7m2m4r8ebMMn8LcxD1Wq9B/w==}
+    dev: false
+
+  /swiper/6.8.4:
+    resolution: {integrity: sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g==}
+    engines: {node: '>= 4.7.0'}
+    requiresBuild: true
+    dependencies:
+      dom7: 3.0.0
+      ssr-window: 3.0.0
+    dev: false
+
+  github.com/yakworks/bulma/f96ae80e2c9f5674c06aea711ea7aba6266fbce4:
+    resolution: {tarball: https://codeload.github.com/yakworks/bulma/tar.gz/f96ae80e2c9f5674c06aea711ea7aba6266fbce4}
+    name: bulma
+    version: 0.9.3
+    dev: false

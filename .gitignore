@@ -3,6 +3,6 @@ node_modules/
 build/
 yarn.lock
 package-lock.json
-pnpm-lock.json
-pnpm-lock.yaml
+# pnpm-lock.json
+# pnpm-lock.yaml
 .DS_Store

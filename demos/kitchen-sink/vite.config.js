@@ -36,7 +36,7 @@ const cfg = defineConfig({
         postcss: true
       }),
       compilerOptions: {
-        dev: true //!production
+        // dev: true //!production
       },
       onwarn: (warning, onwarn) => {
         //disable all of them
