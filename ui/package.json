@@ -17,8 +17,6 @@
     "@yakit/core": "workspace:../core",
     "apexcharts": "^3.33.1",
     "bulma": "github:yakworks/bulma",
-    "framework7": "^6.3.15",
-    "framework7-icons": "^5.0.5",
     "free-jqgrid": "4.13.3",
     "ky": "^0.28.7",
     "notyf": "^3.10.0",
