@@ -3,7 +3,6 @@ lockfileVersion: 5.3
 specifiers:
   '@yakit/core': workspace:../core
   '@yakit/ui': workspace:../ui
-  framework7-svelte: ^6.3.15
   svelte: ^3.42.4
   svelte-select: ^4.4.7
   svelte-spa-router: ^3.2.0
@@ -11,16 +10,11 @@ specifiers:
 dependencies:
   '@yakit/core': link:../core
   '@yakit/ui': link:../ui
-  framework7-svelte: 6.3.16
   svelte: 3.46.4
   svelte-select: 4.4.7
   svelte-spa-router: 3.2.0
 
 packages:
-
-  /framework7-svelte/6.3.16:
-    resolution: {integrity: sha512-Fpzlcd2x6q0VyhytuHmImaZ2PhVw6aq/FpiDlSnPbKA2/7yq0OCaSckK6WqDD/Rt8biFCYcTbyUJIBHW3toAMw==}
-    dev: false
 
   /regexparam/2.0.0:
     resolution: {integrity: sha512-gJKwd2MVPWHAIFLsaYDZfyKzHNS4o7E/v8YmNf44vmeV2e4YfVoDToTOKTvE7ab68cRJ++kLuEXJBaEeJVt5ow==}
