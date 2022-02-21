@@ -74,11 +74,11 @@
   });
 </script>
 
-<div class="burger">
-  <Button  iconF7="sidebar_left" on:click={ () => opened = !opened}/>
-</div>
-
 <aside class="side-nav">
+  <div class="burger">
+    <Button  iconF7="sidebar_left" on:click={ () => opened = !opened}/>
+  </div>
+
   <View url="/side-nav-menu/" linksView=".view-main" />
 </aside>
 
@@ -88,39 +88,19 @@
   --side-nav-width: 256px:
 }
 aside.side-nav{
+  --f7-safe-area-right: 0px;
+  --f7-safe-area-outer-right: 0px;
   z-index: 5001;
   flex: 0 0 var(--side-nav-width);
   transition: margin 0.3s ease;
   /* overflow-y: auto; */
   margin-left: -256px;
   width: 256px;
-  --f7-safe-area-right: 0px;
-  --f7-safe-area-outer-right: 0px;
   border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color);
   position: static;
   --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
-aside.side-nav :global(.navbar){
-  /* width: 256px; */
-  /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
-}
-aside.side-nav :global(.navbar .navbar-inner){
-  /* padding: 0; */
-  /* border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color); */
-}
-
-/* .nav-content {
-  padding-top: 0;
-} */
-/* .nav-content :global(.menu-list){
-  --menu-list-offset: 4px;
-  --f7-list-font-size: 16px;
-  --f7-list-margin-vertical: 8px;
-  --f7-list-item-title-font-size: 16px;
-  padding-top: 0;
-} */
 
 :global(.side-nav-open) aside.side-nav {
   margin-left: 0;

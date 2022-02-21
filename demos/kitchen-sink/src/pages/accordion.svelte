@@ -16,6 +16,7 @@
   <Navbar title="Accordion" backLink="Back" />
 
   <BlockTitle>List View Accordion</BlockTitle>
+  <Block>
   <List accordionList>
     <ListItem accordionItem title="Lorem Ipsum">
       <AccordionContent>
@@ -53,6 +54,7 @@
     </ListItem>
   </List>
 
+  </Block>
   <BlockTitle>Inset Accordion</BlockTitle>
   <List accordionList inset>
     <ListItem accordionItem title="Lorem Ipsum">

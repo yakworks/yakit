@@ -3,8 +3,8 @@
 @import "@yakit/ui/styles/all";
 
 // rndc #69001a, text #79232e
-$sidenav-page-bg-color: darken(cvar(primary),30%);
-$sidenav-list-bg-color: darken(cvar(primary),20%);
+$sidenav-page-bg-color: #210d0d;
+$sidenav-list-bg-color: #241f1f;
 $sidenav-navbar-bg-color: cvar(primary);
 $sidenav-selected-bg-color: cvar(primary);
 // $sidenav-bg-dark: darken(cvar(primary),10%);
@@ -14,11 +14,10 @@ $sidenav-selected-bg-color: cvar(primary);
 // @import "codeview";
 
 :root {
-  --color-primary: hsl(210, 40%, 37%);
-  --color-primary-h: 210;
-  --color-primary-s: 40%;
-  --color-primary-l: 37%;
-  --f7-theme-color: var(--color-link);
+  --color-primary: hsl(346, 98%, 21%);
+  --color-primary-h: 346;
+  --color-primary-s: 98%;
+  --color-primary-l: 21%;
   // --f7-page-bg-color: rgb(96, 93, 148);
   // --f7-page-sidenav-color: rgb(100, 145, 137);
 }
@@ -39,32 +38,23 @@ $sidenav-selected-bg-color: cvar(primary);
   --f7-page-bg-color: #fff;
 }
 
-.side-nav-open .dark, .dark.side-nav-open {
-  --f7-button-text-color: var(--f7-text-color);
-}
-.dark .page-sidenav{
+.side-nav.dark{
   --f7-page-bg-color: #{$sidenav-page-bg-color};
   --f7-navbar-bg-color: #{$sidenav-navbar-bg-color};
   --f7-list-bg-color: #{$sidenav-list-bg-color};
-  // --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
+  --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
   --f7-button-text-color: var(--f7-text-color);
   --f7-menu-list-selected-text-color: var(--f7-text-color);
 }
 
-$sidenav-bg-color: darken(cvar(body),0%);
-.page-sidenav{
-  --f7-page-bg-color: #{$sidenav-bg-color};
-  --f7-navbar-bg-color: var(--color-primary-highlight);
-  --f7-navbar-border-color: #{cvar(primary)};
-  // --f7-list-bg-color: #{$sidenav-bg-color};
-  --f7-block-header-text-color: #{cvar(link)};
-  // --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
+.side-nav.dark{
+  --f7-page-bg-color: #{$sidenav-page-bg-color};
+  --f7-navbar-bg-color: #{$sidenav-navbar-bg-color};
+  --f7-list-bg-color: #{$sidenav-list-bg-color};
+  --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
   --f7-button-text-color: var(--f7-text-color);
   --f7-menu-list-selected-text-color: var(--f7-text-color);
 }
-
-
-
 // :root.dark .page-sidenav {
 //   --f7-page-bg-color: rgb(75, 4, 4);
 // }
