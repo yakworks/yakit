@@ -7,7 +7,7 @@ import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
 
 // const buildFolder = process.env.NODE_ENV === 'production' ? 'packages' : 'build';
-const buildFolder = '../../framework7'
+// const buildFolder = '../../framework7'
 
 
 // const __filename = new URL('', import.meta.url).pathname;
@@ -36,7 +36,7 @@ const cfg = defineConfig({
         postcss: true
       }),
       compilerOptions: {
-        // dev: true //!production
+        dev: true //!production
       },
       onwarn: (warning, onwarn) => {
         //disable all of them
@@ -64,25 +64,8 @@ const cfg = defineConfig({
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['framework7-svelte', 'framework7'],
-  },
-  resolve: {
-    alias: {
-      'framework7/lite/bundle': path.resolve(
-        basedir,
-        `${buildFolder}/core/framework7-lite-bundle.esm.js`,
-      ),
-      'framework7/css/bundle': path.resolve(
-        basedir,
-        `${buildFolder}/core/framework7-bundle.css`,
-      ),
-      'framework7/lite': path.resolve(
-        basedir,
-        `${buildFolder}/core/framework7-lite.esm.js`,
-      ),
-      'framework7-svelte': path.resolve(basedir, `${buildFolder}/svelte`),
-    },
-  },
+    exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
+  }
 })
 
 export default cfg
