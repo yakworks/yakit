@@ -36,7 +36,7 @@ const cfg = defineConfig({
       }),
       compilerOptions: {
         //When this is true components get "was created with unknown prop 'f7route'"
-        dev: !production
+        // dev: !production
       },
       onwarn: (warning, onwarn) => {
         //disable all of them

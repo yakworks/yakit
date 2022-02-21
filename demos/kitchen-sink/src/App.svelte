@@ -1,6 +1,6 @@
 <script>
-  import { app,f7ready, App, Panel, View } from 'framework7-svelte';
-  import SideNav from './SideNav.svelte';
+  import { app,f7ready, App, Panel, View, Fab, Icon } from 'framework7-svelte';
+  import SideNav from './side-nav/SideNav.svelte';
   import routes from './routes';
   import store from './store';
   import { onMount } from 'svelte';
@@ -72,6 +72,7 @@
       <View url="/" main={true} class="safe-areas"
         browserHistory={true} browserHistorySeparator='#' browserHistoryInitialMatch={true} onViewInit={mainViewInit}/>
     </article>
+
   </main>
 
 </App>

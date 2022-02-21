@@ -13,6 +13,8 @@
     ListItem,
     Link,
     Searchbar,
+    Fab,
+    Icon
   } from 'framework7-svelte';
   import { onMount } from 'svelte';
 
@@ -35,6 +37,17 @@
       // f7router.navigate('/about/', { reloadDetail: true });
     }
   };
+
+  let colorTheme = 'light'
+  function toggleTheme(){
+    colorTheme = colorTheme === 'light' ? 'dark' : 'light'
+    setLayoutTheme(colorTheme)
+  }
+
+  function setLayoutTheme(newTheme) {
+    const htmlEl = f7.$('html');
+    htmlEl.removeClass('dark light').addClass(`${newTheme}`);
+  }
 
   onMount(() => {
     //this was the old way
@@ -79,7 +92,9 @@
       disableButton={!theme.aurora}
     />
   </Navbar>
-
+  <Fab position="right-top" onClick={toggleTheme}>
+    <Icon f7="sun_max_fill"/>
+  </Fab>
   <List class="searchbar-hide-on-search">
     <ListItem title="About Framework7" reloadDetail={theme.aurora} link="/about">
       <i class="icon icon-f7" slot="media" />

@@ -3,7 +3,7 @@
     Navbar, NavRight, NavLeft, NavTitle, NavTitleLarge, Searchbar, BlockTitle,
     List,ListItem,Link,AccordionContent,Block,Icon,Button, View} from 'framework7-svelte';
   import { onMount } from 'svelte';
-  import routes from './routes';
+  // import routes from '../routes';
 
   export let opened = true
   export let mainRouter = undefined
@@ -40,7 +40,7 @@
 
   function highlightActive(){
     if(!currentRoute.url) return
-    const $el = f7.$('.page-home');
+    const $el = f7.$('.page-sidenav');
     const url = currentRoute.url;
     if (!$el) return;
     const $linkEl = $el.find(`a[href="${url}"]`);
@@ -50,7 +50,6 @@
   }
 
   const onResize = () => {
-    const $el = f7.$('.page-home');
     if (f7.width >= 768) {
       // $el.find('.list:not(.searchbar-not-found)').addClass('menu-list');
       opened = true
@@ -63,8 +62,6 @@
 
   onMount(() => {
     if (theme.aurora) {
-      const $el = f7.$('.page-home');
-      //run it first on mount
       f7ready(() => {
         console.log("onMount f7ready")
         // fire it right away
@@ -91,6 +88,7 @@
   --side-nav-width: 256px:
 }
 aside.side-nav{
+  z-index: 5001;
   flex: 0 0 var(--side-nav-width);
   transition: margin 0.3s ease;
   /* overflow-y: auto; */
@@ -100,6 +98,8 @@ aside.side-nav{
   --f7-safe-area-outer-right: 0px;
   border-right: var(--f7-page-master-border-width) solid var(--f7-page-master-border-color);
   position: static;
+  --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 aside.side-nav :global(.navbar){
