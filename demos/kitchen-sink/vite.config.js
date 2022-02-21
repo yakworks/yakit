@@ -2,11 +2,9 @@
 import { defineConfig } from 'vite'
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess'
-import legacy from '@vitejs/plugin-legacy'
 // import { svelte } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
-import pkg from './package.json'
 
 // const buildFolder = process.env.NODE_ENV === 'production' ? 'packages' : 'build';
 const buildFolder = '../../framework7'
@@ -14,8 +12,7 @@ const buildFolder = '../../framework7'
 
 // const __filename = new URL('', import.meta.url).pathname;
 // Will contain trailing slash
-// const basedir = new URL('.', import.meta.url).pathname;
-const basedir = __dirname
+const basedir = new URL('.', import.meta.url).pathname;
 const production = process.env.NODE_ENV === 'production'
 /**
  * Change this to `true` to generate source maps alongside your production bundle. This is useful for debugging, but
@@ -75,21 +72,9 @@ const cfg = defineConfig({
         basedir,
         `${buildFolder}/core/framework7-lite-bundle.esm.js`,
       ),
-      // 'framework7/css/bundle': path.resolve(
-      //   basedir,
-      //   `${buildFolder}/core/framework7-bundle.css`,
-      // ),
       'framework7/css/bundle': path.resolve(
         basedir,
-        `${buildFolder}/core/framework7-bundle.less`,
-      ),
-      'framework7/less': path.resolve(
-        basedir,
-        `${buildFolder}/core/less`,
-      ),
-      'framework7/components': path.resolve(
-        basedir,
-        `${buildFolder}/core/components`,
+        `${buildFolder}/core/framework7-bundle.css`,
       ),
       'framework7/lite': path.resolve(
         basedir,
@@ -99,15 +84,5 @@ const cfg = defineConfig({
     },
   },
 })
-
-// Babel
-if (useBabel) {
-  cfg.plugins.unshift(
-    legacy({
-      targets: pkg.browserslist
-    })
-  )
-}
-
 
 export default cfg

@@ -35,7 +35,7 @@
 
   $: if(currentRoute){
     console.log('currentRoute changed, highlighting active', currentRoute)
-    highlightActive()
+    // highlightActive()
   }
 
   function highlightActive(){
