@@ -22,6 +22,8 @@
     "free-jqgrid": "4.13.3",
     "ky": "^0.28.7",
     "notyf": "^3.10.0",
-    "sweetalert2": "^11.4.0"
+    "sweetalert2": "^11.4.0",
+    "jquery": "3.4.1",
+    "jquery-ui": "1.12.1"
   }
 }

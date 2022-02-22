@@ -42,6 +42,22 @@
     </List>
 
     <List>
+      <ListItem class="header" accordionItem accordionItemOpened={true} title="Grids" >
+        <Icon slot="media" material="table" />
+        <AccordionContent>
+          <List menuList noHairlinesBetween>
+            <ListItem title="Simple" link="/simple-grid" >
+              <i class="icon icon-blank" slot="media" />
+            </ListItem>
+            <ListItem title="About" link="/about">
+              <i class="icon icon-blank" slot="media" />
+            </ListItem>
+          </List>
+        </AccordionContent>
+      </ListItem>
+    </List>
+
+    <List>
       <ListItem class="header" accordionItem accordionItemOpened={true} title="Components" >
         <Icon slot="media" f7="wrench" />
         <AccordionContent>

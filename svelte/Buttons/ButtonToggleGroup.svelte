@@ -3,7 +3,8 @@
  -->
  <script>
   import { createEventDispatcher } from 'svelte'
-  import {Button7, Segmented} from '../index'
+  import Segmented from './Segmented.svelte'
+  import Button7 from './Button7.svelte'
 
   export let activeKey = undefined
   export let schema = undefined

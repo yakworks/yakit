@@ -78,7 +78,6 @@
   <div class="burger">
     <Button  iconF7="sidebar_left" on:click={ () => opened = !opened}/>
   </div>
-
   <View url="/side-nav-menu/" linksView=".view-main" />
 </aside>
 

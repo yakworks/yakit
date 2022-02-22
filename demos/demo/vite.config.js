@@ -31,7 +31,7 @@ const useBabel = true
 const cfg = defineConfig({
   plugins: [
     svelte({
-      emitCss: production,
+      // emitCss: production,
       preprocess: sveltePreprocess({
         postcss: true
       }),
@@ -64,7 +64,7 @@ const cfg = defineConfig({
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['framework7-svelte', 'framework7'],
+    exclude: ['framework7-svelte', 'framework7', 'dom7'],
   },
   resolve: {
     alias: {

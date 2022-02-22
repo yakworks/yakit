@@ -67,7 +67,7 @@ const cfg = defineConfig({
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['framework7-svelte', 'framework7'],
+    exclude: ['framework7-svelte', 'framework7', 'free-jqgrid', 'jquery', 'jquery-ui'],
   },
   resolve: {
     alias: {

@@ -3,6 +3,8 @@ import PanelLeft from './pages/panel-left.svelte';
 import PanelRight from './pages/panel-right.svelte';
 import About from './pages/about.svelte';
 import SideNavMenu from './side-nav/SideNavMenu.svelte';
+// import SimpleGrid from './jqGrid/Simple.svelte';
+
 
 import Accordion from './pages/accordion.svelte';
 import ActionSheet from './pages/action-sheet.svelte';
@@ -144,6 +146,11 @@ export default [
     component: SideNavMenu,
     isMenuItem: false
   },
+  // {
+  //   path: '/simple-grid',
+  //   component: SimpleGrid,
+  //   isMenuItem: false
+  // },
   // Left Panel
   {
     path: '/panel-left',
