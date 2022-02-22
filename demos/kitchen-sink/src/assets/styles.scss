@@ -2,6 +2,8 @@
 @use "@yakit/ui/styles/tools/cssVars";
 @import "@yakit/ui/styles/all";
 
+@import "sidebar";
+
 // rndc #69001a, text #79232e
 $sidenav-page-bg-color: darken(cvar(primary),30%);
 $sidenav-list-bg-color: darken(cvar(primary),20%);
@@ -19,14 +21,7 @@ $sidenav-selected-bg-color: cvar(primary);
   --color-primary-s: 40%;
   --color-primary-l: 37%;
   --f7-theme-color: var(--color-link);
-  // --f7-page-bg-color: rgb(96, 93, 148);
-  // --f7-page-sidenav-color: rgb(100, 145, 137);
 }
-
-// .aurora.dark, .ios.dark, .md.dark {
-//   --f7-page-bg-color: rgb(214, 24, 24);
-//   --f7-page-sidenav-color: rgb(148, 82, 82);
-// }
 
 .page-home,
 .page-about {
@@ -38,33 +33,3 @@ $sidenav-selected-bg-color: cvar(primary);
 :root:not(.dark) .page-about {
   --f7-page-bg-color: #fff;
 }
-
-.side-nav-open .dark, .dark.side-nav-open {
-  --f7-button-text-color: var(--f7-text-color);
-}
-.dark .page-sidenav{
-  --f7-page-bg-color: #{$sidenav-page-bg-color};
-  --f7-navbar-bg-color: #{$sidenav-navbar-bg-color};
-  --f7-list-bg-color: #{$sidenav-list-bg-color};
-  // --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
-  --f7-button-text-color: var(--f7-text-color);
-  --f7-menu-list-selected-text-color: var(--f7-text-color);
-}
-
-$sidenav-bg-color: darken(cvar(body),0%);
-.page-sidenav{
-  --f7-page-bg-color: #{$sidenav-bg-color};
-  --f7-navbar-bg-color: var(--color-primary-highlight);
-  --f7-navbar-border-color: #{cvar(primary)};
-  // --f7-list-bg-color: #{$sidenav-bg-color};
-  --f7-block-header-text-color: #{cvar(link)};
-  // --f7-menu-list-selected-bg-color: #{$sidenav-selected-bg-color};
-  --f7-button-text-color: var(--f7-text-color);
-  --f7-menu-list-selected-text-color: var(--f7-text-color);
-}
-
-
-
-// :root.dark .page-sidenav {
-//   --f7-page-bg-color: rgb(75, 4, 4);
-// }
