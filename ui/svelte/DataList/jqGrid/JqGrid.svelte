@@ -4,13 +4,13 @@
 <script>
   import { onMount, onDestroy, tick, createEventDispatcher } from 'svelte'
   import Resource from '@yakit/core/stores/Resource'
-  import {JqGridCtrl} from '@yakit/ui/jqGrid'
+  import {JqGridCtrl} from '../../../jqGrid'
   import JqGridListManager from './JqGridListManager'
   import ListToolbar from '../ListToolbar.svelte'
   import EditPopover from '../EditPopover.svelte'
   import SearchForm from '../SearchForm.svelte'
   import { classNames } from 'framework7-svelte/shared/utils';
-  import growl from "@yakit/ui/growl"
+  import growl from "../../../growl"
   import { difference, get as _get, uniqueId, isEqual } from "@yakit/core/dash"
 
   /** the grid context with gridOptions and toolbarOptions */

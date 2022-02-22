@@ -2,7 +2,7 @@
   Wraps the jqGrid and adds the toolbar and search form
  -->
 <script>
-  import ButtonToggleGroup from '@yakit/svelte/Buttons/ButtonToggleGroup.svelte'
+  import ButtonToggleGroup from '@yakit/ui/svelte/Buttons/ButtonToggleGroup.svelte'
 
   let activeKey
   let activeState

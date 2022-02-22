@@ -7,7 +7,7 @@
   import FormifyField from './FormifyField.svelte'
   import { transformFields } from '@yakit/core/schema/transformSchema'
   import { _defaults } from '@yakit/core/dash'
-  import growl from "@yakit/ui/growl"
+  import growl from "../../growl"
   import { classNames } from 'framework7-svelte/shared/utils';
 
   /** The form name */

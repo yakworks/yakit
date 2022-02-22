@@ -1,6 +1,6 @@
 
 import { isEmpty } from "@yakit/core/dash"
-import growl from "@yakit/ui/growl"
+import growl from "../../growl"
 
 /**
  * generic handler to show errors in growl for now

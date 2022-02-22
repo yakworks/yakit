@@ -10,7 +10,7 @@
     ListItem,
     Icon,
   } from 'framework7-svelte';
-  import { JqGrid } from '@yakit/svelte/DataList'
+  import { JqGrid } from '@yakit/ui/svelte/DataList'
   import sessionStores from '../store/sessionServices'
   import QuickFilter from './QuickFilter.svelte'
 

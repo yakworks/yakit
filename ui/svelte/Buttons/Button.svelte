@@ -1,6 +1,6 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
-  import { getIconClass } from '@yakit/ui/icon'
+  import { getIconClass } from '../../icon'
   import { isTruthy } from '@yakit/core/truthy'
   import createRipple from "../utils/ripple.js";
   // import { classNames } from './utils';

@@ -3,7 +3,7 @@
  -->
 <script>
   import {Popover, List, ListItem} from '../index'
-  import growl from '@yakit/ui/growl'
+  import growl from '../../growl'
   import { isFunction } from '@yakit/core/dash';
 
   export let resource = undefined

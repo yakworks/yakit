@@ -4,7 +4,7 @@
   import {ctxKey} from './ctxKey'
   import { isNil, _defaults } from '@yakit/core/dash'
   import { fieldDefaults } from '@yakit/core/transformer'
-  import selContext from '@yakit/ui/select/selectContext'
+  import selContext from '../../select/selectContext'
   import Select from 'svelte-select'
   import ListInput  from './ListInput.svelte'
   import ItemMulti from '../Select/ItemMulti.svelte'

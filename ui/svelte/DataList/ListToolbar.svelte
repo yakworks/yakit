@@ -8,7 +8,7 @@
   import { isFunction } from '@yakit/core/is';
   import { defaultsDeep, _defaults } from "@yakit/core/dash";
   import ListOptionsPopover from './ListOptionsPopover.svelte'
-  import growl from '@yakit/ui/growl';
+  import growl from '../../growl';
   import { problemHandler } from '../Formify'
 
   //toolbar options

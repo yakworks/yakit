@@ -1,11 +1,11 @@
 import { get, writable, derived } from 'svelte/store';
 import { isEmpty, cloneDeep, isFunction, merge } from '@yakit/core/dash'
 import appConfigApi from '@yakit/core/stores/AppConfigApi'
-import growl from "@yakit/ui/growl"
-import toast from "@yakit/ui/toast"
+import growl from "../../../growl"
+import toast from "../../../toast"
 import listConfig from "../listConfig"
-import {JqGridCtrl} from '@yakit/ui/jqGrid'
-import problemHandler from '@yakit/ui/toast/problemHandler'
+import {JqGridCtrl} from '../../../jqGrid'
+import problemHandler from '../../../toast/problemHandler'
 
 const not_implemented = "not implemented"
 
