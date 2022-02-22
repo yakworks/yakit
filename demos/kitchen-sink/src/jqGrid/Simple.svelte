@@ -91,8 +91,8 @@ import Resource from '@yakit/core/stores/Resource';
   //local, not export so not exposed
   let dataApi = sessionStores.invoice
   let resource = Resource({dataApi})
-  resource.getConfigs = () => ({})
   resource.ident = () => 'simple'
+  resource.setConfig({gridOptions})
 </script>
 
 <Page>

@@ -140,6 +140,12 @@ export const Resource = ({dataApi, opts = {}}) => {
     ident(){
       return apiPath.replace('/', '_')
     },
+    setConfig(configs) {
+      stateValues.isReady = true
+      stateValues.configs = configs
+      state.set(stateValues)
+    },
+
     /** lazy load the app config */
     async getConfigs(){
       if(!stateValues.configs) { await obj.loadConfigs() }
