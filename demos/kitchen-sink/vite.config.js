@@ -69,7 +69,7 @@ const cfg = defineConfig({
   },
   resolve: {
     alias: {
-      'framework7/shared': path.resolve(
+      'framework7-svelte/shared': path.resolve(
         basedir,
         `${rootDir}/node_modules/framework7-svelte/shared`,
       ),

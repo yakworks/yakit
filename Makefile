@@ -47,6 +47,9 @@ pretty:
 clean:
 	rm -rf dist && rm -rf build
 
+clean.node_modules:
+	find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+
 ## starts the demo app
 start:
 	cd demos/demo && $(vite)
