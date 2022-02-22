@@ -4,9 +4,9 @@
   this takes a value that can be bound that if empty will hide the overlay so noithing is active
  -->
 <script>
-  import { colorClasses } from '../shared/mixins';
-  import { classNames } from '../shared/utils';
-  import { restProps } from '../shared/rest-props';
+  import { colorClasses } from 'framework7-svelte/shared/mixins';
+  import { classNames } from 'framework7-svelte/shared/utils';
+  import { restProps } from 'framework7-svelte/shared/rest-props';
 
   let className = undefined;
   export { className as class };

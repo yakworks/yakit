@@ -3,7 +3,7 @@
   import { colorClasses } from 'framework7-svelte/shared/mixins'
   import { classNames, extend, plainText, createEmitter } from 'framework7-svelte/shared/utils'
   import { restProps } from 'framework7-svelte/shared/rest-props'
-  import { app, f7ready } from 'framework7-svelte/shared/f7'
+  import { app, f7ready } from 'framework7-svelte'
   import { getReactiveContext } from 'framework7-svelte/shared/get-reactive-context'
   import { _defaults, get } from '@yakit/core/dash'
   import {ctxKey} from './ctxKey'

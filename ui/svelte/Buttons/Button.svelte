@@ -14,7 +14,7 @@
     actionsClasses,
   } from '../shared/mixins';
   import { classNames, extend, isStringProp, plainText, createEmitter } from '../shared/utils';
-  import { restProps } from '../shared/rest-props';
+  import { restProps } from 'framework7-svelte/shared/rest-props';
   import { useTooltip } from '../shared/use-tooltip';
   // import { useRouteProps } from '../shared/use-route-props';
   import { useIcon } from '../shared/use-icon';
