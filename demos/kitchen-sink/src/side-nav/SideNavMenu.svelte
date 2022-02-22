@@ -46,7 +46,7 @@
         <Icon slot="media" material="table" />
         <AccordionContent>
           <List menuList noHairlinesBetween>
-            <ListItem title="Simple" link="/simple-grid" >
+            <ListItem title="Simple" link="/jqgrid" >
               <i class="icon icon-blank" slot="media" />
             </ListItem>
             <ListItem title="About" link="/about">
