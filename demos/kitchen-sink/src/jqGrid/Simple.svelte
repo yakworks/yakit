@@ -13,6 +13,8 @@
   import { JqGrid } from '@yakit/ui/svelte/DataList'
   import sessionStores from '../store/sessionServices'
   import QuickFilter from './QuickFilter.svelte'
+import { writable } from 'svelte/store';
+import Resource from '@yakit/core/stores/Resource';
 
   let gridOptions = {
     colModel: [
@@ -85,14 +87,16 @@
   let searchFormSimp = {
     'customer.name':{ }
   }
-
-  let ctx = { gridOptions, editForm, searchForm }
+  let ctx = { gridOptions, listId: 'simple' }
   //local, not export so not exposed
   let dataApi = sessionStores.invoice
+  let resource = Resource({dataApi: {...dataApi}})
+  resource.getConfigs = () => ({})
+  resource.ident = () => 'simple'
 </script>
 
 <Page>
   <Navbar sliding backLink title="Badge"/>
 
-  <JqGrid {dataApi}/>
+  <JqGrid {ctx} {resource}/>
 </Page>
