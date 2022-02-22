@@ -15,6 +15,7 @@
   import QuickFilter from './QuickFilter.svelte'
 import { writable } from 'svelte/store';
 import Resource from '@yakit/core/stores/Resource';
+import Block from 'framework7-svelte/components/block.svelte';
 
   let gridOptions = {
     colModel: [
@@ -98,5 +99,7 @@ import Resource from '@yakit/core/stores/Resource';
 <Page>
   <Navbar sliding backLink title="Badge"/>
 
-  <JqGrid {ctx} {resource}/>
+  <Block>
+    <JqGrid {ctx} {resource}/>
+  </Block>
 </Page>
