@@ -7,7 +7,7 @@ import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
 
 // const buildFolder = process.env.NODE_ENV === 'production' ? 'packages' : 'build';
-// const buildFolder = '../../framework7'
+const rootDir = '../..'
 
 
 // const __filename = new URL('', import.meta.url).pathname;
@@ -67,14 +67,14 @@ const cfg = defineConfig({
     exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7', 'free-jqgrid'],
     // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
   },
-  // resolve: {
-  //   alias: {
-  //     'framework7/lite/bundle': path.resolve(
-  //       basedir,
-  //       `${buildFolder}/core/framework7-lite-bundle.esm.js`,
-  //     ),
-  //   },
-  // },
+  resolve: {
+    alias: {
+      'framework7/shared': path.resolve(
+        basedir,
+        `${rootDir}/node_modules/framework7-svelte/shared`,
+      ),
+    },
+  },
 })
 
 export default cfg
