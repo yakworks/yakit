@@ -4,15 +4,14 @@
   import { isEmpty } from '@yakit/core/is';
   //svelte-forms-lib
   import { createForm } from "@yakit/core/schema/create-form";
-  import stringify from 'fast-safe-stringify'
   import { _defaults } from '@yakit/core/dash'
   import { buildYupValidation } from '@yakit/core/schema/schemaToYup'
   import {ctxKey} from './ctxKey'
-  import { colorClasses } from '../shared/mixins';
-  import { classNames, extend, createEmitter } from '../shared/utils';
-  import { restProps } from '../shared/rest-props';
-  import { useTab } from '../shared/use-tab';
-  import { setReactiveContext } from '../shared/set-reactive-context';
+  import { colorClasses } from 'framework7-svelte/shared/mixins';
+  import { classNames, extend, createEmitter } from 'framework7-svelte/shared/utils';
+  import { restProps } from 'framework7-svelte/shared/rest-props';
+  import { useTab } from 'framework7-svelte/shared/use-tab';
+  import { setReactiveContext } from 'framework7-svelte/shared/set-reactive-context';
 
   /**
    * The form data. Can be bound but not updated.

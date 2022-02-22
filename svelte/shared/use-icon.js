@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/use-icon'
+export * from 'framework7-svelte/shared/use-icon'

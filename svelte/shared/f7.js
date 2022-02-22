@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/f7'
+export * from 'framework7-svelte/shared/f7'

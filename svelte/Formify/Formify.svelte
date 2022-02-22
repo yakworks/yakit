@@ -8,8 +8,7 @@
   import { transformFields } from '@yakit/core/schema/transformSchema'
   import { _defaults } from '@yakit/core/dash'
   import growl from "@yakit/ui/growl"
-  import stringify from '@yakit/core/stringify';
-  import { classNames } from '../shared/utils';
+  import { classNames } from 'framework7-svelte/shared/utils';
 
   /** The form name */
   export let name

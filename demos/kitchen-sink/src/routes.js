@@ -146,7 +146,7 @@ export default [
     isMenuItem: false
   },
   // {
-  //   path: '/simple-grid',
+  //   path: '/jqgrid',
   //   component: SimpleGrid,
   //   isMenuItem: false
   // },

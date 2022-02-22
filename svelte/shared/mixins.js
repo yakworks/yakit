@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/mixins'
+export * from 'framework7-svelte/shared/mixins'

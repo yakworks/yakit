@@ -4,8 +4,6 @@
   import { _defaults, cloneDeep, pick, omit } from '@yakit/core/dash'
   import Select from 'svelte-select'
   import ListInput  from './ListInput.svelte'
-  import { classNames } from '../shared/utils';
-  import { fieldDefaults } from '@yakit/core/transformer'
   import { uniqueId } from '@yakit/core/dash'
   const dispatch = createEventDispatcher()
 

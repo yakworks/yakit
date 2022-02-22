@@ -1,10 +1,10 @@
 <script>
   import { createEventDispatcher, onMount, afterUpdate, onDestroy, getContext } from 'svelte'
-  import { colorClasses } from '../shared/mixins'
-  import { classNames, extend, plainText, createEmitter } from '../shared/utils'
-  import { restProps } from '../shared/rest-props'
-  import { app, f7ready } from '../shared/f7'
-  import { getReactiveContext } from '../shared/get-reactive-context'
+  import { colorClasses } from 'framework7-svelte/shared/mixins'
+  import { classNames, extend, plainText, createEmitter } from 'framework7-svelte/shared/utils'
+  import { restProps } from 'framework7-svelte/shared/rest-props'
+  import { app, f7ready } from 'framework7-svelte/shared/f7'
+  import { getReactiveContext } from 'framework7-svelte/shared/get-reactive-context'
   import { _defaults, get } from '@yakit/core/dash'
   import {ctxKey} from './ctxKey'
 

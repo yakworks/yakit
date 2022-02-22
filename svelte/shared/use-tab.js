@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/use-tab'
+export * from 'framework7-svelte/shared/use-tab'

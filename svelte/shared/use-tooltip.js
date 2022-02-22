@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/use-tooltip'
+export * from 'framework7-svelte/shared/use-tooltip'

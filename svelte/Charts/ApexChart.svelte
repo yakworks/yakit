@@ -1,6 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte'
-  import { classNames } from '../shared/utils';
+  import { classNames } from 'framework7-svelte/shared/utils';
   import { chart } from "./apexChartRender";
 
   export let options;

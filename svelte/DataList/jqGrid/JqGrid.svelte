@@ -9,7 +9,7 @@
   import ListToolbar from '../ListToolbar.svelte'
   import EditPopover from '../EditPopover.svelte'
   import SearchForm from '../SearchForm.svelte'
-  import { classNames } from '../../shared/utils';
+  import { classNames } from 'framework7-svelte/shared/utils';
   import growl from "@yakit/ui/growl"
   import { difference, get as _get, uniqueId, isEqual } from "@yakit/core/dash"
 

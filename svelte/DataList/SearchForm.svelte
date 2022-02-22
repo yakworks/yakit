@@ -4,12 +4,12 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
   import {writable} from 'svelte/store';
+  import { app, f7 } from 'framework7-svelte';
   import { searchDefaults } from '@yakit/core/schema/transformSchema'
   import { _defaults } from '@yakit/core/dash'
 
   import { CardFooter, Button, Columns, Col} from '../index'
   import { Formify, problemHandler } from '../Formify'
-  import { app } from '../framework7';
   import stringify from '@yakit/core/stringify';
 
   /** the resource with stores to bind to*/

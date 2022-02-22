@@ -7,7 +7,6 @@
   import selContext from '@yakit/ui/select/selectContext'
   import Select from 'svelte-select'
   import ListInput  from './ListInput.svelte'
-  // import { classNames } from '../shared/utils';
   import ItemMulti from '../Select/ItemMulti.svelte'
   import ItemSingle from '../Select/ItemSingle.svelte'
 

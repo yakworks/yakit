@@ -1,1 +1,1 @@
-export * from 'framework7-svelte/esm/shared/set-reactive-context'
+export * from 'framework7-svelte/shared/set-reactive-context'

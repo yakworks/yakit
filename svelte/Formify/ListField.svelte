@@ -1,10 +1,9 @@
 <script>
   import { getContext } from 'svelte';
   import {ctxKey} from './ctxKey'
-  import { classNames } from '../shared/utils';
+  import { classNames } from 'framework7-svelte/shared/utils';
   import { fieldDefaults } from '@yakit/core/transformer'
   import { _defaults, get } from '@yakit/core/dash'
-  import { util } from '@yakit/core/schema/util'
 
   import ListInput  from './ListInput.svelte'
 

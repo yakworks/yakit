@@ -8,8 +8,8 @@
   "license": "MIT",
   "svelte": "index.js",
   "dependencies": {
-    "@yakit/ui": "workspace:../ui",
-    "@yakit/core": "workspace:../core",
+    "@yakit/core": "workspace:1.0.0",
+    "@yakit/ui": "workspace:1.0.0",
     "svelte-select": "^4.4.7"
   }
 }

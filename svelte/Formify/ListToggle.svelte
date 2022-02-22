@@ -1,10 +1,8 @@
 <script>
   import { getContext } from 'svelte';
   import {ctxKey} from './ctxKey'
-  import { classNames } from '../shared/utils';
   import { fieldDefaults } from '@yakit/core/transformer'
   import { _defaults } from '@yakit/core/dash'
-  import { util } from '@yakit/core/schema/util'
 
   import {Toggle, ListItem}  from '../f7-components'
 
