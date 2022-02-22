@@ -2,6 +2,7 @@
   import { app,f7ready, App, Panel, View, Fab, Icon } from 'framework7-svelte';
   import SideNav from './side-nav/SideNav.svelte';
   import routes from './routes';
+  import compRoutes from './components/routes';
   // import store from './store';
   import { onMount } from 'svelte';
 
@@ -16,7 +17,7 @@
   const f7Params = {
     id: 'io.framework7.testapp',
     theme,
-    routes,
+    routes: [...routes, ...compRoutes],
     popup: {
       closeOnEscape: true,
     },
