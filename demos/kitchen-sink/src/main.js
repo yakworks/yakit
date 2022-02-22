@@ -2,10 +2,10 @@ import Framework7 from 'framework7/lite/bundle';
 import Framework7Svelte from 'framework7-svelte';
 import App from './App.svelte';
 
-// import './assets/index'
+import './assets/index'
 
-import 'framework7/css/bundle'
-import './assets/demo-orig.css'
+// import 'framework7/css/bundle'
+// import './assets/demo-orig.css'
 
 Framework7.use(Framework7Svelte);
 
