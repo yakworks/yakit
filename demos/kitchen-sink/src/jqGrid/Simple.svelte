@@ -1,21 +1,16 @@
 <script>
-  import {
-    Navbar,
-    NavRight,
-    Toolbar,
-    Page,
-    Link,
-    Badge,
-    List,
-    ListItem,
-    Icon,
-  } from 'framework7-svelte';
+  import { Navbar, Page} from 'framework7-svelte';
   import { JqGrid } from '@yakit/ui/svelte/DataList'
   import sessionStores from '../store/sessionServices'
   import QuickFilter from './QuickFilter.svelte'
-import { writable } from 'svelte/store';
-import Resource from '@yakit/core/stores/Resource';
-import Block from 'framework7-svelte/components/block.svelte';
+  import { writable } from 'svelte/store';
+  import Resource from '@yakit/core/stores/Resource';
+  import Block from 'framework7-svelte/components/block.svelte';
+  import dataApiFactory from '../store/dataApiFactory'
+
+  // let dataApi = dataApiFactory
+  let dataApi = sessionStores.invoice
+  console.log("dataApi", dataApi)
 
   let gridOptions = {
     colModel: [
@@ -85,21 +80,23 @@ import Block from 'framework7-svelte/components/block.svelte';
     }
   }
 
-  let searchFormSimp = {
-    'customer.name':{ }
-  }
-  let ctx = { gridOptions, listId: 'simple' }
+  let ctx = { gridOptions, editForm }
+  // let ctx = { gridOptions, listId: 'simple' }
   //local, not export so not exposed
-  let dataApi = sessionStores.invoice
-  let resource = Resource({dataApi})
-  resource.getConfigs = () => ({})
+  // let dataApi = sessionStores.invoice
+  // let resource = Resource({dataApi})
+
+  let resource = Resource({ dataApi })
+  //this gets called during load config, so we override it so it doesn't do it
+  resource.loadConfigs = () => ({})
   resource.ident = () => 'simple'
+
 </script>
 
 <Page>
   <Navbar sliding backLink title="Badge"/>
 
   <Block>
-    <JqGrid {ctx} {resource}/>
+    <JqGrid {resource} {ctx} {QuickFilter} />
   </Block>
 </Page>

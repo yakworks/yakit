@@ -20,6 +20,7 @@ const JqGridListManager = ({ resource }) => {
 
     async doConfig(ctx = {}) {
       let apiCfg = await listConfig({resource})
+      // let apiCfg = {}
       const clonedCfg = merge({}, apiCfg)
       merge(ctx, clonedCfg)
       ctrl.ctx = ctx
