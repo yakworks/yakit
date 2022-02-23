@@ -78,10 +78,6 @@
   }
 
   let ctx = { gridOptions, editForm }
-  // let ctx = { gridOptions, listId: 'simple' }
-  //local, not export so not exposed
-  // let dataApi = sessionStores.invoice
-  // let resource = Resource({dataApi})
 
   let resource = Resource({ dataApi })
   //this gets called during load config, so we override it so it doesn't do it
@@ -94,6 +90,6 @@
   <Navbar sliding backLink title="Badge"/>
 
   <Block>
-    <JqGrid {resource} {ctx} {QuickFilter} />
+    <JqGrid {resource} {ctx} {QuickFilter} loadOnMount />
   </Block>
 </Page>
