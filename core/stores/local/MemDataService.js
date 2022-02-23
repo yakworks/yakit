@@ -13,7 +13,8 @@ const MemDataService = ({
     mockDelay = 0,
     picklistFields = ['id', 'name'],
     initData = [],
-    ident = 'id'
+    ident = 'id',
+    storageKey = "foo"
   } = {}) => {
 
 
@@ -23,7 +24,9 @@ const MemDataService = ({
   const ds = {
     stores,
     initData,
-    ident
+    ident,
+    key: storageKey,
+    path: storageKey
   }
 
   ds.delay = (ms) => {

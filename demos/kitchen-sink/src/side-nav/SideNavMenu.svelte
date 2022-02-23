@@ -49,7 +49,7 @@
             <ListItem title="Simple" link="/jqgrid" >
               <i class="icon icon-blank" slot="media" />
             </ListItem>
-            <ListItem title="About" link="/about">
+            <ListItem title="Growl" link="/growl">
               <i class="icon icon-blank" slot="media" />
             </ListItem>
           </List>

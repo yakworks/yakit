@@ -15,6 +15,7 @@
     "path-to-regexp": "^6.2.0",
     "skeleton-elements": "^4.0.0",
     "ssr-window": "^4.0.2",
+    "svelte-spa-router": "^3.2.0",
     "swiper": "^8.0.3"
   },
   "devDependencies": {

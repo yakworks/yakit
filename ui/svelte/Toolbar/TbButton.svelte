@@ -32,12 +32,12 @@
 
 </script>
 {#if isButton }
-  <Button color={opts.color} popoverOpen={popoverId} tooltip={opts.tooltip} icon={opts.icon} on:click>
+  <Button class="is-icon-button" color={opts.color} popoverOpen={popoverId} tooltip={opts.tooltip} iconMaterial={opts.icon} on:click>
     {opts.display ? opts.display : ''}
   </Button>
 {:else}
 <!-- TODO setup popups -->
-  <Button popoverOpen={popoverId} tooltip={opts.tooltip} icon={opts.icon} on:click/>
+  <Button class="is-icon-button" popoverOpen={popoverId} tooltip={opts.tooltip} iconMaterial={opts.icon} on:click/>
 {/if}
 
 

@@ -2,9 +2,12 @@
   import { app,f7ready, App, Panel, View, Fab, Icon } from 'framework7-svelte';
   import SideNav from './side-nav/SideNav.svelte';
   import routes from './routes';
+  import compRoutes from './components/routes';
   // import store from './store';
   import { onMount } from 'svelte';
 
+  let mergedRoutes = [...compRoutes, ...routes]
+  // console.log("mergedRoutes", mergedRoutes)
   // Demo Theme
   let theme = 'aurora';
   if (document.location.search.indexOf('theme=') >= 0) {
@@ -16,7 +19,10 @@
   const f7Params = {
     id: 'io.framework7.testapp',
     theme,
-    routes,
+    routes: mergedRoutes,
+    touch: {
+      auroraTouchRipple: true,
+    },
     popup: {
       closeOnEscape: true,
     },

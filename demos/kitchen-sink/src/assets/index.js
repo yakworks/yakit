@@ -1,5 +1,8 @@
+//reset first
+import "@yakit/ui/styles/reset.scss";
 //-- Vendor --
 import 'framework7/css/bundle' // "@yakit/ui/styles/all" overrides a number of f7 styles
+import "@mdi/font/css/materialdesignicons.css"
 import 'material-icons/iconfont/material-icons.css'
 import 'framework7-icons'
 //make jqgrid, go away soon

@@ -133,12 +133,12 @@
 
     <div class="toolbar-item p-0 quick-search-item">
       <div class="control has-icons-right has-icons-left">
-        <input type="text" class="input is-rounded is-search quick-search"
+        <input type="text" class="input is-rounded is-search quick-search bg-body"
           placeholder="Search"
           on:keypress={onSearchKeyPress}
           bind:value={$qSearch}>
         <span class="icon is-small is-left">
-          <i class="fas fa-search"></i>
+          <i class="material-icons">search</i>
         </span>
         {#if $qSearch }
         <span class="icon is-small is-right">
@@ -149,9 +149,9 @@
     </div>
 
     {#if opts.searchFormButton.class !== 'hidden' }
-    <Button tooltip="Toggle search form" icon="manage_search" on:click={toggleShowSearch}/>
+    <Button class="is-icon-button" tooltip="Toggle search form" iconMaterial="manage_search" on:click={toggleShowSearch}/>
     {/if}
-    <Button popoverOpen={`#${optionsPopoverId}`} icon="more_vert" tooltip="Actions"/>
+    <Button class="is-icon-button" popoverOpen={`#${optionsPopoverId}`} iconMaterial="more_vert" tooltip="Actions"/>
   </div>
 </header>
 

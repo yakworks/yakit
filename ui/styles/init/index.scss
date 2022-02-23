@@ -35,4 +35,8 @@
 @import "bulma/sass/utilities/controls.sass";
 @import "bulma/sass/utilities/extends.sass";
 
+// SET THE REM SIZE
+html {
+  font-size: $body-size;
+}
 /* ------ END init/_index.scss ----- */
