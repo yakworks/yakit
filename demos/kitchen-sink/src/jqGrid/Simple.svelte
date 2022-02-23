@@ -88,8 +88,8 @@
 
   let resource = Resource({ dataApi })
   //this gets called during load config, so we override it so it doesn't do it
-  resource.loadConfigs = () => ({})
   resource.ident = () => 'simple'
+  resource.setConfig({gridOptions})
 
 </script>
 
