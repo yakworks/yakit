@@ -8,7 +8,7 @@
   import { _defaults, get } from '@yakit/core/dash'
   import {ctxKey} from './ctxKey'
 
-  import {TextEditor} from '../f7-components'
+  import {TextEditor} from 'framework7-svelte'
 
   const emit = createEmitter(createEventDispatcher, $$props);
 

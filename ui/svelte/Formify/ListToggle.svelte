@@ -4,7 +4,7 @@
   import { fieldDefaults } from '@yakit/core/transformer'
   import { _defaults } from '@yakit/core/dash'
 
-  import {Toggle, ListItem}  from '../f7-components'
+  import {Toggle, ListItem}  from 'framework7-svelte'
 
   /**
    * name is the required key or object field path
