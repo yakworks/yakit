@@ -59,6 +59,10 @@ start:
 start.sink:
 	cd demos/kitchen-sink && $(vite)
 
+## starts the demo app
+start.simple:
+	cd demos/simple && $(vite)
+
 ## locally preview production build
 start.preview:
 	$(vite) preview
