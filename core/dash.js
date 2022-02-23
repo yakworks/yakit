@@ -16,6 +16,7 @@ export { default as set } from 'lodash/set';
 export { default as get } from 'lodash/get';
 
 export { default as difference } from 'lodash/difference';
+export { default as bind } from 'lodash/bind';
 export { default as merge } from 'lodash/merge';
 export { default as _defaults } from 'lodash/defaults';
 export { default as defaultsDeep } from 'lodash/defaultsDeep';

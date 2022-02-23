@@ -1,7 +1,7 @@
 <script>
   import {getContext} from 'svelte';
   import {ctxKey} from './ctxKey';
-  import { classNames } from '../shared/utils';
+  import { classNames } from 'framework7-svelte/shared/utils';
   import { fieldDefaults } from '@yakit/core/transformer'
   import { _defaults } from '@yakit/core/dash'
 

@@ -2,7 +2,9 @@
   "name": "@yakit/simple",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "framework7": "^7.0.0-beta.12",

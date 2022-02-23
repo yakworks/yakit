@@ -51,6 +51,10 @@ clean.node_modules:
 	find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 	find . -name 'pnpm-lock.yaml' -prune -print -exec rm -rf '{}' \;
 
+clean.vite:
+	rm -rf demos/kitchen-sink/node_modules/.vite
+
+
 ## starts the demo app
 start:
 	cd demos/demo && $(vite)

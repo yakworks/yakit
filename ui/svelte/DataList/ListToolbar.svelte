@@ -2,13 +2,11 @@
   Wraps the jqGrid and adds the toolbar and search form
  -->
 <script>
-  import { fade, fly } from "svelte/transition";
   import { Button } from 'framework7-svelte'
   import TbButton from '../Toolbar/TbButton.svelte'
   import { isFunction } from '@yakit/core/is';
   import { defaultsDeep, _defaults } from "@yakit/core/dash";
   import ListOptionsPopover from './ListOptionsPopover.svelte'
-  import growl from '../../growl';
   import { problemHandler } from '../Formify'
 
   //toolbar options
@@ -101,7 +99,7 @@
 <header class="is-light is-dense has-border toolbar">
   <div class="toolbar-container">
     {#if hasSelected }
-      <div class="toolbar-item toolbar-item-left px-0 py-0" in:fly>
+      <div class="toolbar-item toolbar-item-left px-0 py-0">
         <div class="selection-pointer">
           <!-- subdirectory_arrow_right -->
 

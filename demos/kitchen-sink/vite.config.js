@@ -35,27 +35,17 @@ const cfg = defineConfig({
       //   // // let Rollup handle all other warnings normally
       //   // onwarn(warning)
       // }
-
-      // @ts-ignore This is temporary until the type definitions are fixed!
-      // hot: !production
     })
   ],
-  root: './',
-  // base: '',
-  // publicDir: path.resolve(basedir, 'public'),
   build: {
     sourcemap: sourceMapsInProduction,
-    // outDir: path.resolve(basedir, 'dist'),
-    // assetsInlineLimit: 0,
-    // emptyOutDir: true,
   },
   server: {
     host: 'localhost',
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['free-jqgrid'],
-    // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7@7.0.0-beta.11', 'free-jqgrid'],
+    exclude: ['framework7-svelte@7.0.0-beta.12'],
     // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
   },
   resolve: {
@@ -67,7 +57,6 @@ const cfg = defineConfig({
       'framework7-svelte/shared': path.resolve(
         basedir,
         `node_modules/framework7-svelte/shared`
-
       ),
     },
   },

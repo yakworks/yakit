@@ -8,9 +8,9 @@
   import { buildYupValidation } from '@yakit/core/schema/schemaToYup'
   import {ctxKey} from './ctxKey'
   import { colorClasses } from 'framework7-svelte/shared/mixins';
-  import { classNames, extend, createEmitter } from 'framework7-svelte/shared/utils';
+  import { classNames, createEmitter } from 'framework7-svelte/shared/utils';
   import { restProps } from 'framework7-svelte/shared/rest-props';
-  import { useTab } from 'framework7-svelte/shared/use-tab';
+  // import { useTab } from 'framework7-svelte/shared/use-tab';
   import { setReactiveContext } from 'framework7-svelte/shared/set-reactive-context';
 
   /**
@@ -171,7 +171,7 @@
     handleSubmit(event)
   }
 
-  useTab(() => form, emit);
+  // useTab(() => form, emit);
 
 </script>
 

@@ -6,4 +6,8 @@ export default {
   // optimizeDeps: {
   //   exclude: ['framework7-svelte*']
   // }
+  server: {
+    host: 'localhost',
+    port: 9001
+  }
 };

@@ -6,7 +6,7 @@
 // window.jQuery = jQuery;
 
 //order below is important
-import 'free-jqgrid/js/jquery.jqgrid.src'
+// import 'free-jqgrid/js/jquery.jqgrid.src'
 
 // import 'jquery-ui/ui/core'
 // import 'jquery-ui/ui/jquery-patch'

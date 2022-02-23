@@ -5,8 +5,7 @@ import { makeLabel } from '@yakit/core/nameUtils'
 import { xlsData, csvData } from './excelExport'
 import flattenObject from '@yakit/core/flattenObject'
 import toast from '../growl'
-import _ from 'lodash'
-import { subscribe } from 'svelte/internal'
+import {isFunction, cloneDeep, extend, isEmpty, isString, pick, map, bind, find, each, isNil } from '@yakit/core/dash'
 
 export default class JqGridCtrl {
   formatters
@@ -81,7 +80,7 @@ export default class JqGridCtrl {
 
     // set the hasSelected flag events
     const onSelect = (rowId, status, event) => {
-      if (opts.eventHandlers?.onSelect && _.isFunction(opts.eventHandlers.onSelect)) {
+      if (opts.eventHandlers?.onSelect && isFunction(opts.eventHandlers.onSelect)) {
         opts.eventHandlers.onSelect(rowId, status, event)
       }
 
@@ -94,7 +93,7 @@ export default class JqGridCtrl {
     $jqGrid.on('jqGridSelectAll', onSelect)
 
     // if no datatype is passed in then use internal default
-    if (_.isNil(opts.datatype)) {
+    if (isNil(opts.datatype)) {
       opts.datatype = (params) => this.gridLoader(params)
     }
 
@@ -153,9 +152,9 @@ export default class JqGridCtrl {
 
   // Gives selected row objects, [{id:1..}, {id:2..}]
   getSelectedRows() {
-    const getRowData = _.bind(this.getRowData, this)
+    const getRowData = bind(this.getRowData, this)
     const ids = this.getSelectedRowIds()
-    return _.map(ids, id => getRowData(id))
+    return map(ids, id => getRowData(id))
   }
 
   clearSelection() {
@@ -217,8 +216,8 @@ export default class JqGridCtrl {
   // reloads and keeps what was selected
   reloadKeepSelected() {
     // Save id of the selected row
-    const selRow = _.cloneDeep(this.getParam('selrow'))
-    const selRows = _.cloneDeep(this.getParam('selarrrow'))
+    const selRow = cloneDeep(this.getParam('selrow'))
+    const selRows = cloneDeep(this.getParam('selarrrow'))
 
     const jqGridEl = this.getGridEl()
     // Save grid scroll position
@@ -227,7 +226,7 @@ export default class JqGridCtrl {
     const afterGridComplete = () => {
       this.clearSelection()
       if (this.getParam('multiselect')) {
-        _.each(selRows, id => jqGridEl.jqGrid('setSelection', id))
+        each(selRows, id => jqGridEl.jqGrid('setSelection', id))
       } else {
         jqGridEl.jqGrid('setSelection', selRow)
       }
@@ -460,7 +459,7 @@ export default class JqGridCtrl {
       this.setParam({ postData })
 
       //if its empty then manually blank it out
-      if(_.isEmpty(q)){
+      if(isEmpty(q)){
         let pp = this.getParam("postData")
         pp.q = {}
       }
@@ -476,7 +475,7 @@ export default class JqGridCtrl {
   hasSearchFilters(filters) {
     for (const k in filters) {
       const value = filters[k]
-      if (_.isNil(value)) { continue }
+      if (isNil(value)) { continue }
 
       if (typeof value === 'string') {
         if (value.trim() !== '') { return true }
@@ -508,7 +507,7 @@ export default class JqGridCtrl {
 
       // to be able to set default filters on the first load
       let q = p.q
-      if(_.isString(q) && !_.isEmpty(q)){
+      if(isString(q) && !isEmpty(q)){
         if (q.trim().indexOf('{') === 0) {
           q = JSON.parse(q)
         } else {
@@ -523,7 +522,7 @@ export default class JqGridCtrl {
       q = {...q, ...restrictSearch}
 
       //now if its not empty set it back to p
-      if(!_.isEmpty(q)){
+      if(!isEmpty(q)){
         p.q = q
       }
       //jqGRid calls this on init, so this is a hack so we dont run it on init.
@@ -548,7 +547,7 @@ export default class JqGridCtrl {
 
   // Returns `true` if a columnt with the given id is hidden
   isColumnHidden(columnId) {
-    const column = _.find(this.getParam('colModel'), { name: columnId })
+    const column = find(this.getParam('colModel'), { name: columnId })
     return column?.hidden
   }
 
@@ -741,7 +740,7 @@ export default class JqGridCtrl {
 
   setupCustomFormatters(gridCtrl, formatters, options) {
     options.colModel.forEach((col, i) => {
-      if (col.formatter && _.isString(col.formatter) && formatters[col.formatter]) col.formatter = formatters[col.formatter].bind(this)
+      if (col.formatter && isString(col.formatter) && formatters[col.formatter]) col.formatter = formatters[col.formatter].bind(this)
     })
   }
 
@@ -813,7 +812,7 @@ export default class JqGridCtrl {
           const postData = this.jqGridEl.jqGrid('getGridParam', 'postData')
           const defaultFilters = postData.defaultFilters || postData.filters
           // @ts-ignore
-          const filters = (_.extend(JSON.parse(defaultFilters), (_.pick(postData, (_value, key) => !['page', 'filters', 'max', 'sort', 'order'].includes(key)))))
+          const filters = (extend(JSON.parse(defaultFilters), (pick(postData, (_value, key) => !['page', 'filters', 'max', 'sort', 'order'].includes(key)))))
           filters.firstLoad = false
           postData.defaultFilters = defaultFilters
           postData.filters = filters
