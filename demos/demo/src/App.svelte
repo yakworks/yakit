@@ -5,7 +5,6 @@
   import routes from './routes';
   import Router from 'svelte-spa-router'
 
-
   // Demo Theme
   let theme = 'aurora';
   // if (document.location.search.indexOf('theme=') >= 0) {

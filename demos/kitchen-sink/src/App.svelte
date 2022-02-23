@@ -7,7 +7,7 @@
   import { onMount } from 'svelte';
 
   let mergedRoutes = [...compRoutes, ...routes]
-  console.log("mergedRoutes", mergedRoutes)
+  // console.log("mergedRoutes", mergedRoutes)
   // Demo Theme
   let theme = 'aurora';
   if (document.location.search.indexOf('theme=') >= 0) {

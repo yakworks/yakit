@@ -11,6 +11,7 @@ specifiers:
   skeleton-elements: ^4.0.0
   ssr-window: ^4.0.2
   svelte: ^3.46.4
+  svelte-spa-router: ^3.2.0
   swiper: ^8.0.3
   vite: ^2.8.3
 
@@ -22,11 +23,12 @@ dependencies:
   path-to-regexp: 6.2.0
   skeleton-elements: 4.0.0
   ssr-window: 4.0.2
+  svelte-spa-router: 3.2.0
   swiper: 8.0.6
 
 devDependencies:
-  rollup: 2.67.3
-  rollup-plugin-svelte: 7.1.0_rollup@2.67.3+svelte@3.46.4
+  rollup: 2.68.0
+  rollup-plugin-svelte: 7.1.0_rollup@2.68.0+svelte@3.46.4
   svelte: 3.46.4
   vite: 2.8.4
 
@@ -296,6 +298,11 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /regexparam/2.0.0:
+    resolution: {integrity: sha512-gJKwd2MVPWHAIFLsaYDZfyKzHNS4o7E/v8YmNf44vmeV2e4YfVoDToTOKTvE7ab68cRJ++kLuEXJBaEeJVt5ow==}
+    engines: {node: '>=8'}
+    dev: false
+
   /require-relative/0.8.7:
     resolution: {integrity: sha1-eZlTn8ngR6N5KPoZb44VY9q9Nt4=}
     dev: true
@@ -309,7 +316,7 @@ packages:
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
 
-  /rollup-plugin-svelte/7.1.0_rollup@2.67.3+svelte@3.46.4:
+  /rollup-plugin-svelte/7.1.0_rollup@2.68.0+svelte@3.46.4:
     resolution: {integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -317,7 +324,7 @@ packages:
       svelte: '>=3.5.0'
     dependencies:
       require-relative: 0.8.7
-      rollup: 2.67.3
+      rollup: 2.68.0
       rollup-pluginutils: 2.8.2
       svelte: 3.46.4
     dev: true
@@ -328,8 +335,8 @@ packages:
       estree-walker: 0.6.1
     dev: true
 
-  /rollup/2.67.3:
-    resolution: {integrity: sha512-G/x1vUwbGtP6O5ZM8/sWr8+p7YfZhI18pPqMRtMYMWSbHjKZ/ajHGiM+GWNTlWyOR0EHIdT8LHU+Z4ciIZ1oBw==}
+  /rollup/2.68.0:
+    resolution: {integrity: sha512-XrMKOYK7oQcTio4wyTz466mucnd8LzkiZLozZ4Rz0zQD+HeX4nUK4B8GrTX/2EvN2/vBF/i2WnaXboPxo0JylA==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -353,6 +360,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /svelte-spa-router/3.2.0:
+    resolution: {integrity: sha512-igemo5Vs82TGBBw+DjWt6qKameXYzNs6aDXcTxou5XbEvOjiRcAM6MLkdVRCatn6u8r42dE99bt/br7T4qe/AQ==}
+    dependencies:
+      regexparam: 2.0.0
+    dev: false
 
   /svelte/3.46.4:
     resolution: {integrity: sha512-qKJzw6DpA33CIa+C/rGp4AUdSfii0DOTCzj/2YpSKKayw5WGSS624Et9L1nU1k2OVRS9vaENQXp2CVZNU+xvIg==}
@@ -387,7 +400,7 @@ packages:
       esbuild: 0.14.23
       postcss: 8.4.6
       resolve: 1.22.0
-      rollup: 2.67.3
+      rollup: 2.68.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
