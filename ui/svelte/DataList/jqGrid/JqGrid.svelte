@@ -117,7 +117,7 @@
     //add gridComplete
     ctx.gridOptions.gridComplete = () => {
       isGridComplete = true
-      syncSelects(_)
+      syncSelects()
       dispatch("gridComplete")
     }
     ctx.gridOptions.onSelectRow = (rowId, checked, event) => {
