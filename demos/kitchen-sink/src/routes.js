@@ -3,8 +3,8 @@ import PanelLeft from './pages/panel-left.svelte';
 import PanelRight from './pages/panel-right.svelte';
 import About from './pages/about.svelte';
 import SideNavMenu from './side-nav/SideNavMenu.svelte';
-import SimpleGrid from './jqGrid/Simple.svelte';
-import Growl from './components/Growl.svelte';
+// import SimpleGrid from './jqGrid/Simple.svelte';
+// import Growl from './components/Growl.svelte';
 
 import Accordion from './pages/accordion.svelte';
 import ActionSheet from './pages/action-sheet.svelte';
@@ -12,7 +12,7 @@ import Appbar from './pages/appbar.svelte';
 import AreaChart from './pages/area-chart.svelte';
 import Autocomplete from './pages/autocomplete.svelte';
 import Badge from './pages/badge.svelte';
-import Breadcrumbs from './pages/breadcrumbs.svelte';
+// import Breadcrumbs from './pages/breadcrumbs.svelte';
 import Buttons from './pages/buttons.svelte';
 import Calendar from './pages/calendar.svelte';
 import CalendarPage from './pages/calendar-page.svelte';
@@ -146,11 +146,11 @@ export default [
     component: SideNavMenu,
     isMenuItem: false
   },
-  {
-    path: '/jqgrid',
-    component: SimpleGrid,
-    isMenuItem: false
-  },
+  // {
+  //   path: '/jqgrid',
+  //   component: SimpleGrid,
+  //   isMenuItem: false
+  // },
   // {
   //   path: '/growl',
   //   component: Growl,
@@ -248,10 +248,10 @@ export default [
     path: '/badge',
     component: Badge,
   },
-  {
-    path: '/breadcrumbs',
-    component: Breadcrumbs,
-  },
+  // {
+  //   path: '/breadcrumbs',
+  //   component: Breadcrumbs,
+  // },
   {
     path: '/buttons',
     component: Buttons,

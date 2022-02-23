@@ -2,7 +2,6 @@
 import { defineConfig } from 'vite'
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess'
-// import { svelte } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 import { URL } from 'url'; // in Browser, the URL in native accessible on window
 

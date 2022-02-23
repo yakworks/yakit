@@ -26,7 +26,7 @@ const cfg = defineConfig({
         postcss: true
       }),
       compilerOptions: {
-        dev: false //!production
+        dev: !production
       },
       // onwarn: (warning, onwarn) => {
       //   //disable all of them
@@ -41,27 +41,33 @@ const cfg = defineConfig({
     })
   ],
   root: './',
-  base: '',
-  publicDir: path.resolve(basedir, 'public'),
+  // base: '',
+  // publicDir: path.resolve(basedir, 'public'),
   build: {
     sourcemap: sourceMapsInProduction,
-    outDir: path.resolve(basedir, 'dist'),
+    // outDir: path.resolve(basedir, 'dist'),
     // assetsInlineLimit: 0,
-    emptyOutDir: true,
+    // emptyOutDir: true,
   },
   server: {
     host: 'localhost',
     port: 9001
   },
   optimizeDeps: {
-    exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7@7.0.0-beta.11', 'free-jqgrid'],
+    exclude: ['free-jqgrid'],
+    // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7@7.0.0-beta.11', 'free-jqgrid'],
     // exclude: ['framework7-svelte@7.0.0-beta.11', 'framework7'],
   },
   resolve: {
     alias: {
+      // 'framework7-svelte/shared': path.resolve(
+      //   basedir,
+      //   `${rootDir}/node_modules/framework7-svelte/esm/shared`,
+      // ),
       'framework7-svelte/shared': path.resolve(
         basedir,
-        `${rootDir}/node_modules/framework7-svelte/shared`,
+        `node_modules/framework7-svelte/shared`
+
       ),
     },
   },

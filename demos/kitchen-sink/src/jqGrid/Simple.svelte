@@ -5,7 +5,7 @@
   import QuickFilter from './QuickFilter.svelte'
   import { writable } from 'svelte/store';
   import Resource from '@yakit/core/stores/Resource';
-  import Block from 'framework7-svelte/components/block.svelte';
+  import {Block} from '@yakit/ui/svelte';
   import dataApiFactory from '../store/dataApiFactory'
 
   // let dataApi = dataApiFactory

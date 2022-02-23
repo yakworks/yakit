@@ -1,0 +1,17 @@
+{
+  "name": "@yakit/simple",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "framework7": "^7.0.0-beta.12",
+    "framework7-svelte": "^7.0.0-beta.12"
+  },
+  "devDependencies": {
+    "rollup": "^2.47.0",
+    "rollup-plugin-svelte": "^7.1.0",
+    "svelte": "^3.46.4",
+    "vite": "^2.3.1"
+  }
+}

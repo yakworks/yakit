@@ -7,6 +7,9 @@ packages:
   # - 'grid'
   - 'demos/kitchen-sink'
   - 'demos/demo'
+  # stupid simple example to go back to and sanity check
+  - 'demos/simple'
+  # - 'demos/svelte-rollup'
   # - 'framework7/core'
   # - 'framework7/svelte'
   # exclude packages that are inside test directories
