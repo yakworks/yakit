@@ -17,8 +17,8 @@
   import { useRouteProps } from '../shared/use-route-props';
   import { useIcon } from '../shared/use-icon';
 
-  import {UseIcon} from '../index';
-  import {Preloader} from '../index';
+  import {UseIcon, Preloader} from 'framework7-svelte';
+
 
   const emit = createEmitter(createEventDispatcher, $$props);
 

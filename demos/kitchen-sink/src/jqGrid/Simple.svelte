@@ -1,12 +1,9 @@
 <script>
-  import { Navbar, Page} from 'framework7-svelte';
+  import { Navbar, Page, Block} from 'framework7-svelte';
   import { JqGrid } from '@yakit/ui/svelte/DataList'
   import sessionStores from '../store/sessionServices'
   import QuickFilter from './QuickFilter.svelte'
-  import { writable } from 'svelte/store';
   import Resource from '@yakit/core/stores/Resource';
-  import {Block} from '@yakit/ui/svelte';
-  import dataApiFactory from '../store/dataApiFactory'
 
   // let dataApi = dataApiFactory
   let dataApi = sessionStores.invoice

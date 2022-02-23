@@ -2,7 +2,7 @@
   Wraps the jqGrid and adds the toolbar and search form
  -->
 <script>
-  import {Popover, List, ListItem} from '../index'
+  import {Popover, List, ListItem} from 'framework7-svelte'
   import growl from '../../growl'
   import { isFunction } from '@yakit/core/dash';
 

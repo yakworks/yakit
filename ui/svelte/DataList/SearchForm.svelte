@@ -7,8 +7,8 @@
   import { app, f7 } from 'framework7-svelte';
   import { searchDefaults } from '@yakit/core/schema/transformSchema'
   import { _defaults } from '@yakit/core/dash'
-
-  import { CardFooter, Button, Columns, Col} from '../index'
+  import { CardFooter, Button} from 'framework7-svelte'
+  import { Columns, Col} from '../index'
   import { Formify, problemHandler } from '../Formify'
   import stringify from '@yakit/core/stringify';
 

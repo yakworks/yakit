@@ -2,7 +2,7 @@
   Dynamic search from config. Based on config will setup multiple column cards with fields
  -->
 <script>
-  import { Card, CardContent } from '../index'
+  import { Card, CardContent } from 'framework7-svelte'
   import { ListForm, FormifyField } from '../Formify';
   import { transformFields } from '@yakit/core/transformer'
   import { _defaults } from '@yakit/core/dash'

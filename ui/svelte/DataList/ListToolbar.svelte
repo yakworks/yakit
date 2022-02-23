@@ -3,7 +3,7 @@
  -->
 <script>
   import { fade, fly } from "svelte/transition";
-  import { Button } from '../index'
+  import { Button } from 'framework7-svelte'
   import TbButton from '../Toolbar/TbButton.svelte'
   import { isFunction } from '@yakit/core/is';
   import { defaultsDeep, _defaults } from "@yakit/core/dash";

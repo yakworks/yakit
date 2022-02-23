@@ -4,7 +4,7 @@
  <script>
   import { createEventDispatcher } from 'svelte'
   import Segmented from './Segmented.svelte'
-  import Button7 from './Button7.svelte'
+  import {Button} from 'framework7-svelte'
 
   export let activeKey = undefined
   export let schema = undefined
@@ -21,7 +21,7 @@
 
 <Segmented strong tag="p" class='mr-2' {activeKey} >
   {#each schema as item}
-  <Button7 active={activeKey === item.key} on:click={toggleActive(item.key)}>{item.label}</Button7>
+  <Button active={activeKey === item.key} on:click={toggleActive(item.key)}>{item.label}</Button>
   {/each}
 </Segmented>
 

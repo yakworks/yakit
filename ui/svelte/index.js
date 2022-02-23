@@ -20,4 +20,4 @@ export * from './Charts';
 // export * from './Form';
 // export * from './List';
 
-export * from './f7-components';
+// export * from './f7-components';

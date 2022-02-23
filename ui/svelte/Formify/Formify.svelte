@@ -2,7 +2,7 @@
   Dynamic search from schema for basic single column ListForm
  -->
 <script>
-  import { Card, CardContent, CardFooter, Button7} from '../index'
+  import { Card, CardContent, CardFooter, Button} from 'framework7-svelte'
   import ListForm from './ListForm.svelte'
   import FormifyField from './FormifyField.svelte'
   import { transformFields } from '@yakit/core/schema/transformSchema'
@@ -99,8 +99,8 @@
 
     {#if !($$slots.footer)}
       <CardFooter>
-        <Button7 onClick={onCancel}>Cancel</Button7>
-        <Button7 type=button disabled={$isDisableSave} preloader loading={$isSubmitting} onClick={onSave}>Save</Button7>
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button type=button disabled={$isDisableSave} preloader loading={$isSubmitting} onClick={onSave}>Save</Button>
       </CardFooter>
     {/if}
     <slot name="footer" />
@@ -129,8 +129,8 @@
       </div>
       {#if !($$slots.footer)}
         <CardFooter>
-          <Button7 onClick={onCancel}>Cancel</Button7>
-          <Button7 type=button disabled={$isDisableSave} preloader loading={$isSubmitting} onClick={onSave}>Save</Button7>
+          <Button onClick={onCancel}>Cancel</Button>
+          <Button type=button disabled={$isDisableSave} preloader loading={$isSubmitting} onClick={onSave}>Save</Button>
         </CardFooter>
       {/if}
       <slot name="footer" />

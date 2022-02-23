@@ -3,7 +3,7 @@
  -->
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
-  import { Popover, CardHeader} from '../index'
+  import { Popover, CardHeader} from 'framework7-svelte'
   import { Formify, problemHandler } from '../Formify'
   import { _defaults } from '@yakit/core/dash'
 

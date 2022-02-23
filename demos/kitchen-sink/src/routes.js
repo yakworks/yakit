@@ -3,7 +3,7 @@ import PanelLeft from './pages/panel-left.svelte';
 import PanelRight from './pages/panel-right.svelte';
 import About from './pages/about.svelte';
 import SideNavMenu from './side-nav/SideNavMenu.svelte';
-// import SimpleGrid from './jqGrid/Simple.svelte';
+import SimpleGrid from './jqGrid/Simple.svelte';
 // import Growl from './components/Growl.svelte';
 
 import Accordion from './pages/accordion.svelte';
@@ -146,11 +146,11 @@ export default [
     component: SideNavMenu,
     isMenuItem: false
   },
-  // {
-  //   path: '/jqgrid',
-  //   component: SimpleGrid,
-  //   isMenuItem: false
-  // },
+  {
+    path: '/jqgrid',
+    component: SimpleGrid,
+    isMenuItem: false
+  },
   // {
   //   path: '/growl',
   //   component: Growl,

@@ -2,7 +2,7 @@
   WIP, not done yet
  -->
 <script>
-  import {Button} from '../index'
+  import {Button} from 'framework7-svelte'
   import { onMount, tick } from 'svelte'
   import { classNames } from 'framework7-svelte/shared/utils';
   import { chart } from "./apexChartRender";
