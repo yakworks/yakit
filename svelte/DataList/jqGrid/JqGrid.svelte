@@ -95,6 +95,7 @@
     gridOptions = ctx.gridOptions
     toolbarOptions = ctx.gridOptions.toolbarOptions
     gridId = ctx.gridOptions.gridId = resource.ident()
+    resource.sort.set( gridOptions.sort)
     // console.log("setupListCtrl", gridId)
     settings = resource.settings
     searchFormEnabled = _get(ctx, 'gridOptions.searchFormEnabled', true)

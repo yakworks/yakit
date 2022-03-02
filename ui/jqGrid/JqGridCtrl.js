@@ -105,7 +105,8 @@ export default class JqGridCtrl {
     this.setupFormatters(this, $jqGrid, opts)
     this.formatters && this.setupCustomFormatters(this, this.formatters, opts)
 
-    this.gridOptions.sort = 'id'
+    this.gridOptions.sort = this.gridOptions.sort || 'id'
+    // adds the listener to the store
     // adds the listener to the store
 
     // const unsubscribe = this.dataApi.pageViewStore.subscribe(data => {
